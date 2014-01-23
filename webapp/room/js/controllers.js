@@ -140,6 +140,10 @@ angular.module('SunRoom.controllers', [])
                     }
                 });
 
+                /**
+                 * Check if all the rooms have been created.
+                 * if so, then assign each student to his/her own room
+                 */
                 $q.all(promiseArray).then(function () {
                     angular.forEach(users, function (user) {
                         var schoolName = user.username.substring(0, 2);
