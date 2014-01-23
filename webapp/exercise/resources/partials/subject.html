@@ -44,7 +44,7 @@
     var login_controller = function ($scope, $http) {
 
         var checklogin = function () {
-            $http.get('/users/me')
+            $http.get('/me')
                     .success(function (data, status, headers, config) {
                         $scope.status = "logged in";
                         $scope.user = data;

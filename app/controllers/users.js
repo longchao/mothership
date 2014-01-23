@@ -60,6 +60,8 @@ exports.create = function (req, res, next) {
     if (user.usergroup != "teacher") {
         user.usergroup = 'student';
     }
+    user.profile.school_name = user.username.substring(0,2);
+    user.profile.room_name = user.username.substring(2,6);
     user.save(function (err) {
         if (err) {
             switch (err.code) {
@@ -128,7 +130,7 @@ exports.me = function (req, res) {
 };
 
 exports.show = function(req, res) {
-    res.jsonp(req.user);
+    res.jsonp(req.profile);
 }
 
 exports.dispatch = function (req, res) {

@@ -18,7 +18,9 @@ var UserSchema = new Schema({
     profile: {
         room: String,
         gender: String,
-        birthday: Date
+        birthday: Date,
+        school_name: String,
+        room_name: String
     },
     username: {
         type: String,
