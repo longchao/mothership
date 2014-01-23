@@ -4,12 +4,13 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     Room = mongoose.model('Room'),
-    App = mongoose.model('App');
+    App = mongoose.model('WebApp');
 
 /**
  * Create user
  */
 exports.create = function (req, res) {
+    console.log('req.body:%s',JSON.stringify(req.body));
     var room = new Room(req.body);
     var message = null;
 

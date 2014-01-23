@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-controller="roomController">
+    <h2>Room Name: {{ name }}</h2>
+
+    <h2>Users</h2>
+    <table>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{ user.name }}</td>
+            <td>
+                <button ng-click="deleteUser($index, user._id)">DELETE</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Apps</h2>
+    <table>
+        <tbody>
+        <tr ng-repeat="app in apps">{{ user.name }}</tr>
+        </tbody>
+    </table>
+
+    <form action="">
+        <label>tony's id is: 52df6569f561036e1bebcfc6</label><br>
+        Student Name: <input type="text" ng-model="username"><br>
+        <button ng-click="addUser(username)">Add User</button>
+    </form>
+</body>
+</html>

@@ -127,6 +127,10 @@ exports.me = function (req, res) {
     res.jsonp(req.user || null);
 };
 
+exports.show = function(req, res) {
+    res.jsonp(req.user);
+}
+
 exports.dispatch = function (req, res) {
     if (req.user) {
         if (req.user.usergroup != "teacher") {
