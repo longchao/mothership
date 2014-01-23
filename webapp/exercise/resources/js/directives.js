@@ -1619,76 +1619,64 @@ angular.module('SunExercise.directives', [])
                 };
 
                 var data = combSandbox.getChapterMaterial($routeParams.cid);
-                if (data) {
-                    $scope.lessons = data.lessons;
-                    $scope.count = $scope.lessons.length;
+                if(data) {
+                    var lessons = data.lessons;
 
-                    var lessonMap = {};
-                    data.lessons.forEach(function (lesson, index, arr) {
+                    var mainLessonMap = {};
+                    var slaveLessonsMap = {};
+                    var allLessons = [];
+                    lessons.forEach(function(lesson, index) {
                         var requirements = lesson.requirements;
-                        if (requirements) {
-                            var key = requirements[0];
-                            var itemsArray = lessonMap[key];
-                            if (itemsArray) {
-                                itemsArray.push(lesson);
+                        var seq = lesson.seq;
+                        if(seq == 0) {
+                            if(!requirements) {
+                                mainLessonMap.header = lesson;
                             } else {
-                                lessonMap[key] = [];
-                                lessonMap[key].push(lesson);
+                                var req = requirements[0];
+                                mainLessonMap[req] = lesson;
                             }
                         } else {
-                            //enter_lesson's level
-                            if (!lessonMap.header) {
-                                lessonMap.header = [];
-                                lessonMap.header.push(lesson);
+                            if(!requirements) {
+                                if(!slaveLessonsMap.header) {
+                                    slaveLessonsMap.header = [];
+                                }
+                                var slaveLessons = slaveLessons.header;
+                                slaveLessons.push(lesson);
                             } else {
-                                lessonMap.header.push(lesson);
+                                var req = requirements[0];
+                                if(!slaveLessonsMap[req]) {
+                                    slaveLessonsMap[req] = [];
+                                }
+                                var slaveLessons = slaveLessonsMap[req];
+                                slaveLessons.push(lesson);
                             }
                         }
                     });
 
-                    angular.forEach(lessonMap, function (lessonArray, lessonId) {
-                        sortForLessons(lessonArray);
-                    });
-
-                    $scope.title = lessonMap.header[0].title;
-                    $scope.allLessons = [];
-                    var mlength = Object.keys(lessonMap).length;
-                    var count = 1;
-                    var firsrtLessons = lessonMap.header;
-                    console.log('first: ' + firsrtLessons[0].title);
-                    $scope.allLessons[0] = firsrtLessons;
-
-                    var enter_lesson = data.enter_lesson;
-
-
-                    (function getInitArray(lessons) {
-                        if (count >= mlength) return;
-                        var key = lessons[0].id;
-                        var targetLessons = lessonMap[key];
-                        $scope.allLessons[count] = targetLessons;
-                        count++;
-                        if(!targetLessons) {
-                            console.log('No Lessons...........key='+key);
-                        }else{
-                            console.log('Have Lessons.......key='+key);
+                    var header = mainLessonMap.header;
+                    var totalLength = Object.keys(mainLessonMap).length;
+                    var count = 0;
+                    (function arrCon(lesson) {
+                        if(count >= totalLength) {
+                            return;
                         }
-                        getInitArray(targetLessons);
-                    })(firsrtLessons);
+                        var newArr = [];
+                        newArr.push(lesson);
+                        allLessons.push(newArr);
+                        var newLesson = mainLessonMap[lesson.id];
+                        count++;
+                        arrCon(newLesson);
+                    }(header));
 
-                    var flag = $scope.allLessons.length-1;
-                    var lastLessons = $scope.allLessons[flag].splice(1);
-                    
-                    (function convertLessons(insertLessons) {
-                        if(flag <= 0) return;
-                        flag--;
-                        var newInsertLessons = $scope.allLessons[flag].splice(1);
-                        Array.prototype.push.apply($scope.allLessons[flag], insertLessons);
-                        convertLessons(newInsertLessons);
-                    })(lastLessons);
-
-                    //
-                    console.log('result=' + $scope.allLessons.length);
+                    allLessons.forEach(function(lessons, index) {
+                        var mainLesson = lessons[0];
+                        var slaveLessons = slaveLessonsMap[mainLesson.id];     
+                        Array.prototype.push.apply(lessons, slaveLessons);
+                        sortForLessons(lessons);
+                    })
                 }
+
+                $scope.allLessons = allLessons;
                 $compile($element.contents())($scope);
             }
         }
