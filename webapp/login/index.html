@@ -89,13 +89,18 @@
                     </button>
                 </div>
             </div>
-            <div ng-hide="loggedin">
-                <input required type="text" class="form-control input" placeholder="用户名" ng-model="username">
-                <input required type="password" class="form-control input" placeholder="密码" ng-model="password">
-                <button type="submit" ng-click="login()" style="margin-top: 20px"
-                        class="btn btn-lg btn-success btn-block">登录
-                </button>
-            </div>
+            <form class="form-inline" role="form">
+                <div ng-hide="loggedin">
+                    <input required type="text" class="form-control input" placeholder="用户名" ng-model="username">
+                    <input required type="password" class="form-control input" placeholder="密码" ng-model="password">
+                    <button type="submit" ng-click="login()" style="margin-top: 10px"
+                        class="btn btn-lg btn-success btn-block">登陆</button>
+                </div>
+                <div ng-hide="loggedin" style="float: left;margin-top: 10px;">
+                    <a style="font-size:15px" ng-click="forgetPwd()" ng-hide="forget">忘记密码</a>
+                    <span style="font-size:15px" ng-show="forget">请联系客服<a href="mailto:kefu@ghxz.cn?subject=忘记密码&body=学生姓名&#58;%0D%0A学号&#58;%0D%0A班主任姓名&#58;%0D%0A个人联系方式&#58;%0D%0A">kefu@ghxz.cn</a></span>
+                </div>
+            </form>
             <p style="margin-top: 20px;font-size: 16px">{{message}}</p>
         </div>
     </div>
@@ -156,6 +161,9 @@
         };
         $scope.dispatch = function () {
             window.location = "/dispatch";
+        }
+        $scope.forgetPwd = function () {
+            $scope.forget = true;
         }
 
         checklogin();
