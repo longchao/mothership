@@ -14,9 +14,13 @@ angular.module('SunRoom', ['SunRoom.controllers', 'SunRoom.directives'])
                 controller: 'showController',
                 templateUrl: 'partials/rooms.html'
             })
-            .when('/:rid', {
+            .when('/rooms/:rid', {
                 controller: 'roomController',
                 templateUrl: 'partials/room.html'
+            })
+            .when('/classify', {
+                controller: 'classifyController',
+                templateUrl: 'partials/classify.html'
             })
     });
 

@@ -17,7 +17,7 @@ angular.module('SunRoom.controllers', [])
             })
 
         $scope.enterRoom = function (roomId) {
-            $location.path('/' + roomId);
+            $location.path('/rooms/' + roomId);
         }
     })
 
@@ -98,3 +98,68 @@ angular.module('SunRoom.controllers', [])
             $location.path('/');
         }
     })
+
+/**
+ * assign each student to rooms
+ */
+    .controller('classifyController', function ($scope, $location, $q, $http) {
+        $scope.rooms = [];
+        $scope.states = [];
+
+        $scope.getAllRooms = function () {
+            $http.get("http://localhost:3000/users").success(function (users) {
+                var roomsMap = {};
+                var deferredArray = [];
+                var promiseArray = [];
+
+                angular.forEach(users, function (user, i) {
+                    var schoolName = user.username.substring(0, 2);
+                    var fullName = user.username.substring(0, 6);
+
+                    if ((schoolName == "xw" || schoolName == "8z") && (user.username.charAt(2) >= '0' && user.username.charAt(2) <= '9')
+                        && (typeof roomsMap[fullName] == "undefined")) {
+
+                        deferredArray[i] = $q.defer();
+                        promiseArray[i] = deferredArray[i].promise;
+
+                        roomsMap[fullName] = null;
+                        $http.post("http://localhost:3000/rooms", {
+                            name: fullName,
+                            users: [],
+                            apps: []
+                        })
+                            .success(function (data) {
+                                roomsMap[fullName] = data._id;
+                                $scope.rooms.push(data);
+                                deferredArray[i].resolve();
+                            }).error(function (err) {
+                                console.log("error: " + err);
+                                deferredArray[i].reject();
+                                $location.reload();
+                            })
+                    }
+                });
+
+                $q.all(promiseArray).then(function () {
+                    angular.forEach(users, function (user) {
+                        var schoolName = user.username.substring(0, 2);
+                        var fullName = user.username.substring(0, 6);
+                        if ((schoolName == "xw" || schoolName == "8z")
+                            && (user.username.charAt(2) >= '0' && user.username.charAt(2) <= '9')) {
+                            $http.post("http://localhost:3000/rooms/" + roomsMap[fullName] + "/users", {
+                                userId: user._id
+                            }).success(function (data) {
+                                    $scope.states.push(user.username + " has been added to the class.");
+                                    console.log(user.username + " has been added to the class.");
+                                }).error(function (err) {
+                                    $scope.states.push(user.username + " has failed to add to the class. Error: " + err);
+                                    console.log(user.username + " has failed to add to the class. Error: " + err);
+                                });
+                        }
+                    })
+                })
+            })
+        }
+
+    })
+4
