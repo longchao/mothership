@@ -81,7 +81,7 @@ exports.create = function (req, res, next) {
  * Reset user password
  */
 exports.password = function (req, res) {
-    var user = req.user;
+    var user = req.profile;
     var newPassword = req.body.password;
     console.log("change password user:%s,%s", user, newPassword);
     if (newPassword && newPassword != "") {
