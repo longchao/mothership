@@ -1153,7 +1153,7 @@ angular.module('SunExercise.directives', [])
                     } else {
                         $scope.correct_answers = currProblem.correct_answer;
                     }
-                    $scope.explanation = currProblem.explanation;
+                    $scope.explanation = $compile(currProblem.explanation)($scope);
                 }
                 //show the "A B C D" of a choice
                 $scope.calcChoiceNum = function (index) {
