@@ -1117,8 +1117,6 @@ angular.module('SunExercise.directives', [])
                 var problemUserdata = problemSandbox.getUserdata(currProblem.id);
                 var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);
 
-                //var $scoppe.isHover = false;
-
                 //render dynamic templateUrl
                 var templateUrl = 'resources/partials/choiceTemplates/_' + currProblem.type + 'Template.html';
                 $http.get(templateUrl, {cache: $templateCache}).success(function (contents) {
@@ -1148,8 +1146,10 @@ angular.module('SunExercise.directives', [])
                     } else {
                         $scope.correct_answers = currProblem.correct_answer;
                     }
-                    currProblem.explanation = "<div>" + currProblem.explanation + "</div>";
-                    $scope.explanation = $compile(currProblem.explanation)($scope);
+                    if (typeof currProblem.explanation != "undefined") {
+                        currProblem.explanation = "<div>" + currProblem.explanation + "</div>";
+                        $scope.explanation = $compile(currProblem.explanation)($scope);
+                    }
                 }
                 //show the "A B C D" of a choice
                 $scope.calcChoiceNum = function (index) {
@@ -1327,7 +1327,9 @@ angular.module('SunExercise.directives', [])
                     }
 
                     if ((typeof parentActivityData.show_answer !== "undefined") && (parentActivityData.show_answer)) {
-                        $scope.showExplanation = true;
+                        if (currProblem.explanation) {
+                            $scope.showExplanation = true;
+                        }
                         $scope.hideSubmitButton = true;
                         $scope.showContinueButton = true;
 
