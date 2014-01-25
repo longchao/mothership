@@ -185,7 +185,7 @@
                 "choices": [
                     {
                         "body": "`/_1`和`/_B`是同位角",
-                        "is_correct": true,
+                        "is_correct": false,
                         "id": "f1685e6b-14fe-4448-b97b-3e837f999426"
                     },
                     {
@@ -200,7 +200,7 @@
                     },
                     {
                         "body": "`/_2`和`/_B`是同位角",
-                        "is_correct": false,
+                        "is_correct": true,
                         "id": "50566163-636a-406c-8b80-6bf8e2f594b8"
                     }
                 ],
