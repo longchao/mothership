@@ -68,7 +68,7 @@
         "seq": 1
     },
     {
-        "id": "08350f9b-1c65-4cfa-8837-f130c8d717e1",
+        "id": "b1875229-fe0e-4789-a3f9-1118bf3403d4",
         "title": "垂线基础",
         "summary": "一起来探索看似简单的垂直关系里的玄机！",
         "requirements": ["f5f332d8-49c3-42ed-9361-736ca5e47ea5"],
@@ -147,7 +147,7 @@
         "id": "d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4",
         "title": "几何证明",
         "summary": "这想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["08350f9b-1c65-4cfa-8837-f130c8d717e1"],
+        "requirements": ["b1875229-fe0e-4789-a3f9-1118bf3403d4"],
         "mainline": true,
         "status": "closed",
         "seq": 0
