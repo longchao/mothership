@@ -70,7 +70,7 @@ angular.module('SunExercise.directives', [])
                     }
                     $scope.enterChapter = function (chapterId) {
                         //Mixpanel
-                        LearningRelated.enterChapter(Chapter.id,Chapter.title);
+                        LearningRelated.enterChapter(Chapter.id, Chapter.title);
 
                         $rootScope.isBack = false;
                         if ($scope.hasCached[chapterId]) {
@@ -157,10 +157,10 @@ angular.module('SunExercise.directives', [])
                         return false;
                     }
 
-                    if(user.usergroup == 'teacher') {
+                    if (user.usergroup == 'teacher') {
                         return true;
-                    } 
-                    
+                    }
+
                     //var lesson = chapterData.lessons[lessonIndex];
                     if (typeof lesson.requirements == 'undefined') {
                         return true;
@@ -183,7 +183,7 @@ angular.module('SunExercise.directives', [])
                 }
                 $scope.returnToSubject = function () {
                     //Mixpanel
-                    Utils.unregisterSP(true,true,true);
+                    Utils.unregisterSP(true, true, true);
                     $rootScope.isBack = false;
                     $location.path('/subject/' + $routeParams.sid);
                 }
@@ -286,7 +286,7 @@ angular.module('SunExercise.directives', [])
         //console.log('hit');
         //create the lesson sandbox
         var lessonSandbox = SandboxProvider.getSandbox();
-        var ChapterData = lessonSandbox.getChapterMaterial($routeParams.cid,null);
+        var ChapterData = lessonSandbox.getChapterMaterial($routeParams.cid, null);
 
         //every lesson has a fsm
         var FSM = StateMachine.create({
@@ -369,9 +369,9 @@ angular.module('SunExercise.directives', [])
                     if ((lessonUserdata.is_complete) && (typeof lessonUserdata.summary.star != "undefined")) {
                         $scope.lessonIcon = $scope.lessonIconClass = "lesson-button-icon-star" + lessonUserdata.summary.star;
                     } else {
-                        console.log('===================isFirst: '+$scope.isFirst+'==================');
+                        console.log('===================isFirst: ' + $scope.isFirst + '==================');
                         $scope.lessonIcon = "lesson-button-icon-unlocked";
-                        $scope.lessonIconClass = "lesson-button-icon-unlocked-"+$scope.isFirst;
+                        $scope.lessonIconClass = "lesson-button-icon-unlocked-" + $scope.isFirst;
                     }
                     if (typeof lessonUserdata.current_activity === "undefined") {
                         $scope.buttonMsg = "开始学习";
@@ -407,7 +407,7 @@ angular.module('SunExercise.directives', [])
                         $('#lessonModal-' + id).modal('hide');
                         $('.modal-backdrop').remove();
                         //Mixpanel
-                        LearningRelated.enterLesson($scope.id,$scope.title/*,$scope.parentChapter.id,$scope.parentChapter.title*/);
+                        LearningRelated.enterLesson($scope.id, $scope.title/*,$scope.parentChapter.id,$scope.parentChapter.title*/);
 
                         if (typeof lessonUserdata.current_activity === "undefined") {
                             lessonUserdata.current_activity = lessonData.activities[0].id;
@@ -476,7 +476,7 @@ angular.module('SunExercise.directives', [])
                         if ((typeof lessonUserdata.summary.correct_percent == "undefined")) {
                             lessonUserdata.summary.correct_percent = 100;
                             lessonUserdata.is_complete = true;
-                          } else {
+                        } else {
                             if (typeof lessonData.pass_score != "undefined") {
                                 if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
                                     lessonUserdata.is_complete = true;
@@ -520,7 +520,7 @@ angular.module('SunExercise.directives', [])
                                     }
                                 }
                             }
-                           //send an event to check the global badges
+                            //send an event to check the global badges
                             lessonSandbox.sendEvent("lesson.complete", $scope);
                             //userdata analyzing completed, flush the current userdata
                             lessonSandbox.flushUserdata(lessonData.id, $routeParams.cid);
@@ -534,7 +534,7 @@ angular.module('SunExercise.directives', [])
                                     ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
                             $scope.showLessonSummary = true;
                             //Mixpanel
-                            LearningRelated.finishLesson($scope.id,$scope.title,$scope.lessonCup);
+                            LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
                         }
 
                     })
@@ -568,72 +568,67 @@ angular.module('SunExercise.directives', [])
                                 //set the current_activity to undefined so that the back button can operate as intended
                                 lessonUserdata.current_activity = undefined;
 
-                                 if (args.should_transition) {
-                                     //check if the student has completed the condition to complete the lesson
-                                     if ((typeof lessonUserdata.summary.correct_percent == "undefined")) {
-                                         lessonUserdata.summary.correct_percent = 100;
-                                         lessonUserdata.is_complete = true;
-                                     } else {
-                                         if (typeof lessonData.pass_score != "undefined") {
-                                             if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
-                                                 lessonUserdata.is_complete = true;
+                                if (args.should_transition) {
+                                    //check if the student has completed the condition to complete the lesson
+                                    if ((typeof lessonUserdata.summary.correct_percent == "undefined")) {
+                                        lessonUserdata.summary.correct_percent = 100;
+                                        lessonUserdata.is_complete = true;
+                                    } else {
+                                        if (typeof lessonData.pass_score != "undefined") {
+                                            if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
+                                                lessonUserdata.is_complete = true;
 
-                                             }
-                                         } else {
-                                             lessonUserdata.is_complete = true;
-                                         }
-                                     }
-
-
+                                            }
+                                        } else {
+                                            lessonUserdata.is_complete = true;
+                                        }
+                                    }
 
 
+                                    //give student star if qualified
+                                    if (typeof lessonUserdata.summary.correct_percent != "undefined") {
+                                        if ((typeof lessonData.star3 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star3)) {
+                                            lessonUserdata.summary.star = 3;
+                                        } else if ((typeof lessonData.star2 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star2)) {
+                                            lessonUserdata.summary.star = 2;
+                                        } else if ((typeof lessonData.star2 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star1)) {
+                                            lessonUserdata.summary.star = 1;
+                                        }
+                                    }
+                                    //give award videos and badges if qualified
+                                    if ((lessonUserdata.is_complete) && (typeof lessonData.achievements != "undefined")) {
+                                        for (var i = 0; i < lessonData.achievements.length; i++) {
+                                            //award video logic
+                                            if (lessonData.achievements[i].type == "award") {
+                                                //check if the student has already got the award video
+                                                if (typeof userinfoData.achievements.awards[lessonData.achievements[i].id] == "undefined") {
+                                                    //parse the award condition
+                                                    if ((typeof lessonUserdata.summary.correct_count == "undefined") ?
+                                                        (lessonSandbox.conditionParser(lessonData.achievements[i].condition, Infinity, 100)) :
+                                                        (lessonSandbox.conditionParser(lessonData.achievements[i].condition,
+                                                            lessonUserdata.summary.correct_count, lessonUserdata.summary.correct_percent))) {
+                                                        lessonSandbox.addAchievements("awards", lessonData.achievements[i]);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    //send an event to check the global badges
+                                    lessonSandbox.sendEvent("lesson.complete", $scope);
+                                    //userdata analyzing completed, flush the current userdata
+                                    lessonSandbox.flushUserdata(lessonData.id, $routeParams.cid);
 
+                                    //lesson summary page
+                                    $scope.hasFinalQuiz = (typeof lessonUserdata.summary.correct_count != "undefined");
+                                    $scope.lessonCorrectPercent = lessonUserdata.summary.correct_percent;
+                                    $scope.lessonStar = (typeof lessonUserdata.summary.star != "undefined") ?
+                                        lessonUserdata.summary.star : 0;
+                                    $scope.lessonCup = (lessonUserdata.summary.star == 1) ? " 获得 铜杯" :
+                                        ((lessonUserdata.summary.star == 2) ? " 获得 银杯" :
+                                            ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
+                                    $scope.showLessonSummary = true;
 
-
-                                     //give student star if qualified
-                                     if (typeof lessonUserdata.summary.correct_percent != "undefined") {
-                                         if ((typeof lessonData.star3 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star3)) {
-                                             lessonUserdata.summary.star = 3;
-                                         } else if ((typeof lessonData.star2 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star2)) {
-                                             lessonUserdata.summary.star = 2;
-                                         } else if ((typeof lessonData.star2 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star1)) {
-                                             lessonUserdata.summary.star = 1;
-                                         }
-                                     }
-                                     //give award videos and badges if qualified
-                                     if ((lessonUserdata.is_complete) && (typeof lessonData.achievements != "undefined")) {
-                                         for (var i = 0; i < lessonData.achievements.length; i++) {
-                                             //award video logic
-                                             if (lessonData.achievements[i].type == "award") {
-                                                 //check if the student has already got the award video
-                                                 if (typeof userinfoData.achievements.awards[lessonData.achievements[i].id] == "undefined") {
-                                                     //parse the award condition
-                                                     if ((typeof lessonUserdata.summary.correct_count == "undefined") ?
-                                                         (lessonSandbox.conditionParser(lessonData.achievements[i].condition, Infinity, 100)) :
-                                                         (lessonSandbox.conditionParser(lessonData.achievements[i].condition,
-                                                             lessonUserdata.summary.correct_count, lessonUserdata.summary.correct_percent))) {
-                                                         lessonSandbox.addAchievements("awards", lessonData.achievements[i]);
-                                                     }
-                                                 }
-                                             }
-                                         }
-                                     }
-                                     //send an event to check the global badges
-                                     lessonSandbox.sendEvent("lesson.complete", $scope);
-                                     //userdata analyzing completed, flush the current userdata
-                                     lessonSandbox.flushUserdata(lessonData.id, $routeParams.cid);
-
-                                     //lesson summary page
-                                     $scope.hasFinalQuiz = (typeof lessonUserdata.summary.correct_count != "undefined");
-                                     $scope.lessonCorrectPercent = lessonUserdata.summary.correct_percent;
-                                     $scope.lessonStar = (typeof lessonUserdata.summary.star != "undefined") ?
-                                         lessonUserdata.summary.star : 0;
-                                     $scope.lessonCup = (lessonUserdata.summary.star == 1) ? " 获得 铜杯" :
-                                         ((lessonUserdata.summary.star == 2) ? " 获得 银杯" :
-                                             ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
-                                     $scope.showLessonSummary = true;
-
-                                 }
+                                }
                             }
                         })
                     })
@@ -683,7 +678,7 @@ angular.module('SunExercise.directives', [])
                     }
                     $scope.problems = activityData.problems.slice(currProblem);
                     //Mixpanel
-                    LearningRelated.enterQuiz(activityData.id,activityData.title);
+                    LearningRelated.enterQuiz(activityData.id, activityData.title);
                     $scope.problemIndex = currProblem;
 
                     for (var i = 0; i < $scope.problems.length; i++) {
@@ -705,7 +700,7 @@ angular.module('SunExercise.directives', [])
                 })
                 $scope.pauseLearn = function () {
                     //Mixpanel
-                    Utils.unregisterSP(false,true,true);
+                    Utils.unregisterSP(false, true, true);
                     //send pause activity event to lesson directive
                     activitySandbox.sendEvent("pauseActivity", $scope);
                 }
@@ -754,7 +749,7 @@ angular.module('SunExercise.directives', [])
                                     }
                                 }
 
-                                if(!activityUserdata.summary) {
+                                if (!activityUserdata.summary) {
                                     activityUserdata.summary = {};
                                 }
 
@@ -762,7 +757,7 @@ angular.module('SunExercise.directives', [])
                                 activityUserdata.summary['correct_percent'] = parseInt(correctCount * 100 / activityData.problems.length);
 
                                 //Mixpanel
-                                LearningRelated.finishQuiz($scope.activityId,$scope.activityTitle,activityUserdata.summary['correct_percent']+"%",duration/1000);
+                                LearningRelated.finishQuiz($scope.activityId, $scope.activityTitle, activityUserdata.summary['correct_percent'] + "%", duration / 1000);
 
                                 //if the activity is final quiz, save the userdata to lessonSummary object
                                 var lessonSummary = {};
@@ -892,7 +887,7 @@ angular.module('SunExercise.directives', [])
         }
     })
 
-    .directive("xvideo", function (SandboxProvider,APIProvider, $compile, $routeParams) {
+    .directive("xvideo", function (SandboxProvider, APIProvider, $compile, $routeParams) {
         //enter fullscreen mode
         var toFullScreen = function (video) {
             //FullScreen First
@@ -922,7 +917,7 @@ angular.module('SunExercise.directives', [])
             restrict: "E",
             link: function ($scope, $element, $attrs) {
                 var activitySandbox = SandboxProvider.getSandbox();
-                var activityData = activitySandbox.getActivityMaterial($routeParams.aid,null);
+                var activityData = activitySandbox.getActivityMaterial($routeParams.aid, null);
 
                 var template = "<video style='display: none' id='video' class='xvideo' src='" +
                     APIProvider.getAPI("getFileResources", {chapterId: $routeParams.cid, lessonId: $routeParams.lid}, "") + "/" + $attrs.src
@@ -940,7 +935,7 @@ angular.module('SunExercise.directives', [])
                     if (!document.webkitIsFullScreen) {
                         currentTime = video.currentTime;
                         //Mixpanel
-                        LearningRelated.finishVideo($attrs.src,activityData.title,video.duration,currentTime,computeRatio(currentTime/video.duration));
+                        LearningRelated.finishVideo($attrs.src, activityData.title, video.duration, currentTime, computeRatio(currentTime / video.duration));
                         video.pause();
                         $scope.$apply(function () {
                             $scope.playButtonMsg = "播放视频";
@@ -949,18 +944,18 @@ angular.module('SunExercise.directives', [])
                 });
 
                 //Mixpanel
-                var computeRatio = function(ratio){
-                    if(ratio>=0 && ratio<=0.2){
+                var computeRatio = function (ratio) {
+                    if (ratio >= 0 && ratio <= 0.2) {
                         ratio = "0% ~ 20%";
-                    }else if(ratio>0.2 && ratio<=0.4){
+                    } else if (ratio > 0.2 && ratio <= 0.4) {
                         ratio = "20% ~ 40%";
-                    }else if(ratio>0.4 && ratio<=0.6){
+                    } else if (ratio > 0.4 && ratio <= 0.6) {
                         ratio = "40% ~ 60%";
-                    }else if(ratio>0.6 && ratio<=0.8){
+                    } else if (ratio > 0.6 && ratio <= 0.8) {
                         ratio = "60% ~ 80%";
-                    }else if(ratio>0.8 && ratio<=1){
+                    } else if (ratio > 0.8 && ratio <= 1) {
                         ratio = "80% ~ 100%";
-                    }else{
+                    } else {
                         ratio = "Error";
                     }
                     return ratio;
@@ -969,7 +964,7 @@ angular.module('SunExercise.directives', [])
                 $scope.playButtonMsg = "播放视频";
                 $scope.playVideo = function () {
                     //Mixpanel
-                   // LearningRelated.enterVideo($attrs.src,activityData.title,video.duration);
+                    // LearningRelated.enterVideo($attrs.src,activityData.title,video.duration);
                     if (video.paused == true) {
                         $scope.playButtonMsg = "暂停播放";
                         //send the activityStart event to activity to record the start_time
@@ -1122,8 +1117,6 @@ angular.module('SunExercise.directives', [])
                 var problemUserdata = problemSandbox.getUserdata(currProblem.id);
                 var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);
 
-                //var $scoppe.isHover = false;
-
                 //render dynamic templateUrl
                 var templateUrl = 'resources/partials/choiceTemplates/_' + currProblem.type + 'Template.html';
                 $http.get(templateUrl, {cache: $templateCache}).success(function (contents) {
@@ -1153,7 +1146,10 @@ angular.module('SunExercise.directives', [])
                     } else {
                         $scope.correct_answers = currProblem.correct_answer;
                     }
-                    $scope.explanation = currProblem.explanation;
+                    if (typeof currProblem.explanation != "undefined") {
+                        currProblem.explanation = "<div>" + currProblem.explanation + "</div>";
+                        $scope.explanation = $compile(currProblem.explanation)($scope);
+                    }
                 }
                 //show the "A B C D" of a choice
                 $scope.calcChoiceNum = function (index) {
@@ -1331,7 +1327,9 @@ angular.module('SunExercise.directives', [])
                     }
 
                     if ((typeof parentActivityData.show_answer !== "undefined") && (parentActivityData.show_answer)) {
-                        $scope.showExplanation = true;
+                        if (currProblem.explanation) {
+                            $scope.showExplanation = true;
+                        }
                         $scope.hideSubmitButton = true;
                         $scope.showContinueButton = true;
 
@@ -1356,10 +1354,10 @@ angular.module('SunExercise.directives', [])
                         }
 
                         //problemSandbox.sendEvent("showAnswerBeforeContinue", $scope);
-                       // problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: false});
+                        // problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: false});
                     } else {
                         //send problem complete event to activity directive
-                      //  problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: true});
+                        //  problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: true});
                     }
 
                 }
@@ -1367,8 +1365,8 @@ angular.module('SunExercise.directives', [])
                 //continue button if show_answer=true
                 $scope.continueProblem = function () {
                     //send problem complete event to activity directive
-                    LearningRelated.finishProblem(currProblem.id,currProblem.body,currProblem.type, $scope.correct_answer_body[currProblem.id],
-                        $scope.user_answer_body[currProblem.id], problemUserdata.is_correct,problemUserdata.is_hint_checked);
+                    LearningRelated.finishProblem(currProblem.id, currProblem.body, currProblem.type, $scope.correct_answer_body[currProblem.id],
+                        $scope.user_answer_body[currProblem.id], problemUserdata.is_correct, problemUserdata.is_hint_checked);
                     problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: true});
                 }
             }
@@ -1620,75 +1618,63 @@ angular.module('SunExercise.directives', [])
 
                 var data = combSandbox.getChapterMaterial($routeParams.cid);
                 if (data) {
-                    $scope.lessons = data.lessons;
-                    $scope.count = $scope.lessons.length;
+                    var lessons = data.lessons;
 
-                    var lessonMap = {};
-                    data.lessons.forEach(function (lesson, index, arr) {
+                    var mainLessonMap = {};
+                    var slaveLessonsMap = {};
+                    var allLessons = [];
+                    lessons.forEach(function (lesson, index) {
                         var requirements = lesson.requirements;
-                        if (requirements) {
-                            var key = requirements[0];
-                            var itemsArray = lessonMap[key];
-                            if (itemsArray) {
-                                itemsArray.push(lesson);
+                        var seq = lesson.seq;
+                        if (seq == 0) {
+                            if (!requirements) {
+                                mainLessonMap.header = lesson;
                             } else {
-                                lessonMap[key] = [];
-                                lessonMap[key].push(lesson);
+                                var req = requirements[0];
+                                mainLessonMap[req] = lesson;
                             }
                         } else {
-                            //enter_lesson's level
-                            if (!lessonMap.header) {
-                                lessonMap.header = [];
-                                lessonMap.header.push(lesson);
+                            if (!requirements) {
+                                if (!slaveLessonsMap.header) {
+                                    slaveLessonsMap.header = [];
+                                }
+                                var slaveLessons = slaveLessons.header;
+                                slaveLessons.push(lesson);
                             } else {
-                                lessonMap.header.push(lesson);
+                                var req = requirements[0];
+                                if (!slaveLessonsMap[req]) {
+                                    slaveLessonsMap[req] = [];
+                                }
+                                var slaveLessons = slaveLessonsMap[req];
+                                slaveLessons.push(lesson);
                             }
                         }
                     });
 
-                    angular.forEach(lessonMap, function (lessonArray, lessonId) {
-                        sortForLessons(lessonArray);
-                    });
-
-                    $scope.title = lessonMap.header[0].title;
-                    $scope.allLessons = [];
-                    var mlength = Object.keys(lessonMap).length;
-                    var count = 1;
-                    var firsrtLessons = lessonMap.header;
-                    console.log('first: ' + firsrtLessons[0].title);
-                    $scope.allLessons[0] = firsrtLessons;
-
-                    var enter_lesson = data.enter_lesson;
-
-
-                    (function getInitArray(lessons) {
-                        if (count >= mlength) return;
-                        var key = lessons[0].id;
-                        var targetLessons = lessonMap[key];
-                        $scope.allLessons[count] = targetLessons;
-                        count++;
-                        if(!targetLessons) {
-                            console.log('No Lessons...........key='+key);
-                        }else{
-                            console.log('Have Lessons.......key='+key);
+                    var header = mainLessonMap.header;
+                    var totalLength = Object.keys(mainLessonMap).length;
+                    var count = 0;
+                    (function arrCon(lesson) {
+                        if (count >= totalLength) {
+                            return;
                         }
-                        getInitArray(targetLessons);
-                    })(firsrtLessons);
+                        var newArr = [];
+                        newArr.push(lesson);
+                        allLessons.push(newArr);
+                        var newLesson = mainLessonMap[lesson.id];
+                        count++;
+                        arrCon(newLesson);
+                    }(header));
 
-                    var flag = $scope.allLessons.length-1;
-                    var lastLessons = $scope.allLessons[flag].splice(1);
-                    
-                    (function convertLessons(insertLessons) {
-                        if(flag <= 0) return;
-                        flag--;
-                        var newInsertLessons = $scope.allLessons[flag].splice(1);
-                        Array.prototype.push.apply($scope.allLessons[flag], insertLessons);
-                        convertLessons(newInsertLessons);
-                    })(lastLessons);
-
-                    //
-                    console.log('result=' + $scope.allLessons.length);
+                    allLessons.forEach(function (lessons, index) {
+                        var mainLesson = lessons[0];
+                        var slaveLessons = slaveLessonsMap[mainLesson.id];
+                        Array.prototype.push.apply(lessons, slaveLessons);
+                        sortForLessons(lessons);
+                    })
                 }
+
+                $scope.allLessons = allLessons;
                 $compile($element.contents())($scope);
             }
         }

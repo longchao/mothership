@@ -1,0 +1,33 @@
+{"title":"提高拓展","summary":"三线八角综合应用","status":"open","seq":1,"requirements":["f5f332d8-49c3-42ed-9361-736ca5e47ea5"],"pass_score":"2","id":"172d433d-6fc8-4194-b593-28766a0cbdbd","activities":[{"title":"找同位角、内错角、同旁内角","type":"lecture","redoable":true,"body":"<xvideo src='13b10183-6d1b-4e0e-9ea2-6a93db4d0e32'></xvideo>","id":"83408d50-a45c-48bc-80e9-a290f971bc48","parent_id":"172d433d-6fc8-4194-b593-28766a0cbdbd","problems":[]},{"title":"课后练习来啦~","type":"quiz","randomize_questions":false,"randomize_choices":true,"show_answer":true,"show_summary":true,"redoable":true,"id":"fbad83bf-0b41-4bc5-b439-8dd936e872ba","parent_id":"172d433d-6fc8-4194-b593-28766a0cbdbd","problems":[{"title":"","type":"singlechoice","body":"如图，与`/_C`是同旁内角的角有：<ximage src='b9d137e9-2e86-4db0-9bff-c08f41d58712'></ximage>","choices":[{"body":"`4`个","is_correct":true,"id":"f346df07-6a45-4ed6-b9bb-8af88b22db1d"},{"body":"`2`个","is_correct":false,"id":"ba646018-72cf-4b15-befa-2d65838fb893"},{"body":"`3`个","is_correct":false,"id":"d8076e5d-29ae-4a77-b001-6be0077c8235"},{"body":"`5`个","is_correct":false,"id":"e7315493-b930-4ffe-a67e-5a5db9797ffe"}],"parent_id":"fbad83bf-0b41-4bc5-b439-8dd936e872ba","id":"4d2f8cb6-ef1c-4860-927a-f6b5d44d48e4"},{"title":"","type":"singlechoice","body":"如图，与`/_α`构成同旁内角的角有：<ximage src='063fdc9d-a27e-47af-a69e-72a3d71764de'></ximage>","choices":[{"body":"`4`个","is_correct":false,"id":"c4eef0a0-3e0c-48b4-864f-b2b7e0349f5b"},{"body":"`2`个","is_correct":false,"id":"c2d29759-93af-4141-8b83-c09ff38fcd32"},{"body":"`3`个","is_correct":false,"id":"b3f33221-64aa-412e-99fb-4c6acd168052"},{"body":"`5`个","is_correct":true,"id":"65c3420c-15db-4c2e-bff7-7f3b13bf8371"}],"parent_id":"fbad83bf-0b41-4bc5-b439-8dd936e872ba","id":"4b81fb64-a476-4dab-b26d-9d2c4b69da17"},
+{"title": "","type": "singlechoice","body": "如图所示的`12`个角中，有几对同旁内角？<ximage src='7602189b-f228-485b-8024-864a4a0a1a28'></ximage>","choices": [{"body":"`2`对","is_correct":false},
+            {"body":"`6`对","is_correct":true,"id":"ae66b7e8-4c76-4e9a-93f3-b307ba49d65e"},
+            {"body":"`8`对","is_correct":false,"id":"4f1a8890-6fa9-4979-9fef-cb3d93b73582"},
+            {"body":"`4`对","is_correct":false,"id":"a8cb495d-2197-45c3-8e15-c79c525e3b51"}],
+"parent_id":"fbad83bf-0b41-4bc5-b439-8dd936e872ba","id":"91868916-153f-422b-adf2-3bfcfd5d649d"
+
+},
+{
+    "title": "",
+    "type": "singlechoice",
+    "body": "如图所示，图中的同旁内角有：<ximage src='913abdbf-1de7-4b34-a62b-04803bc6af07'></ximage>",
+    "choices": [
+            {
+                    "body":"`12`对",
+                    "is_correct":false,"id":"2abadaac-a575-469f-aadc-1269753ef5a0"
+            },
+            {
+                    "body":"`16`对",
+                    "is_correct":true,"id":"3dcc9042-856d-4a81-bc60-63de857c11f6"
+            },
+            {
+                    "body":"`21`对",
+                    "is_correct":false,"id":"4e63f494-153e-4b50-8cdc-75bc1e4fff82"
+            },
+            {
+                    "body":"`4`对",
+                    "is_correct":false,"id":"a0df2fff-4be1-407f-b86b-049c5b68377d"
+            }
+    ],
+"parent_id":"fbad83bf-0b41-4bc5-b439-8dd936e872ba","id":"8d465d6c-123c-462f-ba87-a9c4160eab8e"
+}
+]}],"folder_name":"6.1 同旁内角提高拓展","materials":{"同旁内角 提高 1.png":{"id":"b9d137e9-2e86-4db0-9bff-c08f41d58712","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/6.1 同旁内角提高拓展/materials/同旁内角 提高 1.png"},"同旁内角 提高 2.png":{"id":"063fdc9d-a27e-47af-a69e-72a3d71764de","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/6.1 同旁内角提高拓展/materials/同旁内角 提高 2.png"},"同旁内角 提高 3.png":{"id":"7602189b-f228-485b-8024-864a4a0a1a28","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/6.1 同旁内角提高拓展/materials/同旁内角 提高 3.png"},"同旁内角 提高 4.png":{"id":"913abdbf-1de7-4b34-a62b-04803bc6af07","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/6.1 同旁内角提高拓展/materials/同旁内角 提高 4.png"},"找同位>角、内错角、同旁内角.mp4":{"id":"13b10183-6d1b-4e0e-9ea2-6a93db4d0e32","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/6.1 同旁内角提高拓展/materials/找同位角、内错角、同旁内角.mp4"}}}

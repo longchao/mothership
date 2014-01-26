@@ -1,1 +1,250 @@
-{"title":"邻补角基础","summary":"邻居电视声音太大，怎么专心写（打）作（游）业（戏）呢？<br /> 1月17日就上线了，别忘了来看哟~","requirements":["d9f6588c-5267-4131-a408-88ccb881bde0"],"status":"closed","mainline":true,"pass_score":"7","id":"acebd6b8-652d-4b36-8f69-a32a226edfd5","activities":[{"title":"高房价引发家庭纠纷 ","type":"lecture","redoable":true,"body":"<xvideo src='91a9a2e7-6e53-4827-a934-7d02dff6dd41'></xvideo>","id":"18e22b18-8a1b-4654-b247-3bdd68a88025","parent_id":"acebd6b8-652d-4b36-8f69-a32a226edfd5","problems":[]},{"title":"课后练习来啦~","type":"quiz","randomize_questions":false,"randomize_choices":true,"show_answer":true,"show_summary":true,"redoable":true,"jump":["to_activity_if_correctness:18e22b18-8a1b-4654-b247-3bdd68a88025:<7","end_of_lesson_if_correctness:=100%"],"id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","parent_id":"acebd6b8-652d-4b36-8f69-a32a226edfd5","problems":[{"title":"单选题","type":"singlechoice","body":"图中`/_1`的邻补角是？<ximage src='5318f32b-722c-4c53-b28a-21e2c2cf0402'></ximage>","choices":[{"body":"`/_3`","is_correct":false,"id":"a4bf8be0-0eac-4b70-b2ad-ea601f51f1f2"},{"body":"`/_2`","is_correct":false,"id":"0c56bd07-10f3-4223-8d83-4fb7aeeb453c"},{"body":"`/_4`","is_correct":false,"id":"d348a518-78b1-45b4-91a6-ee4a8e242f25"},{"body":"`/_4`和`/_2`","is_correct":true,"id":"78a820ab-4a26-4b85-97a4-f0a8cac21715"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"3bcf4b14-25b7-464b-949c-cba34c204c3f"},{"title":"单选题","type":"singlechoice","body":"如图，直线`AB`与`CD`交于`O`，已知`/_AOC`=`30º`，则`/_AOD=`? <ximage src='35cddfab-79a9-4ef0-975a-8ce6617398cd'></ximage>","choices":[{"body":"`150º`","is_correct":true,"id":"e9b403bc-243c-4d41-84e5-2bb46e2bfd24"},{"body":"`30º`","is_correct":false,"id":"7c673a65-7982-4b03-ac23-af194b64ff5e"},{"body":"无法确定","is_correct":false,"id":"580123e9-ade4-48ba-b436-39d3b59f1af5"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"713a68fa-960c-44d3-8266-c563917625ed"},{"title":"单选题","type":"singlechoice","body":"一组邻补角有_____条公共边，分别有_____条边互为反向延长线？","choices":[{"body":"`2`，`0`","is_correct":false,"id":"223426ad-15cd-4886-a3f5-7459b4d86d31"},{"body":"`1`，`1`","is_correct":true,"id":"ff35fd60-fa27-453d-be31-641fee87a6bb"},{"body":"`0`，`2`","is_correct":false,"id":"158ab8d1-3cb7-4867-aa62-482e6fc2e56e"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"f2c3caca-a711-432d-87f8-f1224539a3a5"},{"title":"单选题","type":"singlechoice","body":"两条相交直线组成的图形中，有___组邻补角？","choices":[{"body":"`3`组","is_correct":false,"id":"323c29cb-52c8-432b-a47d-49bb6505d09c"},{"body":"`2`组","is_correct":false,"id":"57f04b97-8d60-4e0f-aae0-c69e9fb89b7f"},{"body":"`4`组","is_correct":true,"id":"1ca52f61-13dd-48cf-911a-0f8d131431d4"},{"body":"`1`组","is_correct":false,"id":"4d422d06-b4ec-4171-884a-41762f997b66"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"4003235b-018e-42aa-babc-0f14264b3f5e"},{"title":"判断题","type":"singlechoice","body":"若两个角有一个公共顶点，并且分别有一条边互为反向延长线，则这两个角互为邻补角。","choices":[{"body":"错","is_correct":true,"id":"bec53f14-3991-4f87-96f5-2fc0dbe29ab7"},{"body":"对","is_correct":false,"id":"486bd15c-49fd-4837-b18e-f3db0fab7b08"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"333bbba0-f4c1-43b3-af06-4cfd79f30a43"},{"title":"单选题","type":"singlechoice","body":"如图，已知`/_1+/_3=90º`，则`/_2=` ? <ximage src='ca4b377b-4108-4e65-8ed0-8289fb133b67'></ximage>","choices":[{"body":"`135º`","is_correct":true,"id":"ec508240-b34e-455a-9df0-f5ae56e29759"},{"body":"`105º`","is_correct":false,"id":"0a0b076b-aba9-489f-a654-36e614d12b6b"},{"body":"`120º`","is_correct":false,"id":"6d8231e6-b2c4-4c05-a4d5-9a18f648c1c4"},{"body":"`115º`","is_correct":false,"id":"f8ea8524-0288-47ed-80db-02e36c6866bd"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"33edfb30-8df1-4746-bfdd-6ad685bb852d"},{"title":"判断题","type":"singlechoice","body":"若两角有一个公共顶点，分别有一条互为反向延长线的边，且两角和为`180º`，则它们是邻补角。","choices":[{"body":"错","is_correct":true,"id":"d42b1aee-ae24-4c70-a0ce-a876ac5b4150"},{"body":"对","is_correct":false,"id":"693f84ae-978f-40d0-a253-b6e021f67945"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"edc6d29c-1c32-449a-9305-202a1a592976"},{"title":"单选题","type":"singlechoice","body":"直线`AB`，`CD`交于`O`，已知`/_AOD`的度数为`2x`，`/_COB`的度数为`180-x`，则`/_AOC`的度数是？<ximage src='3e6cbe7a-a87b-4603-b936-092fb123c3c4'></ximage>","choices":[{"body":"`60º`","is_correct":true,"id":"9e9f44e6-6904-45f2-8cfa-efa6b46a8303"},{"body":"`80º`","is_correct":false,"id":"f78e9804-a1a9-4a51-809e-d2f7a05a3279"},{"body":"`70º`","is_correct":false,"id":"ca8d2771-1cb3-43a0-bb7f-41baf770d9d3"},{"body":"`50º`","is_correct":false,"id":"50d0da1b-6e33-4119-8b3d-33509ca0022f"}],"parent_id":"353ce66c-1dd1-4d51-8a46-3e92212462a0","id":"b6e5a114-4341-4ea5-8146-69fcf7a28959"}]}],"folder_name":"3 邻补角基础","materials":{"邻补角1.png":{"id":"5318f32b-722c-4c53-b28a-21e2c2cf0402","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角1.png"},"邻补角2.png":{"id":"35cddfab-79a9-4ef0-975a-8ce6617398cd","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角2.png"},"邻补角6.png":{"id":"ca4b377b-4108-4e65-8ed0-8289fb133b67","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角6.png"},"邻补角8.png":{"id":"3e6cbe7a-a87b-4603-b936-092fb123c3c4","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角8.png"},"邻补角基础.mp4":{"id":"91a9a2e7-6e53-4827-a934-7d02dff6dd41","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角基础.mp4"}}}
+{"title": "邻补角基础", "summary": "邻居电视声音太大，怎么专心写（打）作（游）业（戏）呢？", "requirements": ["d9f6588c-5267-4131-a408-88ccb881bde0"], "status": "closed", "mainline": true, "pass_score": "7", "id": "acebd6b8-652d-4b36-8f69-a32a226edfd5", "activities": [
+    {
+        "title": "高房价引发家庭纠纷 ",
+        "type": "lecture",
+        "redoable": true,
+        "body": "<xvideo src='91a9a2e7-6e53-4827-a934-7d02dff6dd41'></xvideo>",
+        "id": "18e22b18-8a1b-4654-b247-3bdd68a88025",
+        "parent_id": "acebd6b8-652d-4b36-8f69-a32a226edfd5",
+        "problems": []
+    },
+    {
+        "title": "课后练习来啦~",
+        "type": "quiz",
+        "randomize_questions": false,
+        "randomize_choices": true,
+        "show_answer": true,
+        "show_summary": true,
+        "redoable": true,
+        "jump": ["to_activity_if_correctness:18e22b18-8a1b-4654-b247-3bdd68a88025:<7", "end_of_lesson_if_correctness:=100%"],
+        "id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+        "parent_id": "acebd6b8-652d-4b36-8f69-a32a226edfd5",
+        "problems": [
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "图中`/_1`的邻补角是？<ximage src='5318f32b-722c-4c53-b28a-21e2c2cf0402'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_3`",
+                        "is_correct": false,
+                        "id": "a4bf8be0-0eac-4b70-b2ad-ea601f51f1f2"
+                    },
+                    {
+                        "body": "`/_2`",
+                        "is_correct": false,
+                        "id": "0c56bd07-10f3-4223-8d83-4fb7aeeb453c"
+                    },
+                    {
+                        "body": "`/_4`",
+                        "is_correct": false,
+                        "id": "d348a518-78b1-45b4-91a6-ee4a8e242f25"
+                    },
+                    {
+                        "body": "`/_4`和`/_2`",
+                        "is_correct": true,
+                        "id": "78a820ab-4a26-4b85-97a4-f0a8cac21715"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "3bcf4b14-25b7-464b-949c-cba34c204c3f"
+            },
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "如图，直线`AB`与`CD`交于`O`，已知`/_AOC`=`30º`，则`/_AOD=`? <ximage src='35cddfab-79a9-4ef0-975a-8ce6617398cd'></ximage>",
+                "choices": [
+                    {
+                        "body": "`150º`",
+                        "is_correct": true,
+                        "id": "e9b403bc-243c-4d41-84e5-2bb46e2bfd24"
+                    },
+                    {
+                        "body": "`30º`",
+                        "is_correct": false,
+                        "id": "7c673a65-7982-4b03-ac23-af194b64ff5e"
+                    },
+                    {
+                        "body": "无法确定",
+                        "is_correct": false,
+                        "id": "580123e9-ade4-48ba-b436-39d3b59f1af5"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "713a68fa-960c-44d3-8266-c563917625ed"
+            },
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "一组邻补角有_____条公共边，分别有_____条边互为反向延长线？",
+                "choices": [
+                    {
+                        "body": "`2`，`0`",
+                        "is_correct": false,
+                        "id": "223426ad-15cd-4886-a3f5-7459b4d86d31"
+                    },
+                    {
+                        "body": "`1`，`1`",
+                        "is_correct": true,
+                        "id": "ff35fd60-fa27-453d-be31-641fee87a6bb"
+                    },
+                    {
+                        "body": "`0`，`2`",
+                        "is_correct": false,
+                        "id": "158ab8d1-3cb7-4867-aa62-482e6fc2e56e"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "f2c3caca-a711-432d-87f8-f1224539a3a5"
+            },
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "两条相交直线组成的图形中，有___组邻补角？",
+                "choices": [
+                    {
+                        "body": "`3`组",
+                        "is_correct": false,
+                        "id": "323c29cb-52c8-432b-a47d-49bb6505d09c"
+                    },
+                    {
+                        "body": "`2`组",
+                        "is_correct": false,
+                        "id": "57f04b97-8d60-4e0f-aae0-c69e9fb89b7f"
+                    },
+                    {
+                        "body": "`4`组",
+                        "is_correct": true,
+                        "id": "1ca52f61-13dd-48cf-911a-0f8d131431d4"
+                    },
+                    {
+                        "body": "`1`组",
+                        "is_correct": false,
+                        "id": "4d422d06-b4ec-4171-884a-41762f997b66"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "4003235b-018e-42aa-babc-0f14264b3f5e"
+            },
+            {
+                "title": "判断题",
+                "type": "singlechoice",
+                "body": "若两个角有一个公共顶点，并且分别有一条边互为反向延长线，则这两个角互为邻补角。",
+                "explanation":"你看图中的`/_1`和`/_2`满足题干的条件吗？但他们可不是邻补角哦！<ximage src='ac7e2d10-84c9-11e3-baa7-0800200c9a66'></ximage>",
+                "choices": [
+                    {
+                        "body": "错",
+                        "is_correct": true,
+                        "id": "bec53f14-3991-4f87-96f5-2fc0dbe29ab7"
+                    },
+                    {
+                        "body": "对",
+                        "is_correct": false,
+                        "id": "486bd15c-49fd-4837-b18e-f3db0fab7b08"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "333bbba0-f4c1-43b3-af06-4cfd79f30a43"
+            },
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "如图，已知`/_1+/_3=90º`，则`/_2=` ? <ximage src='ca4b377b-4108-4e65-8ed0-8289fb133b67'></ximage>",
+                "choices": [
+                    {
+                        "body": "`135º`",
+                        "is_correct": true,
+                        "id": "ec508240-b34e-455a-9df0-f5ae56e29759"
+                    },
+                    {
+                        "body": "`105º`",
+                        "is_correct": false,
+                        "id": "0a0b076b-aba9-489f-a654-36e614d12b6b"
+                    },
+                    {
+                        "body": "`120º`",
+                        "is_correct": false,
+                        "id": "6d8231e6-b2c4-4c05-a4d5-9a18f648c1c4"
+                    },
+                    {
+                        "body": "`115º`",
+                        "is_correct": false,
+                        "id": "f8ea8524-0288-47ed-80db-02e36c6866bd"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "33edfb30-8df1-4746-bfdd-6ad685bb852d"
+            },
+            {
+                "title": "判断题",
+                "type": "singlechoice",
+                "body": "若两角有一个公共顶点，分别有一条互为反向延长线的边，且两角和为`180º`，则它们是邻补角。",
+                "explanation":"嘿嘿，你觉得图中的`/_1`和`/_2`是邻补角吗？<ximage src='54050546-ee36-4124-b70e-b9d56cfde8f9'></ximage>",
+                "choices": [
+                    {
+                        "body": "错",
+                        "is_correct": true,
+                        "id": "d42b1aee-ae24-4c70-a0ce-a876ac5b4150"
+                    },
+                    {
+                        "body": "对",
+                        "is_correct": false,
+                        "id": "693f84ae-978f-40d0-a253-b6e021f67945"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "edc6d29c-1c32-449a-9305-202a1a592976"
+            },
+            {
+                "title": "单选题",
+                "type": "singlechoice",
+                "body": "直线`AB`，`CD`交于`O`，已知`/_AOD`的度数为`2x`，`/_COB`的度数为`180-x`，则`/_AOC`的度数是？<ximage src='3e6cbe7a-a87b-4603-b936-092fb123c3c4'></ximage>",
+                "choices": [
+                    {
+                        "body": "`60º`",
+                        "is_correct": true,
+                        "id": "9e9f44e6-6904-45f2-8cfa-efa6b46a8303"
+                    },
+                    {
+                        "body": "`80º`",
+                        "is_correct": false,
+                        "id": "f78e9804-a1a9-4a51-809e-d2f7a05a3279"
+                    },
+                    {
+                        "body": "`70º`",
+                        "is_correct": false,
+                        "id": "ca8d2771-1cb3-43a0-bb7f-41baf770d9d3"
+                    },
+                    {
+                        "body": "`50º`",
+                        "is_correct": false,
+                        "id": "50d0da1b-6e33-4119-8b3d-33509ca0022f"
+                    }
+                ],
+                "parent_id": "353ce66c-1dd1-4d51-8a46-3e92212462a0",
+                "id": "b6e5a114-4341-4ea5-8146-69fcf7a28959"
+            }
+        ]
+    }
+], "folder_name": "3 邻补角基础", "materials": {
+    "邻补角1.png": {
+        "id": "5318f32b-722c-4c53-b28a-21e2c2cf0402",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角1.png"
+    },
+    "邻补角2.png": {
+        "id": "35cddfab-79a9-4ef0-975a-8ce6617398cd",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角2.png"
+    },
+    "邻补角6.png": {
+        "id": "ca4b377b-4108-4e65-8ed0-8289fb133b67",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角6.png"
+    },
+    "邻补角8.png": {
+        "id": "3e6cbe7a-a87b-4603-b936-092fb123c3c4",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角8.png"
+    },
+    "邻补角基础.mp4": {
+        "id": "91a9a2e7-6e53-4827-a934-7d02dff6dd41",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/3 邻补角基础/materials/邻补角基础.mp4"
+    }
+}}

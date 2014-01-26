@@ -1,0 +1,241 @@
+{"title": "内错角基础", "summary": "", "status": "open", "seq": 0, "mainline": true, "requirements": ["40036ac5-b021-4fe6-b733-bfdcc78ffeae"], "pass_score": "4", "id": "737b6268-9aad-437e-a1be-a379125f34ad", "activities": [
+    {
+        "title": "内错角基础",
+        "type": "lecture",
+        "redoable": true,
+        "body": "<xvideo src='6f024ba6-6b26-4983-bd6d-a44dbe74e012'></xvideo>",
+        "id": "9c76f019-f85e-4b3c-9f98-73d3918f42d9",
+        "parent_id": "737b6268-9aad-437e-a1be-a379125f34ad",
+        "problems": []
+    },
+    {
+        "title": "课后练习来啦~",
+        "type": "quiz",
+        "randomize_questions": false,
+        "randomize_choices": true,
+        "show_answer": true,
+        "show_summary": true,
+        "redoable": true,
+        "id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+        "parent_id": "737b6268-9aad-437e-a1be-a379125f34ad",
+        "problems": [
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "图中的两组内错角是：<ximage src='60255ea4-68d8-4b8b-b11a-bfcfc228ad4b'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_1`和`/_2`，`/_3`和`/_4`",
+                        "is_correct": false,
+                        "id": "cfc6330f-df5a-4b2d-9ef0-4da0c1e885d3"
+                    },
+                    {
+                        "body": "`/_1`和`/_3`，`/_2`和`/_4`",
+                        "is_correct": false,
+                        "id": "9ebfd5c5-b383-4487-83c6-85e0c75eadff"
+                    },
+                    {
+                        "body": "`/_1`和`/_4`，`/_2`和`/_3`",
+                        "is_correct": true,
+                        "id": "93a107aa-a61d-4037-9b16-8f7c634c5a7e"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "e388fcbf-2663-4e73-9531-1e353e4abb5e"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "以下哪个图形可以用来表示一组内错角？ <ximage src='cc7f2f39-458c-4b48-ad6f-de5c38473652'></ximage>",
+                "choices": [
+                    {
+                        "body": "`A`图",
+                        "is_correct": true,
+                        "id": "10887719-44b1-44b0-a940-96ba5c99895c"
+                    },
+                    {
+                        "body": "`B`图",
+                        "is_correct": false,
+                        "id": "a4cc89d7-fa0f-4764-bc49-df0553655b37"
+                    },
+                    {
+                        "body": "`C`图",
+                        "is_correct": false,
+                        "id": "be6e915f-fe49-45ca-9fcd-c04822ec586a"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "1dacfb8e-d0c3-4c44-a6e7-2d6ad01ffa4a"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "内错角的“内”字可以理解为_________，“错”字可以理解为___________。",
+                "choices": [
+                    {
+                        "body": "内裤，错题",
+                        "is_correct": false,
+                        "id": "a73a4cc0-7745-4048-bd6d-46127ba235fa"
+                    },
+                    {
+                        "body": "被截直线内侧，截线两侧",
+                        "is_correct": true,
+                        "id": "39aec99e-af48-4c53-b6fb-48a1e486bd87"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "38fc5ce5-8125-4f0b-888b-d39f7abb4ef5"
+            },
+            {
+                "title": "",
+                "type": "multichoice",
+                "body": "图中属于内错角的是： <ximage src='2c6ed547-e02d-4bbe-8f68-107f1be60cf3'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_6`和`/_3`",
+                        "is_correct": true,
+                        "id": "c7f96263-1752-41b4-a324-757af3aa5390"
+                    },
+                    {
+                        "body": "`/_2`和`/_7`",
+                        "is_correct": true,
+                        "id": "040f3a32-d01c-45ca-8686-685507051e34"
+                    },
+                    {
+                        "body": "`/_1`和`/_3`",
+                        "is_correct": false,
+                        "id": "33d74ee4-daf8-4ec3-b83f-fe9d4e3de2ff"
+                    },
+                    {
+                        "body": "`/_6`和`/_7`",
+                        "is_correct": false,
+                        "id": "3b5fd65d-f66d-4177-99b0-285be2007917"
+                    },
+                    {
+                        "body": "`/_2`和`/_6`",
+                        "is_correct": false,
+                        "id": "183f43fa-f185-4e7f-a46f-bb511894882a"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "af375620-7d88-4d76-91f3-b5ad7d810236"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "如图，_________是内错角。<ximage src='b3ad1190-d966-4bfa-8921-525091a48fea'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_3`和`/_4`",
+                        "is_correct": true,
+                        "id": "ff58d21b-b41b-4d05-96a4-4906c825b86c"
+                    },
+                    {
+                        "body": "`/_1`和`/_2`",
+                        "is_correct": false,
+                        "id": "f8ea28c5-2e20-446e-aadf-6e153cd1dfcb"
+                    },
+                    {
+                        "body": "`/_2`和`/_3`",
+                        "is_correct": false,
+                        "id": "84c2a38e-9b5f-4413-b9c2-80b32694971a"
+                    },
+                    {
+                        "body": "`/_1`和`/_4`",
+                        "is_correct": false,
+                        "id": "a3df8526-edf4-4b3a-84bc-bfe71968083e"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "bea752b5-b981-49b6-ae9e-f0980030873a"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "如图，`/_ACE`与_________是内错角。<ximage src='a3708b80-d468-4e5f-8d00-09d618c3b7ed'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_A`",
+                        "is_correct": true,
+                        "id": "b27c3ebb-09d5-4205-ae51-e7c41aef0bbd"
+                    },
+                    {
+                        "body": "`/_B`",
+                        "is_correct": false,
+                        "id": "da7be8e0-9841-42bd-883d-73b8fef5819b"
+                    },
+                    {
+                        "body": "`/_3`",
+                        "is_correct": false,
+                        "id": "7092feba-366d-4ff0-88bf-9a24179df790"
+                    },
+                    {
+                        "body": "`/_2`",
+                        "is_correct": false,
+                        "id": "9971576c-b27e-42b5-ae0c-ca49feba7353"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "b0108795-d52a-4103-b1ce-e0c82074bb21"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "如图，下列说法错误的是：<ximage src='8cfadf8b-2c7f-4d80-a003-eca5141eea9a'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_1`和`/_B`是同位角",
+                        "is_correct": false,
+                        "id": "f1685e6b-14fe-4448-b97b-3e837f999426"
+                    },
+                    {
+                        "body": "`/_EAC`和`/_C`是内错角",
+                        "is_correct": false,
+                        "id": "3e2fe223-5c5c-431f-8552-e508458fcfa7"
+                    },
+                    {
+                        "body": "`/_2`和`/_C`是内错角",
+                        "is_correct": false,
+                        "id": "d019ec0d-f539-4a33-8da8-d4f468d0ded3"
+                    },
+                    {
+                        "body": "`/_2`和`/_B`是同位角",
+                        "is_correct": true,
+                        "id": "50566163-636a-406c-8b80-6bf8e2f594b8"
+                    }
+                ],
+                "parent_id": "c1ec30db-64e9-4d75-94be-87b13cb65ba0",
+                "id": "9d3cd731-c469-4486-b348-1d3c65cfb711"
+            }
+        ]
+    }
+], "folder_name": "5 内错角基础", "materials": {
+    "内错角.mp4": {
+        "id": "6f024ba6-6b26-4983-bd6d-a44dbe74e012",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角.mp4"
+    },
+    "内错角1.png": {
+        "id": "60255ea4-68d8-4b8b-b11a-bfcfc228ad4b",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角1.png"
+    },
+    "内错角2.png": {
+        "id": "cc7f2f39-458c-4b48-ad6f-de5c38473652",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角2.png"
+    },
+    "内错角4.png": {
+        "id": "2c6ed547-e02d-4bbe-8f68-107f1be60cf3",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角4.png"
+    },
+    "内错角5.png": {
+        "id": "b3ad1190-d966-4bfa-8921-525091a48fea",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角5.png"
+    },
+    "内错角6.png": {
+        "id": "a3708b80-d468-4e5f-8d00-09d618c3b7ed",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角6.png"
+    },
+    "内错角7.png": {
+        "id": "8cfadf8b-2c7f-4d80-a003-eca5141eea9a",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/5 内错角基础/materials/内错角7.png"
+    }
+}}
