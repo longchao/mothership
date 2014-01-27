@@ -185,28 +185,30 @@ angular.module('SunExercise.directives', [])
                     //Mixpanel
                     Utils.unregisterSP(true, true, true);
                     $rootScope.isBack = false;
+                    $rootScope.shouldReload = false;
                     $location.path('/subject/' + $routeParams.sid);
                 }
-
                 //lessons loader
-                $('#lessonLoaderModal').modal('show');
-                var unlockLessons = 0, successCalls = 0;
-                angular.forEach(chapterData.lessons, function (lesson, index) {
-                    if ($scope.loadLesson(index))
-                        unlockLessons++;
-                });
-                var minLoadTimeLimit = $timeout(function () {
-                }, 1500);
-                var deferred = $q.defer();
-                var loadingPromise = deferred.promise;
-                $scope.$on('lessonLoadedComplete', function () {
-                    successCalls++;
-                    if (successCalls == unlockLessons)
-                        deferred.resolve();
-                });
-                $q.all([minLoadTimeLimit, loadingPromise]).then(function () {
-                    $('#lessonLoaderModal').modal('hide');
-                });
+                if ($rootScope.shouldReload) {
+                    $('#lessonLoaderModal').modal('show');
+                    var unlockLessons = 0, successCalls = 0;
+                    angular.forEach(chapterData.lessons, function (lesson, index) {
+                        if ($scope.loadLesson(index))
+                            unlockLessons++;
+                    });
+                    var minLoadTimeLimit = $timeout(function () {
+                    }, 1000);
+                    var deferred = $q.defer();
+                    var loadingPromise = deferred.promise;
+                    $scope.$on('lessonLoadedComplete', function () {
+                        successCalls++;
+                        if (successCalls == unlockLessons)
+                            deferred.resolve();
+                    });
+                    $q.all([minLoadTimeLimit, loadingPromise]).then(function () {
+                        $('#lessonLoaderModal').modal('hide');
+                    });
+                }
             }
         }
     })
@@ -406,7 +408,7 @@ angular.module('SunExercise.directives', [])
 
                         if (!lessonUserdata.is_complete) {
                             $scope.startLesson = true;
-                            if($rootScope.user.usergroup == 'teacher') {
+                            if ($rootScope.user.usergroup == 'teacher') {
                                 $scope.startLessonSummary = false;
                                 $scope.reviewLessonBody = true;
                             } else {
@@ -610,7 +612,6 @@ angular.module('SunExercise.directives', [])
                                         if (typeof lessonData.pass_score != "undefined") {
                                             if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
                                                 lessonUserdata.is_complete = true;
-
                                             }
                                         } else {
                                             lessonUserdata.is_complete = true;
@@ -855,8 +856,6 @@ angular.module('SunExercise.directives', [])
                                     PageTransitions.nextPage(1, $("#buttonContainer"));
                                     //update the progress bar
                                     $scope.progressWidth = (index + 2) * 100 / activityData.problems.length;
-                                    //scroll to te top
-                                    $("#pt-main").scrollTop(0);
                                 }
                             } else {
                                 //if the activity both shows snawers and shows summary, apply the same logic of the

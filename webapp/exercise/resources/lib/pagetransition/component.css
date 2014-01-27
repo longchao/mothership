@@ -15,7 +15,8 @@ html, body {
 .pt-page {
     width: 100%;
     position: absolute;
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: none;
     overflow: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -59,7 +60,8 @@ html, body {
 
 .pt-page-current,
 .no-js .pt-page {
-    visibility: visible;
+    /*visibility: visible;*/
+    display: block;
     z-index: 1;
 }
 

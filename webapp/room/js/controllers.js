@@ -116,17 +116,10 @@ angular.module('SunRoom.controllers', [])
                     var schoolName = user.username.substring(0, 2);
                     var fullName = user.username.substring(0, 6);
 
-                    /**
-                     * check if the room with name [fullname] already exists, otherwise rooms will be replicated
-                     * requires new api that is able to find specific room by room name
-                     */
-
                     if ((schoolName == "xw" || schoolName == "8z") && (user.username.charAt(2) >= '0' && user.username.charAt(2) <= '9')
                         && (typeof roomsMap[fullName] == "undefined")) {
-
                         deferredArray[i] = $q.defer();
                         promiseArray[i] = deferredArray[i].promise;
-
                         roomsMap[fullName] = null;
                         $http.post("/rooms", {
                             name: fullName,

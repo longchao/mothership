@@ -13,6 +13,6 @@ body {
     font-size: 0.75em;
 }
 
-.chapter-back-button, .lesson-button-container-true, .achievements-button, .chapters-container, .open-menu, .subject-container, .achievements-back-button {
+.chapter-back-button, .lesson-button-container-true, .lesson-button-container-false, .achievements-button, .chapters-container, .open-menu, .subject-container, .achievements-back-button {
     cursor: pointer;
 }
