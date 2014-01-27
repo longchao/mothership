@@ -2,7 +2,7 @@
 
 module.exports = {
     db: "mongodb://localhost/exercise-test",
-    port: 3001,
+    port: 9461,
     app: {
         name: "MEAN - A Modern Stack - Test"
     },

@@ -1,184 +1,172 @@
 {"id": "7c2cfbf4-a677-4227-9167-015caf451835", "name": "相交线和平行线", "package_name": "org.sunlib.exercise", "version_code": 0, "enter_lesson": "b9b6ade6-0b62-40c6-b13d-8a151014a951", "launchable": 0, "url": "/webapp/7c2cfbf4-a677-4227-9167-015caf451835", "type": "chapter", "subject": "math", "lessons": [
-{
-"id": "b9b6ade6-0b62-40c6-b13d-8a151014a951",
-"title": "章节预习",
-"summary": "超级五角组合闪亮登场，五大主角将依次亮相，等着看他们各（暴）显（露）神（本）通（性）吧",
-"mainline": true,
-"seq":0
-},
-{
-"id": "2ed62e96-c65d-470d-a465-bddc28633172",
-"title": "平行线与内错角 （性质）",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["444b8901-e751-48e1-a229-c71d0a8f88e4"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "ba4c669d-2f30-474f-be65-81eaac210257",
-"title": "提高拓展",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["2ed62e96-c65d-470d-a465-bddc28633172"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "f42b997a-2af0-4eaf-b1a2-840ecaf34506",
-"title": "平行线与同位角和同旁内角（性质）",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["2ed62e96-c65d-470d-a465-bddc28633172"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "3047f814-f770-4bca-b823-d42089bad012",
-"title": "提高拓展",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["f42b997a-2af0-4eaf-b1a2-840ecaf34506"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "10a00af3-3d2c-471a-a8fb-534b9a4625e3",
-"title": "几何证明",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["f42b997a-2af0-4eaf-b1a2-840ecaf34506"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "6afc46db-a16e-4388-9287-9e6301a27579",
-"title": "欧几里得与几何原本",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["10a00af3-3d2c-471a-a8fb-534b9a4625e3"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "d0dbdc96-b03e-44d1-938e-c5bf2d28f489",
-"title": "平移基础",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["10a00af3-3d2c-471a-a8fb-534b9a4625e3"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "d9f6588c-5267-4131-a408-88ccb881bde0",
-"title": "对顶角基础",
-"summary": "大咩二咩打架了！用了什么大招呢？",
-"requirements": ["b9b6ade6-0b62-40c6-b13d-8a151014a951"],
-"mainline": true,
-"seq":0
-},
-{
-"id": "8a48bb2d-bfd0-448e-beb8-0122420bacd0",
-"title": "提高拓展",
-"summary": "易混淆的对顶角识别，n条直线交于一点的对顶角计算方法",
-"seq":1,
-"requirements": ["d9f6588c-5267-4131-a408-88ccb881bde0"]
-},
-{
-"id": "acebd6b8-652d-4b36-8f69-a32a226edfd5",
-"title": "邻补角基础",
-"summary": "邻居电视声音太大，怎么专心写（打）作（游）业（戏）呢？<br /> 1月17日就上线了，别忘了来看哟~",
-"requirements": ["d9f6588c-5267-4131-a408-88ccb881bde0"],
-"mainline": true,
-"seq":0
-},
-{
-"id": "a74a7306-d6e0-42c6-8ab3-e487d50486cf",
-"title": "同位角基础",
-"summary": "狗蛋儿是个路痴，有一天妈妈让他去买东西，他是怎么找到商店的呢？<br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["acebd6b8-652d-4b36-8f69-a32a226edfd5"],
-"mainline": true,
-"seq":0
-},
-{
-"id": "88b8941e-7896-4f05-bbba-74436c361dfe",
-"title": "提高拓展",
-"summary": "复杂图形中的同位角 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["a74a7306-d6e0-42c6-8ab3-e487d50486cf"],
-"seq":1
-},
-{
-"id": "081f8aef-ad74-4869-98f1-6ea8329899e5",
-"title": "内错角基础",
-"summary": "寻找神秘剑侠佐罗 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["a74a7306-d6e0-42c6-8ab3-e487d50486cf"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "9071a1aa-0060-4e6f-ae02-444a457d4a94",
-"title": "提高拓展",
-"summary": "复杂图形中的内错角识别 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["081f8aef-ad74-4869-98f1-6ea8329899e5"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "16fad0e0-01ee-4bbe-8b14-f15b71b30052",
-"title": "同旁内角基础",
-"summary": "说文解字的数学应用 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["081f8aef-ad74-4869-98f1-6ea8329899e5"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "59ec5c61-e2c2-40d7-a15d-1bf2529ea589",
-"title": "提高拓展",
-"summary": "三线八角综合应用 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["16fad0e0-01ee-4bbe-8b14-f15b71b30052"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "25f265f5-08b5-4565-b7f8-10c834c7e8ea",
-"title": "垂线基础",
-"summary": "改变人类文明的三个苹果 <br />这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["16fad0e0-01ee-4bbe-8b14-f15b71b30052"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "94bf9836-3758-448b-9c83-e7429c5babdb",
-"title": "平行线与内错角",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["25f265f5-08b5-4565-b7f8-10c834c7e8ea"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "2ba21d21-df41-4269-afec-833ddd7c24f8",
-"title": "提高拓展",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["94bf9836-3758-448b-9c83-e7429c5babdb"],
-"status": "closed",
-"seq":1
-},
-{
-"id": "444b8901-e751-48e1-a229-c71d0a8f88e4",
-"title": "平行线与同位角和同旁内角（判定）",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["94bf9836-3758-448b-9c83-e7429c5babdb"],
-"mainline": true,
-"status": "closed",
-"seq":0
-},
-{
-"id": "0f6887d6-6975-491a-bf75-080e0667a535",
-"title": "提高拓展",
-"summary": "这一节的内容正在赶制当中，很快就会上线的，没事儿记得来看一看哟！",
-"requirements": ["444b8901-e751-48e1-a229-c71d0a8f88e4"],
-"status": "closed",
-"seq":1
-}
+    {
+        "id": "b9b6ade6-0b62-40c6-b13d-8a151014a951",
+        "title": "章节预习",
+        "summary": "超级五角组合闪亮登场，五大主角将依次亮相，等着看他们各（暴）显（露）神（本）通（性）吧",
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "d9f6588c-5267-4131-a408-88ccb881bde0",
+        "title": "对顶角基础",
+        "summary": "大咩二咩打架了！用了什么大招呢？",
+        "requirements": ["b9b6ade6-0b62-40c6-b13d-8a151014a951"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "8a48bb2d-bfd0-448e-beb8-0122420bacd0",
+        "title": "提高拓展",
+        "summary": "易混淆的对顶角识别，n条直线交于一点的对顶角计算方法",
+        "seq": 1,
+        "requirements": ["d9f6588c-5267-4131-a408-88ccb881bde0"]
+    },
+    {
+        "id": "acebd6b8-652d-4b36-8f69-a32a226edfd5",
+        "title": "邻补角基础",
+        "summary": "邻居电视声音太大，怎么专心写（打）作（游）业（戏）呢？",
+        "requirements": ["d9f6588c-5267-4131-a408-88ccb881bde0"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "a74a7306-d6e0-42c6-8ab3-e487d50486cf",
+        "title": "同位角基础",
+        "summary": "狗蛋儿是个路痴，有一天妈妈让他去买东西，他是怎么找到商店的呢？",
+        "requirements": ["acebd6b8-652d-4b36-8f69-a32a226edfd5"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "88b8941e-7896-4f05-bbba-74436c361dfe",
+        "title": "提高拓展",
+        "summary": "复杂图形中的同位角",
+        "requirements": ["a74a7306-d6e0-42c6-8ab3-e487d50486cf"],
+        "seq": 1
+    },
+    {
+        "id": "737b6268-9aad-437e-a1be-a379125f34ad",
+        "title": "内错角基础",
+        "summary": "",
+        "requirements": ["a74a7306-d6e0-42c6-8ab3-e487d50486cf"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "f5f332d8-49c3-42ed-9361-736ca5e47ea5",
+        "title": "同旁内角基础",
+        "summary": "泰囧整容记",
+        "requirements": ["737b6268-9aad-437e-a1be-a379125f34ad"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "172d433d-6fc8-4194-b593-28766a0cbdbd",
+        "title": "提高拓展",
+        "summary": "三线八角综合应用",
+        "requirements": ["f5f332d8-49c3-42ed-9361-736ca5e47ea5"],
+        "seq": 1
+    },
+    {
+        "id": "b1875229-fe0e-4789-a3f9-1118bf3403d4",
+        "title": "垂线基础",
+        "summary": "一起来探索看似简单的垂直关系里的玄机！",
+        "requirements": ["f5f332d8-49c3-42ed-9361-736ca5e47ea5"],
+        "mainline": true,
+        "seq": 0
+    },
+    {
+        "id": "4f69af9e-19ff-42af-bbca-a2380cb88597",
+        "title": "平行线与内错角",
+        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    },
+    {
+        "id": "633980c2-1d9a-427c-872d-f1028aa2bfd9",
+        "title": "提高拓展",
+        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["4f69af9e-19ff-42af-bbca-a2380cb88597"],
+        "status": "closed",
+        "seq": 1
+    },
+    {
+        "id": "beb3a181-c1ad-41ea-af0c-7dc367f56a81",
+        "title": "平行线与同位角和同旁内角（判定）",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["4f69af9e-19ff-42af-bbca-a2380cb88597"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    },
+    {
+        "id": "1159dab2-d336-44b9-8aa2-7959a57ec10b",
+        "title": "提高拓展",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["beb3a181-c1ad-41ea-af0c-7dc367f56a81"],
+        "status": "closed",
+        "seq": 1
+    },
+    {
+        "id": "2c317ab2-312f-4187-879d-9bdbb8b5f3e2",
+        "title": "平行线与内错角（性质）",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["beb3a181-c1ad-41ea-af0c-7dc367f56a81"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    },
+    {
+        "id": "0f065fe0-f1a6-442c-beb9-da0f4bf6ee5c",
+        "title": "提高拓展",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["2c317ab2-312f-4187-879d-9bdbb8b5f3e2"],
+        "status": "closed",
+        "seq": 1
+    },
+    {
+        "id": "9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca",
+        "title": "平行线与同位角和同旁内角（性质）",
+        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    },
+    {
+        "id": "faf2a0dd-4668-431a-818b-d3f605f60673",
+        "title": "提高拓展",
+        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca"],
+        "status": "closed",
+        "seq": 1
+    },
+    {
+        "id": "d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4",
+        "title": "几何证明",
+        "summary": "这想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["b1875229-fe0e-4789-a3f9-1118bf3403d4"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    },
+    {
+        "id": "a8c11e30-133a-4687-9511-3e7e2662cdad",
+        "title": "欧几里得与几何原本",
+        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "requirements": ["d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4"],
+        "status": "closed",
+        "seq": 1
+    },
+    {
+        "id": "4b6fb7c5-764e-4568-b5f4-05725ec323fc",
+        "title": "平移基础",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["2c317ab2-312f-4187-879d-9bdbb8b5f3e2"],
+        "mainline": true,
+        "status": "closed",
+        "seq": 0
+    }
 ], "grade": 0, "title": "相交线和平行线", "ts": 1389688883455}
