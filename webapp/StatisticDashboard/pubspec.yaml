@@ -1,0 +1,11 @@
+name: StatisticDashboard
+description: A sample web application
+dependencies:
+  browser: any
+  jsonp: any
+  angular: any
+  crypto: any
+  intl: any
+  message: any
+  jquery: ">=1.0.1 <2.0.0"
+  json_object: any

@@ -1,0 +1,13 @@
+{
+    "id": "StatisticDashboard",
+    "version_code": 1,
+    "name": "提高班dev",
+    "type": "web_app",
+    "launchable": 1,
+    "package_name": "org.sunlib.exercise",
+    "url": "/app/102",
+    "home": "/index.html",
+    "description": "统计面板",
+
+    "local_folder": "/app/web"
+}
