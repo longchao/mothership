@@ -378,11 +378,19 @@ angular.module('SunExercise.directives', [])
                     } else {
                         $scope.buttonMsg = "继续学习";
                     }
+
                     $scope.showLessonDialogue = function () {
                         $('#lessonModal-' + lessonData.id).modal('toggle');
 
                         if (!lessonUserdata.is_complete) {
                             $scope.startLesson = true;
+                            if($rootScope.user.usergroup == 'teacher') {
+                                $scope.startLessonSummary = false;
+                                $scope.reviewLessonBody = true;
+                            } else {
+                                $scope.startLessonSummary = true;
+                                $scope.reviewLessonBody = false;
+                            }
                             $scope.lessonState = "unlocked";
                             $scope.lessonStateIcon = "headerUnlock";
                         } else {
@@ -394,6 +402,7 @@ angular.module('SunExercise.directives', [])
                                 }
                             }
                             $scope.reviewLesson = true;
+                            $scope.reviewLessonBody = true;
                             $scope.lessonState = "review";
                             if (typeof lessonUserdata.summary.star != "undefined") {
                                 $scope.lessonStateIcon = "lesson-header-star" + lessonUserdata.summary.star;
@@ -416,6 +425,7 @@ angular.module('SunExercise.directives', [])
                             FSM.resume(id, lessonUserdata.current_activity);
                         }
                     }
+
                     $scope.reviewActivity = function (lessonId, activityId) {
                         $rootScope.isBack = false;
                         $('#lessonModal-' + lessonData.id).modal('hide');
@@ -427,6 +437,7 @@ angular.module('SunExercise.directives', [])
                         lessonUserdata.current_activity = activityId;
                         FSM.resume(lessonId, activityId);
                     }
+
                     //lesson summary back button
                     $scope.backToChapter = function () {
                         FSM.back();

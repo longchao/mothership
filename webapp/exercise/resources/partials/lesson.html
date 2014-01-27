@@ -20,10 +20,10 @@
                     <img class="lesson-icon" ng-src="resources/img/{{ lessonStateIcon }}.png"/>
                     <span class="lesson-title font-size-big">{{ title }}</span>
                 </div>
-                <div class="lesson-body-enter" ng-show="startLesson">
+                <div class="lesson-body-enter" ng-show="startLessonSummary">   
                     <div ng-bind-html-unsafe="lesson.summary"></div>
                 </div>
-                <div class="lesson-body-review" ng-show="reviewLesson">
+                <div class="lesson-body-review" ng-show="reviewLessonBody">   
                     <!--<span>已经完成啦</span><br><br>
                     <span ng-show="showResult">答对 {{ lessonResultCount }} 题 正确率 {{ lessonResultPercent }} %</span><br> -->
                     <review ng-repeat="activity in activities"></review>
