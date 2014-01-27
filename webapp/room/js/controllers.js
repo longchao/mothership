@@ -9,7 +9,7 @@
 angular.module('SunRoom.controllers', [])
 
     .controller('showController', function ($scope, $http, $location) {
-        $http.get("http://localhost:3000/rooms").success(function (data) {
+        $http.get("http://127.0.0.1:9461/rooms").success(function (data) {
             $scope.rooms = data;
         }).
             error(function (err) {
@@ -26,7 +26,7 @@ angular.module('SunRoom.controllers', [])
         var promise = deferred.promise;
 
         var roomId = $routeParams.rid;
-        $http.get("http://localhost:3000/rooms/" + roomId).success(function (data) {
+        $http.get("http://127.0.0.1:9461/rooms/" + roomId).success(function (data) {
             $scope.name = data.name;
             deferred.resolve(data);
         }).error(function (err) {
@@ -38,13 +38,13 @@ angular.module('SunRoom.controllers', [])
         $scope.apps = [];
         promise.then(function (data) {
             angular.forEach(data.users, function (userId) {
-                $http.get("http://localhost:3000/users/" + userId).success(function (user) {
+                $http.get("http://127.0.0.1:9461/users/" + userId).success(function (user) {
                     $scope.users.push(user);
                 })
             });
 
             angular.forEach(data.apps, function (appId) {
-                $http.get("http://localhost:3000/apps/" + appId).success(function (app) {
+                $http.get("http://127.0.0.1:9461/apps/" + appId).success(function (app) {
                     $scope.apps.push(app);
                 })
             });
@@ -53,13 +53,13 @@ angular.module('SunRoom.controllers', [])
         })
 
         $scope.addUser = function (username, userId) {
-            $http.post("http://localhost:3000/rooms/" + roomId + "/users", {
+            $http.post("http://127.0.0.1:9461/rooms/" + roomId + "/users", {
                 userName: username,
                 userId: userId
             }).success(function (data) {
                     $scope.users = [];
                     angular.forEach(data.users, function (userId) {
-                        $http.get("http://localhost:3000/users/" + userId).success(function (user) {
+                        $http.get("http://127.0.0.1:9461/users/" + userId).success(function (user) {
                             $scope.users.push(user);
                         })
                     });
@@ -70,18 +70,18 @@ angular.module('SunRoom.controllers', [])
         }
 
         $scope.deleteUser = function (index, userId) {
-            $http.delete("http://localhost:3000/rooms/" + roomId + "/users/" + userId).success(function (data) {
+            $http.delete("http://127.0.0.1:9461/rooms/" + roomId + "/users/" + userId).success(function (data) {
                 $scope.users.splice(index, 1);
             })
         }
 
         $scope.addApp = function (appId) {
-            $http.post("http://localhost:3000/rooms/" + roomId + "/apps", {
+            $http.post("http://127.0.0.1:9461/rooms/" + roomId + "/apps", {
                 appId: appId
             }).success(function (data) {
                     $scope.apps = [];
                     angular.forEach(data.apps, function (appId) {
-                        $http.get("http://localhost:3000/apps/" + appId).success(function (app) {
+                        $http.get("http://127.0.0.1:9461/apps/" + appId).success(function (app) {
                             $scope.apps.push(app);
                         })
                     });
@@ -89,7 +89,7 @@ angular.module('SunRoom.controllers', [])
         }
 
         $scope.deleteApp = function (index, appId) {
-            $http.delete("http://localhost:3000/rooms/" + roomId + "/apps/" + appId).success(function (data) {
+            $http.delete("http://127.0.0.1:9461/" + roomId + "/apps/" + appId).success(function (data) {
                 $scope.apps.splice(index, 1);
             })
         }
@@ -107,7 +107,7 @@ angular.module('SunRoom.controllers', [])
         $scope.states = [];
 
         $scope.getAllRooms = function () {
-            $http.get("http://localhost:3000/users").success(function (users) {
+            $http.get("http://127.0.0.1:9461").success(function (users) {
                 var roomsMap = {};
                 var deferredArray = [];
                 var promiseArray = [];
@@ -128,7 +128,7 @@ angular.module('SunRoom.controllers', [])
                         promiseArray[i] = deferredArray[i].promise;
 
                         roomsMap[fullName] = null;
-                        $http.post("http://localhost:3000/rooms", {
+                        $http.post("http://127.0.0.1:9461/rooms", {
                             name: fullName,
                             users: [],
                             apps: []
@@ -155,7 +155,7 @@ angular.module('SunRoom.controllers', [])
                         var fullName = user.username.substring(0, 6);
                         if ((schoolName == "xw" || schoolName == "8z")
                             && (user.username.charAt(2) >= '0' && user.username.charAt(2) <= '9')) {
-                            $http.post("http://localhost:3000/rooms/" + roomsMap[fullName] + "/users", {
+                            $http.post("http://127.0.0.1:9461/" + roomsMap[fullName] + "/users", {
                                 userId: user._id
                             }).success(function (data) {
                                     $scope.states.push(user.username + " has been added to the class.");
