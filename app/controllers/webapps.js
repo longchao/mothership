@@ -101,6 +101,10 @@ exports.app = function (req, res, next, id) {
     }
 };
 
+exports.show = function(req, res) {
+    res.send(req.app);
+}
+
 exports.sync = function (req, res) {
     var upstreamServer = req.body.server,
         policy = req.body.policy;

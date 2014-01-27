@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classify users into rooms</title>
+</head>
+<body ng-controller="classifyController">
+<h2>One-click Classification of Users</h2>
+<button ng-click="getAllRooms()">Start Classification</button>
+<div ng-repeat="state in states">
+    <label>{{ state }}</label>
+</div>
+</body>
+</html>

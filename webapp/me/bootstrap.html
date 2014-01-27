@@ -79,7 +79,7 @@
 <script>
     var profile = function ($scope, $http, $location) {
         $scope.status = "";
-        $http.get('/users/me')
+        $http.get('/me')
                 .success(function (data, status, headers, config) {
                     $scope.user = data;
                     try {

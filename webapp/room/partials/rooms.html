@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>show rooms</title>
+</head>
+<body>
+<div id="showAllRooms" ng-controller="showController">
+    <table>
+        <thead></thead>
+        <tbody>
+        <tr ng-repeat="room in rooms">
+            <td>{{ $index }}</td>
+            <td>
+                <div ng-click="enterRoom(room._id)">{{ room.name }}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

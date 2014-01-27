@@ -1,0 +1,11 @@
+{
+    "id": "room",
+    "version_code": 1,
+    "name": "room",
+    "type": "web_app",
+    "launchable": 1,
+    "package_name": "org.sunlib.exercise",
+    "url": "/app/room",
+    "home": "/index.html",
+    "description": "这是一个用于管理用户信息和班级信息的平台"
+}
