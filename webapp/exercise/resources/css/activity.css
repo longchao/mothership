@@ -47,12 +47,16 @@ ximage {
 
 /* quiz activity */
 .question-container {
-    /*min-height: 700px;*/
+    min-height: 400px;
 }
 
 .question-content {
     padding-left: 15px;
     line-height: 1.75em;
+}
+
+.question-content img {
+    max-height: 250px;
 }
 
 .question-type {
