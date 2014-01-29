@@ -1,0 +1,42 @@
+<html>
+<head>
+    <script src="angular.min.js"></script>
+    <title>Upload Example</title>
+</head>
+<body ng-app>
+
+<div ng-controller="MyCtrl">
+    <input type="file" name="file"
+           onchange="angular.element(this).scope().uploadFile(this.files)"/><br>
+    {{ret}}
+</div>
+
+<script>
+    var MyCtrl = function ($scope, $http) {
+        $scope.ret = '';
+        $scope.uploadFile = function (files) {
+            var fd = new FormData();
+            //Take the first selected file
+            fd.append("file", files[0]);
+
+            console.log(fd);
+
+            $http.post('/upload', fd, {
+                withCredentials: true,
+                headers: {'Content-Type': undefined },
+                transformRequest: angular.identity
+            })
+            .success(function(data, status, headers, config){
+                        alert("key:" + data.key + " hash:" + data.hash +
+                                " url:" + data.url);
+                        $scope.ret += '\n' + data.url;
+                    })
+            .error(function(data, status, headers, config){
+                        alert(data);
+                    });
+    };
+    }
+    ;
+</script>
+</body>
+</html>

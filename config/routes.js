@@ -4,6 +4,7 @@ module.exports = function (app, passport, auth) {
     var webapps = require('../app/controllers/webapps');
     var userdata = require('../app/controllers/userdatas');
     var rooms = require('../app/controllers/rooms');
+    var medias = require('../app/controllers/medias');
 
     app.get('/', function (req, res) {
         res.redirect('/webapp/login');
@@ -37,6 +38,8 @@ module.exports = function (app, passport, auth) {
 
     app.get('/apps', auth.requiresLogin, webapps.all);
     app.get('/apps/:appId', auth.requiresLogin, webapps.show);
+
+    app.post('/upload', auth.requiresLogin, medias.create);
 
     app.get('/dispatch', users.dispatch);
 

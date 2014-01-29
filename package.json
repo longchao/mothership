@@ -38,6 +38,7 @@
         "temp": "0.x",
         "node-fs": "0.1.7",
         "should": "~2.1.1",
-        "cloneextend": "0.0.3"
+        "cloneextend": "0.0.3",
+        "qiniu":"6.1.1"
     }
 }
