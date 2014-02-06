@@ -40,6 +40,7 @@ module.exports = function (app, passport, auth) {
     app.get('/apps/:appId', auth.requiresLogin, webapps.show);
 
     app.post('/upload', auth.requiresLogin, medias.create);
+    app.get('/upload', auth.requiresLogin, medias.list);
 
     app.get('/dispatch', users.dispatch);
 

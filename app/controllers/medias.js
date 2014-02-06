@@ -51,7 +51,22 @@ exports.create = function (req, res) {
       res.json(200, {"key": ret.key, "hash": ret.hash,
         "url": encodeURI("http://ghxz.qiniudn.com/" + ret.key)});
     } else {
-//      console.log(err);
+      console.log(err);
+      res.send(500, err);
+    }
+  });
+};
+
+exports.list = function (req, res) {
+  prefix = req.query.prefix;
+  marker = req.query.marker;
+  qiniu.rsf.listPrefix(bucket, prefix, marker, null, function(err, ret) {
+    if (!err) {
+      // process ret.marker & ret.items
+      res.json(200, ret);
+    } else {
+      // http://developer.qiniu.com/docs/v6/api/reference/rs/list.html
+      console.log(err)
       res.send(500, err);
     }
   });
