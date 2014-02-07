@@ -8,7 +8,7 @@ qiniu.conf.SECRET_KEY = '_GjKAqSVaeTlWv-YF8fu2sbQJUKpApG_tu7WRgS3';
 var bucket = 'ghxz';
 
 // get the upload token
-var upToken = function (bucketname) {
+var upToken = function(bucketname) {
   var putPolicy = new qiniu.rs.PutPolicy(bucketname);
   //putPolicy.callbackUrl = callbackUrl;
   //putPolicy.callbackBody = callbackBody;
@@ -20,7 +20,7 @@ var upToken = function (bucketname) {
   return putPolicy.token();
 };
 
-var uploadFile = function (localFile, key, callback) {
+var uploadFile = function(localFile, key, callback) {
   var extra = new qiniu.io.PutExtra();
   //extra.params = params;
   //extra.mimeType = mimeType;
@@ -35,7 +35,7 @@ var uploadFile = function (localFile, key, callback) {
   qiniu.io.putFile(token, key, localFile, extra, callback);
 };
 
-exports.create = function (req, res) {
+exports.create = function(req, res) {
 
   // get the files' temporary path
   var tmp_path = req.files.file.path;
@@ -43,7 +43,7 @@ exports.create = function (req, res) {
 //    console.log(tmp_path);
 //    console.log(tmp_name);
 
-  uploadFile(tmp_path, tmp_name, function (err, ret) {
+  uploadFile(tmp_path, tmp_name, function(err, ret) {
     if (!err) {
       // ret.key & ret.hash
 //      console.log(ret);
@@ -57,12 +57,17 @@ exports.create = function (req, res) {
   });
 };
 
-exports.list = function (req, res) {
+exports.list = function(req, res) {
   prefix = req.query.prefix;
   marker = req.query.marker;
   qiniu.rsf.listPrefix(bucket, prefix, marker, null, function(err, ret) {
     if (!err) {
       // process ret.marker & ret.items
+      items = ret.items;
+      for (var i in items) {
+        items[i].url = encodeURI("http://ghxz.qiniudn.com/" + items[i].key);
+      }
+      console.log(ret);
       res.json(200, ret);
     } else {
       // http://developer.qiniu.com/docs/v6/api/reference/rs/list.html
