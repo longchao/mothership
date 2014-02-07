@@ -60,7 +60,8 @@ exports.create = function(req, res) {
 exports.list = function(req, res) {
   prefix = req.query.prefix;
   marker = req.query.marker;
-  qiniu.rsf.listPrefix(bucket, prefix, marker, null, function(err, ret) {
+  limit = req.query.limit;
+  qiniu.rsf.listPrefix(bucket, prefix, marker, limit, function(err, ret) {
     if (!err) {
       // process ret.marker & ret.items
       items = ret.items;
