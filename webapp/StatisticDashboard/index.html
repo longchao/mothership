@@ -5,50 +5,37 @@
 <meta charset="utf-8">
 <title>StatisticDashboard</title>
 <link rel="stylesheet" href="web/statisticdashboard.css">
-<!--
-<script src="packages/jquery/jquery.js"></script>
--->
+<script src="web/js/selector.js"></script>
 </head>
 <body board>
 	<h1>StatisticDashboard</h1>
 	<p>欢迎来到数学提高班统计面板!</p>
-	<h3 style="color: white">{{roomName}}</h3>
-	<p id="user-info"></p>
-
+    <div id="search_panel">
+        <form>
+            <select id="chapterSelector" ng-change="ctrl.giveParam()"
+                    onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+            </select>
+            <select id="roomSelector" ng-change="ctrl.giveParam()"
+                    onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                <optgroup label="西外" ng-model="ctrl.XW">
+                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                </optgroup>
+                <optgroup label="八中" ng-model="ctrl.Z8">
+                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                </optgroup>
+            </select>
+        </form>
+    </div>
+    <hr/>
 	<div class="panel" id="left-panel" style="float: left">
-
-		<div id="search_panel">
-			<!--请输入班级号<input type="text" id="inputRoomName" maxlength="6"
-				ng-model="roomName">-->
-            <form>
-                <select name="chapters" ng-change="ctrl.giveParam(null,$element.options[$element.selectedIndex].index)">
-                    <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
-<!--
-                    <option>--</option>
--->
-                </select>
-                <select name="rooms" ng-change="ctrl.giveParam($element.options[$element.selectedIndex].index,null)">
-                    <option ng-repeat="room in ctrl.rooms" value="{{room}}">{{room}}</option>
-                </select>
-            </form>
-
-<!--
-            <button type="submit" ng-click="ctrl.giveRoom()">查询</button>
--->
-		</div>
-		<div style="display: none">
-			<ul>
-				<li class="students_container" ng-repeat="student in ctrl.students">{{student.userId}}
-					" "{{student.name}}" "{{student.userName}}</li>
-			</ul>
-		</div>
 		<div>
 			<ul style="display: table">
 				<li class="students_container" ng-repeat="event in ctrl.events">
 					<div class="circle" ng-click="ctrl.showUsers(event)">
 						<p>{{event.info['result'].legend_size}}</p>
 					</div>
-					<h3>{{event.info['event_name']}}</h3>
+					<h5>{{event.info['event_name']}}</h5>
 				</li>
 			</ul>
 		</div>
@@ -57,5 +44,10 @@
 	<script type="application/dart" src="web/statisticdashboard.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
+    <link rel="stylesheet" href="web/files/lib/bootstrap-combined.min.css" />
+    <link rel="stylesheet" href="web/files/lib/jquery.selectBoxIt.css" />
+    <script src="web/files/lib/jquery-1.10.2.min.js"></script>
+    <script src="web/files/lib/jquery.selectBoxIt.min.js"></script>
+    <script>$(function() {$("select").selectBoxIt();});</script>
 </body>
 </html>
