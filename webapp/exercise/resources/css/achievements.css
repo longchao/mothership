@@ -3,7 +3,7 @@
     top: 50%;
     left: 50%;
 }
-  
+
 .header-wrapper {
     position: fixed;
     width: 100%;
@@ -13,7 +13,7 @@
 }
 
 .achievements-header {
-    background: #fd8b5e;
+    background: #69605d;
     padding: 10px 0 16px 15px;
     color: white;
     height: 56px;

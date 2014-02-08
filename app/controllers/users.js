@@ -38,7 +38,7 @@ exports.signup = function (req, res) {
  */
 exports.signout = function (req, res) {
     req.logout();
-	res.redirect('/');
+    res.redirect('/');
 };
 
 /**
@@ -60,6 +60,8 @@ exports.create = function (req, res, next) {
     if (user.usergroup != "teacher") {
         user.usergroup = 'student';
     }
+    user.profile.school_name = user.username.substring(0, 2);
+    user.profile.room_name = user.username.substring(2, 6);
     user.save(function (err) {
         if (err) {
             switch (err.code) {
@@ -76,6 +78,15 @@ exports.create = function (req, res, next) {
         }
     });
 };
+
+/**
+ * Get all users
+ */
+exports.all = function (req, res) {
+    User.find().exec(function (err, users) {
+        res.json((err) ? null : users);
+    })
+}
 
 /**
  * Reset user password
@@ -126,6 +137,10 @@ exports.profile = function (req, res) {
 exports.me = function (req, res) {
     res.jsonp(req.user || null);
 };
+
+exports.show = function (req, res) {
+    res.jsonp(req.profile);
+}
 
 exports.dispatch = function (req, res) {
     if (req.user) {

@@ -76,97 +76,71 @@
         "seq": 0
     },
     {
-        "id": "4f69af9e-19ff-42af-bbca-a2380cb88597",
-        "title": "平行线与内错角",
-        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca"],
-        "mainline": true,
-        "status": "closed",
-        "seq": 0
-    },
-    {
-        "id": "633980c2-1d9a-427c-872d-f1028aa2bfd9",
-        "title": "提高拓展",
-        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["4f69af9e-19ff-42af-bbca-a2380cb88597"],
-        "status": "closed",
-        "seq": 1
-    },
-    {
-        "id": "beb3a181-c1ad-41ea-af0c-7dc367f56a81",
-        "title": "平行线与同位角和同旁内角（判定）",
-        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
-        "requirements": ["4f69af9e-19ff-42af-bbca-a2380cb88597"],
-        "mainline": true,
-        "status": "closed",
-        "seq": 0
-    },
-    {
-        "id": "1159dab2-d336-44b9-8aa2-7959a57ec10b",
-        "title": "提高拓展",
-        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
-        "requirements": ["beb3a181-c1ad-41ea-af0c-7dc367f56a81"],
-        "status": "closed",
-        "seq": 1
-    },
-    {
-        "id": "2c317ab2-312f-4187-879d-9bdbb8b5f3e2",
-        "title": "平行线与内错角（性质）",
-        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
-        "requirements": ["beb3a181-c1ad-41ea-af0c-7dc367f56a81"],
-        "mainline": true,
-        "status": "closed",
-        "seq": 0
-    },
-    {
-        "id": "0f065fe0-f1a6-442c-beb9-da0f4bf6ee5c",
-        "title": "提高拓展",
-        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
-        "requirements": ["2c317ab2-312f-4187-879d-9bdbb8b5f3e2"],
-        "status": "closed",
-        "seq": 1
-    },
-    {
-        "id": "9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca",
-        "title": "平行线与同位角和同旁内角（性质）",
-        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4"],
-        "mainline": true,
-        "status": "closed",
-        "seq": 0
-    },
-    {
-        "id": "faf2a0dd-4668-431a-818b-d3f605f60673",
-        "title": "提高拓展",
-        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["9e6cbfbe-cf37-4ef3-8cdf-6adadf1cb4ca"],
-        "status": "closed",
-        "seq": 1
-    },
-    {
-        "id": "d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4",
+        "id": "e985cd63-5d80-45a0-8d48-9bb3a044dc60",
         "title": "几何证明",
-        "summary": "这想知道这节课讲了什么吗？2月7日回来看一看吧~",
+        "summary": "趁爸妈不在家偷看电视被抓神马的逊爆了，狗蛋儿的小伙伴是如何与爸妈周旋到底的呢？他又有没有被戳穿呢？",
         "requirements": ["b1875229-fe0e-4789-a3f9-1118bf3403d4"],
         "mainline": true,
-        "status": "closed",
         "seq": 0
     },
     {
-        "id": "a8c11e30-133a-4687-9511-3e7e2662cdad",
+        "id": "3fed8030-c529-45c3-a6c5-3cbd3f81098c",
         "title": "欧几里得与几何原本",
-        "summary": "想知道这节课讲了什么吗？2月7日回来看一看吧~",
-        "requirements": ["d408e12d-f5d4-4ed7-8d46-3f0bf81c95a4"],
-        "status": "closed",
+        "summary": "你想知道“欧几里得”、“几何原本”还有“有限单群分类定理”这些高端大气上档次的词都是什么意思吗？你想用他们去忽悠小伙伴吗？快来学习吧！",
+        "requirements": ["e985cd63-5d80-45a0-8d48-9bb3a044dc60"],
         "seq": 1
     },
     {
-        "id": "4b6fb7c5-764e-4568-b5f4-05725ec323fc",
-        "title": "平移基础",
-        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
-        "requirements": ["2c317ab2-312f-4187-879d-9bdbb8b5f3e2"],
+        "id": "07bf535b-35a8-41c4-81e9-8a19d011df3d",
+        "title": "平行公理及推论",
+        "summary": "淘气一直暗恋着班花，今天他终于决定表白了。那他的表白到底成功了没有呢？想知道答案的话，2月8日回来看视频吧！",
+        "requirements": ["e985cd63-5d80-45a0-8d48-9bb3a044dc60"],
         "mainline": true,
-        "status": "closed",
-        "seq": 0
+        "seq": 0,
+        "status": "closed"
+    },
+    {
+        "id": "677504f7-e26c-4abb-b573-52bf6dd54369",
+        "title": "平行线与内错角（性质）",
+        "summary": "想知道这节课讲了什么吗？2月9日回来看一看吧~",
+        "requirements": ["07bf535b-35a8-41c4-81e9-8a19d011df3d"],
+        "mainline": true,
+        "seq": 0,
+        "status": "closed"
+    },
+    {
+        "id": "d4db266f-ecc3-4301-ae0d-5429ce9aa5ce",
+        "title": "平行线与内错角（判定）",
+        "summary": "想知道这节课讲了什么吗？2月9日回来看一看吧~",
+        "requirements": ["677504f7-e26c-4abb-b573-52bf6dd54369"],
+        "seq": 1,
+        "status": "closed"
+    },
+    {
+        "id": "3c4a3eec-2ed3-4a2a-a01a-7526da810f7b",
+        "title": "平行线与同位角和同旁内角（性质）",
+        "summary": "想知道这节课讲了什么吗？2月11日回来看一看吧~",
+        "requirements": ["677504f7-e26c-4abb-b573-52bf6dd54369"],
+        "mainline": true,
+        "seq": 0,
+        "status": "closed"
+    },
+    {
+        "id": "1cd19a4a-e453-4a21-8e32-3472a68bc321",
+        "title": "平行线与同位角和同旁内角（判定）",
+        "summary": "想知道这节课讲了什么吗？2月12日回来看一看吧~",
+        "requirements": ["3c4a3eec-2ed3-4a2a-a01a-7526da810f7b"],
+        "mainline": true,
+        "seq": 0,
+        "status": "closed"
+    },
+    {
+        "id": "89faf598-5a7b-47eb-8a32-48a08b1f05f1",
+        "title": "平行线证明综合",
+        "summary": "想知道这节课讲了什么吗？2月13日回来看一看吧~",
+        "requirements": ["1cd19a4a-e453-4a21-8e32-3472a68bc321"],
+        "mainline": true,
+        "seq": 0,
+        "status": "closed"
     }
 ], "grade": 0, "title": "相交线和平行线", "ts": 1389688883455}

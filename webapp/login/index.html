@@ -78,6 +78,17 @@
             </h3>
 
             <div ng-show="loggedin">
+                <div style="margin-top: 20px;margin-bottom: 20px">
+                    <h5>QQ群号:150841793
+                        <a target="_blank"
+                           href="http://shang.qq.com/wpa/qunwpa?idkey=d2404821a36a1d668ba0f9e2a23b5fff74c00da03b456f7c1d7dbea7a218b6a4"><img
+                                border="0"
+                                src="http://pub.idqqimg.com/wpa/images/group.png"
+                                alt="提高班-学生交流群"
+                                title="提高班-学生交流群">
+                        </a>
+                    </h5>
+                </div>
                 <div>
                     <button class="ladda-button btn btn-success btn-lg btn-block" ng-click="dispatch()">
                         开始学习
@@ -120,7 +131,7 @@
         }
 
         var checklogin = function () {
-            $http.get('/users/me')
+            $http.get('/me')
                     .success(function (data, status, headers, config) {
                         $scope.status = "logged in";
                         $scope.user = data;

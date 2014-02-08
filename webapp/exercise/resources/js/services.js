@@ -68,7 +68,7 @@ angular.module('SunExercise.services', [])
                     return HOST + "/userdata/exercise/user_info";
 
                 case "getMe" :
-                    return HOST + "/users/me";
+                    return HOST + "/me";
 
                 case "postUserInfoUserdata" :
                     return HOST + "/userdata/exercise/user_info";

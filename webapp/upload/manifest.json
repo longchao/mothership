@@ -1,0 +1,11 @@
+{
+  "id": "upload",
+  "version_code": 1,
+  "name": "upload",
+  "type": "web_app",
+  "launchable": 1,
+  "package_name": "org.sunlib.exercise",
+  "url": "/webapp/upload",
+  "home": "/index.html",
+  "description": "用于上传文件返回可引用的URL"
+}

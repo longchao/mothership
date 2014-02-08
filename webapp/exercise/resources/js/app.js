@@ -18,6 +18,7 @@ angular.module("SunExercise", ['SunExercise.controllers', 'SunExercise.directive
 
             $rootScope.initResourcePromise = initResourcePromise;
             $rootScope.isBack = false;
+            $rootScope.shouldReload = true;
             $rootScope.me = me;
             var temp = '';
             var params = {};

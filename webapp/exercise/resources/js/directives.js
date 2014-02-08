@@ -106,7 +106,7 @@ angular.module('SunExercise.directives', [])
     })
 
     //chapter module
-    .directive("chapter", function (SandboxProvider, $routeParams, $location, $rootScope) {
+    .directive("chapter", function (SandboxProvider, $routeParams, $location, $rootScope, $timeout, $q) {
 
         //create the chapter sandbox
         var chapterSandbox = SandboxProvider.getSandbox();
@@ -138,7 +138,7 @@ angular.module('SunExercise.directives', [])
                     if (lesson.status == "closed") {
                         return false;
                     }
-                    return true;
+                    //return true;
                     var lesson = chapterData.lessons[lessonIndex];
                     if (typeof lesson.requirements == 'undefined') {
                         return true;
@@ -185,7 +185,29 @@ angular.module('SunExercise.directives', [])
                     //Mixpanel
                     Utils.unregisterSP(true, true, true);
                     $rootScope.isBack = false;
+                    $rootScope.shouldReload = false;
                     $location.path('/subject/' + $routeParams.sid);
+                }
+                //lessons loader
+                if ($rootScope.shouldReload) {
+                    $('#lessonLoaderModal').modal('show');
+                    var unlockLessons = 0, successCalls = 0;
+                    angular.forEach(chapterData.lessons, function (lesson, index) {
+                        if ($scope.loadLesson(index))
+                            unlockLessons++;
+                    });
+                    var minLoadTimeLimit = $timeout(function () {
+                    }, 1000);
+                    var deferred = $q.defer();
+                    var loadingPromise = deferred.promise;
+                    $scope.$on('lessonLoadedComplete', function () {
+                        successCalls++;
+                        if (successCalls == unlockLessons)
+                            deferred.resolve();
+                    });
+                    $q.all([minLoadTimeLimit, loadingPromise]).then(function () {
+                        $('#lessonLoaderModal').modal('hide');
+                    });
                 }
             }
         }
@@ -378,11 +400,21 @@ angular.module('SunExercise.directives', [])
                     } else {
                         $scope.buttonMsg = "继续学习";
                     }
+                    //finish initialization, tell chapter directive that this lesson is ready
+                    lessonSandbox.sendEvent("lessonLoadedComplete", $scope);
+
                     $scope.showLessonDialogue = function () {
                         $('#lessonModal-' + lessonData.id).modal('toggle');
 
                         if (!lessonUserdata.is_complete) {
                             $scope.startLesson = true;
+                            if ($rootScope.user.usergroup == 'teacher') {
+                                $scope.startLessonSummary = false;
+                                $scope.reviewLessonBody = true;
+                            } else {
+                                $scope.startLessonSummary = true;
+                                $scope.reviewLessonBody = false;
+                            }
                             $scope.lessonState = "unlocked";
                             $scope.lessonStateIcon = "headerUnlock";
                         } else {
@@ -394,6 +426,7 @@ angular.module('SunExercise.directives', [])
                                 }
                             }
                             $scope.reviewLesson = true;
+                            $scope.reviewLessonBody = true;
                             $scope.lessonState = "review";
                             if (typeof lessonUserdata.summary.star != "undefined") {
                                 $scope.lessonStateIcon = "lesson-header-star" + lessonUserdata.summary.star;
@@ -416,6 +449,7 @@ angular.module('SunExercise.directives', [])
                             FSM.resume(id, lessonUserdata.current_activity);
                         }
                     }
+
                     $scope.reviewActivity = function (lessonId, activityId) {
                         $rootScope.isBack = false;
                         $('#lessonModal-' + lessonData.id).modal('hide');
@@ -427,6 +461,7 @@ angular.module('SunExercise.directives', [])
                         lessonUserdata.current_activity = activityId;
                         FSM.resume(lessonId, activityId);
                     }
+
                     //lesson summary back button
                     $scope.backToChapter = function () {
                         FSM.back();
@@ -577,7 +612,6 @@ angular.module('SunExercise.directives', [])
                                         if (typeof lessonData.pass_score != "undefined") {
                                             if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
                                                 lessonUserdata.is_complete = true;
-
                                             }
                                         } else {
                                             lessonUserdata.is_complete = true;
@@ -919,17 +953,43 @@ angular.module('SunExercise.directives', [])
                 var activitySandbox = SandboxProvider.getSandbox();
                 var activityData = activitySandbox.getActivityMaterial($routeParams.aid, null);
 
-                var template = "<video style='display: none' id='video' class='xvideo' src='" +
+                var template = "<div ng-hide='showVideoRating'><video style='display: none' id='video' class='xvideo' src='" +
                     APIProvider.getAPI("getFileResources", {chapterId: $routeParams.cid, lessonId: $routeParams.lid}, "") + "/" + $attrs.src
                     + "' controls></video><br>" +
-                    "<button class='play-button' ng-click='playVideo()'>{{ playButtonMsg }}</button>";
+                    "<button class='play-button' ng-click='playVideo()'>{{ playButtonMsg }}</button><br><br></div>" +
+                    "<div ng-show='showVideoRating'>" +
+                    "<label>你喜欢这个视频吗？</label><br>" +
+                    "<input name='videoRating' type='radio' class='star' value='1' title='很不喜欢'/>" +
+                    "<input name='videoRating' type='radio' class='star' value='2' title='不喜欢'/>" +
+                    "<input name='videoRating' type='radio' class='star' value='3' title='无所谓'/>" +
+                    "<input name='videoRating' type='radio' class='star' value='4' title='喜欢'/>" +
+                    "<input name='videoRating' type='radio' class='star' value='5' title='很喜欢'/>" +
+                    "<label id='ratingMsg'></label><br>" +
+                    "<button class='play-button' ng-click='rePlayVideo()'>重新播放</button>" +
+                    "</div>";
                 $element.html(template);
-                $compile($element.contents())($scope);
+                var elements = $compile($element.contents())($scope);
+                elements.children().filter('input[type=radio].star').rating({
+                    callback: function (value, link) {
+                        /**
+                         * TODO save the value in database
+                         */
+                    },
+                    focus: function (value, link) {
+                        var tip = $('#ratingMsg');
+                        tip[0].data = tip[0].data || tip.html();
+                        tip.html(link.title);
+                    },
+                    blur: function (value, link) {
+                        var tip = $('#ratingMsg');
+                        $('#ratingMsg').html(tip[0].data || '');
+                    }
+                });
 
                 var start = false;
                 var currentTime = 0;
                 //get video element and control bar elements
-                var video = $element.contents()[0];
+                var video = $element.contents()[0].childNodes[0];
                 video.addEventListener("webkitfullscreenchange", function () {
                     console.log('add listener')
                     if (!document.webkitIsFullScreen) {
@@ -937,9 +997,14 @@ angular.module('SunExercise.directives', [])
                         //Mixpanel
                         LearningRelated.finishVideo($attrs.src, activityData.title, video.duration, currentTime, computeRatio(currentTime / video.duration));
                         video.pause();
-                        $scope.$apply(function () {
-                            $scope.playButtonMsg = "播放视频";
-                        });
+                        if (video.ended)
+                            $scope.$apply(function () {
+                                $scope.showVideoRating = true;
+                            });
+                        else
+                            $scope.$apply(function () {
+                                $scope.playButtonMsg = "继续播放";
+                            });
                     }
                 });
 
@@ -983,15 +1048,34 @@ angular.module('SunExercise.directives', [])
                             video.play();
                         }
                     } else {
+                        /**
+                         * useless in fullscreen mode
+                         */
                         video.pause();
-                        $scope.playButtonMsg = "播 放";
+                        $scope.playButtonMsg = "继续播放";
                     }
                 };
-
+                $scope.rePlayVideo = function () {
+                    video.pause();
+                    video.currentTime = '0';
+                    toFullScreen(video);
+                    video.play();
+                }
 
                 video.addEventListener("canplay", function () {
                     video.currentTime = currentTime;
                 });
+
+//                elements[2].addEventListener('click', startVideoPlaying);
+//
+//                $timeout(function(){
+//                    var ev = document.createEvent('HTMLEvents');
+//                    ev.initEvent('click', false, true);
+//                    elements[2].dispatchEvent(ev);
+//                }, 500);
+//
+//
+//                startVideoPlaying();
             }
         }
     })

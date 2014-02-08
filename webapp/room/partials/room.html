@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-controller="roomController">
+<h2>Room Name: {{ name }}</h2>
+
+<h2>Users</h2>
+<table>
+    <tbody>
+    <tr ng-repeat="user in users">
+        <td>{{ user.name }}</td>
+        <td>
+            <button ng-click="deleteUser($index, user._id)">DELETE</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h2>Apps</h2>
+<table>
+    <tbody>
+    <tr ng-repeat="app in apps">
+        <td>{{ app.name }}</td>
+        <td>
+            <button ng-click="deleteApp($index, app._id)">DELETE</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>
+    <label>tony's id is: 52df6569f561036e1bebcfc6</label><br>
+    <label>fxp's id is: 52df7b6436382b1333cef8b5</label><br>
+    <label>桂霖: 52d52aab47edba3f64160051</label><br>
+    <label>高润航: 52d52aab47edba3f64160052</label><br>
+    <label>梁雅雯: 52d52aac47edba3f64160055</label><br>
+    <label>江雨珩: xw130915</label><br>
+    <label>李棪明: xw130917</label><br>
+    <label>宋涵茜: xw130919</label><br>
+    Student Name: <input type="text" ng-model="username"><br>
+    Student ID: <input type="text" ng-model="userid"><br>
+    <button ng-click="addUser(username, userid)">Add User</button>
+</p>
+
+<p>
+    <label>appname: login</label><br>
+    <label>appname: me</label><br>
+    App Name: <input type="text" ng-model="appname"><br>
+    <button ng-click='addApp(appname)'>Add App</button>
+</p>
+
+
+<button ng-click="back()">Back</button>
+</body>
+</html>
