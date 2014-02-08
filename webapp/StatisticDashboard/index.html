@@ -18,9 +18,23 @@
 	<div class="panel" id="left-panel" style="float: left">
 
 		<div id="search_panel">
-			请输入班级号<input type="text" id="inputRoomName" maxlength="6"
-				ng-model="roomName">
-			<button type="submit" ng-click="ctrl.giveRoom()">查询</button>
+			<!--请输入班级号<input type="text" id="inputRoomName" maxlength="6"
+				ng-model="roomName">-->
+            <form>
+                <select name="chapters" ng-change="ctrl.giveParam(null,$element.options[$element.selectedIndex].index)">
+                    <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+<!--
+                    <option>--</option>
+-->
+                </select>
+                <select name="rooms" ng-change="ctrl.giveParam($element.options[$element.selectedIndex].index,null)">
+                    <option ng-repeat="room in ctrl.rooms" value="{{room}}">{{room}}</option>
+                </select>
+            </form>
+
+<!--
+            <button type="submit" ng-click="ctrl.giveRoom()">查询</button>
+-->
 		</div>
 		<div style="display: none">
 			<ul>
