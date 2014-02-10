@@ -4,12 +4,12 @@
 <head>
 <meta charset="utf-8">
 <title>StatisticDashboard</title>
-<link rel="stylesheet" href="web/statisticdashboard.css">
-<script src="web/js/selector.js"></script>
 </head>
 <body board>
-	<h1>StatisticDashboard</h1>
+<div class="navbar-fixed-top">
+	<h2>StatisticDashboard</h2>
 	<p>欢迎来到数学提高班统计面板!</p>
+<div>
     <div id="search_panel">
         <form>
             <select id="chapterSelector" ng-change="ctrl.giveParam()"
@@ -27,17 +27,25 @@
             </select>
         </form>
     </div>
-    <hr/>
-	<div class="panel" id="left-panel" style="float: left">
+	<div class="panel" id="chapter-panel">
 		<div>
-			<ul style="display: table">
-				<li class="students_container" ng-repeat="event in ctrl.events">
-					<div class="circle" ng-click="ctrl.showUsers(event)">
-						<p>{{event.info['result'].legend_size}}</p>
-					</div>
-					<h5>{{event.info['event_name']}}</h5>
-				</li>
-			</ul>
+			<table>
+                <tbody>
+                    <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
+                        <td class="lesson_card" ng-repeat="lesson in rowLesson">
+                            <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
+                            <div class="event_container">
+                                <div class="event" ng-repeat="event in ctrl.events | eventfilter:lesson['id']">
+                                    <div class="circle" ng-click="ctrl.showUsers(event)">
+                                        <p>{{event.info['result'].legend_size}}</p>
+                                    </div>
+                                    <p>{{event.info['event_name']}}</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+			</table>
 		</div>
 	</div>
 	<div class="panel" id="right-panel" style="float: right"></div>
@@ -48,6 +56,7 @@
     <link rel="stylesheet" href="web/files/lib/jquery.selectBoxIt.css" />
     <script src="web/files/lib/jquery-1.10.2.min.js"></script>
     <script src="web/files/lib/jquery.selectBoxIt.min.js"></script>
-    <script>$(function() {$("select").selectBoxIt();});</script>
+    <link rel="stylesheet" href="web/statisticdashboard.css">
+    <script src="web/js/selector.js"></script>
 </body>
 </html>

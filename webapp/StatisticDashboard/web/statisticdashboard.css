@@ -1,18 +1,13 @@
 body {
-	background-color: white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 1.2em;
-	margin: 15px;
-	background-image: url("files/landscape.jpg"); ";
+    background-color: #e5e5e5;
 	display: inline;
 }
 
-h1,p {
-	color: #333;
-}
-
+/*
 .panel {
 	width: 40%;
 	height: 400px;
@@ -22,6 +17,20 @@ h1,p {
 	overflow: scroll;
 	display: inline-block;
 	margin: 20px;
+}*/
+
+#chapter-panel{
+    width: 100%;
+    height: 600px;
+    position: relative;
+    overflow-y: scroll;
+    border-top: 1px solid #ccc;
+    display: inline-block;
+    padding-left:50px;
+}
+
+#right-panel{
+    display: none;
 }
 
 #sample_text_id {
@@ -30,24 +39,30 @@ h1,p {
 	margin-top: 140px;
 }
 
-.students_container {
+.event_container{
+    padding: 0 10px 0 10px;
+}
+.event {
 	display: inline-block;
-	margin: 20px;
 	text-align: center;
+    margin:20px 10px 0 10px;
 }
 
+.event > p {
+    margin-top: 5px;
+}
 #search_panel {
-	margin-top: 20px;
+	margin-top: 10px;
 	text-align: center;
 	display: block;
 }
-
+/*
 #search_panel>button {
 	color: white;
 	background-color: green;
 	width: 50px;
 	height: 20px;
-}
+}*/
 
 #inputRoomName {
 	width: 100px;
@@ -55,18 +70,52 @@ h1,p {
 }
 
 .circle {
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	background-color: orange;
+	border-radius: 15px;
+	width: 70px;
+	height: 30px;
 	position: relative;
-	margin: 0px;
+	margin: 0;
+    border:1px solid #e5e5e5;
+
 }
 
-.circle>p {
+.circle > p {
 	font-size: 20px;
-	color: white;
+	color: green;
 	text-align: center;
-	margin-top: 0px;
+    margin: 8px 0 8px 0;
 }
+
+form{
+    margin-bottom: 10px;
+}
+
+td {
+    width:307px;
+    height:127px;
+    display: inline-block;
+    margin: 20px;
+    text-overflow:ellipsis;
+    border-radius:5px;
+    background-color:white;
+}
+
+.lesson_title{
+    margin:20px 20px 0 20px;
+    width: auto;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:15px;
+}
+
+
+
+
+
+
+
+
+
+
 

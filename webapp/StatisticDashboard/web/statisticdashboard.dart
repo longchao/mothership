@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:json_object/json_object.dart';
 
 part 'requirement_product.dart';
-part 'SchoolFilter.dart';
+part 'filters.dart';
 
 String apiKey = '1291ff9d8ceb337db6a0069d88079474';
 String apiSecret = '05b9aae8d5305855b1cdfec0db2db140';
@@ -41,6 +41,8 @@ List<String> users_notLogin = new List<String>();
     publishAs: 'ctrl')
 class BoardController {
   List<Map> chapters;
+  List<Map> lessons;
+  List<List<Map>> rowLessons;
   List<Event> events;
   List<String> rooms;
   List<Map> allUser;
@@ -131,13 +133,56 @@ class BoardController {
   appendUser(String key, Map value){
     strHtml.write('<p>'+key+'</p>');//</br><p>'+value.toString()+'</p></br>');
   }
-   
+
+
+  makeCombLesson(List<Map> lessons) {
+    Map allLessons = new Map();
+    for(var lesson in lessons){
+      if(lesson['mainline']==true){
+        List rowLesson = new List();
+        rowLesson.add(lesson);
+        String lessonId = lesson['id'];
+        allLessons[lessonId] = rowLesson;
+      }else{
+        allLessons.forEach((String k,List v){
+          List requirements = lesson['requirements'];
+          if(k==requirements[0]){
+            v.add(lesson);
+          }
+        });
+      }
+    }
+    List rowLessons = new List();
+    allLessons.forEach((k,v){
+      rowLessons.add(v);
+    });
+    print(rowLessons);
+    return rowLessons;
+  }
+
+  Future<Map> addMainlineLessons(List lessons) {
+    Map allLessons = new Map();
+    for(var lesson in lessons){
+      if(lesson['mainline']==true){
+        List rowLesson = new List();
+        rowLesson.add(lesson);
+        String lessonId = lesson['id'];
+        allLessons[lessonId] = rowLesson;
+      }
+    }
+    return new Future<Map>.value(allLessons);
+  }
+
+
   // Give requirements and load all the data.
   _loadEvents(int roomIndex, int chapterIndex) {
     _roomName = userInfo.roomNames[roomIndex];
     Map chapter = chapterInfo[chapterIndex];
-    List<Map> lessons = chapter['lessons'];
-    List mixpanelEvents = [map_login(),map_notLogin()];
+    lessons = chapter['lessons'];
+    rowLessons = makeCombLesson(lessons);
+
+   // List mixpanelEvents = [map_login(),map_notLogin()];
+    List mixpanelEvents = new List();
     for (Map lesson in lessons){
       mixpanelEvents.add(map_enterLesson(lesson['title'],lesson['id']));
       mixpanelEvents.add(map_finishLesson(lesson['title'],lesson['id']));
@@ -146,7 +191,7 @@ class BoardController {
     for(var event in mixpanelEvents){
       if(event['type']=="mixpanel"){
         MixpanelExportDataAPI mixpanel =new MixpanelExportDataAPI(event['schema'],event['args'],event['api_secret']);
-        result.add(new Event(event['title'],mixpanel:mixpanel));
+        result.add(new Event(event['title'],lessonId:event['lessonId'],mixpanel:mixpanel));
       }else{
         result.add(new Event(event['title']));
       }
@@ -165,9 +210,10 @@ class Student{
 class Event{
   Map info;
 
-  Event(String eventName,{MixpanelExportDataAPI mixpanel}){
+  Event(String eventName,{String lessonId,MixpanelExportDataAPI mixpanel}){
     info = new Map();
     info['event_name'] = eventName;
+    info['lessonId'] = lessonId;
     if(mixpanel!=null);{
         fetchJson(mixpanel:mixpanel,eventName:eventName);
     }
@@ -230,6 +276,7 @@ class MyAppModule extends Module {
   MyAppModule() {
     type(BoardController);
     type(SchoolFilter);
+    type(EventFilter);
   }
 }
 
