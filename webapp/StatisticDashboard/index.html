@@ -10,13 +10,24 @@
 	<h2>StatisticDashboard</h2>
 	<p>欢迎来到数学提高班统计面板!</p>
 <div>
-    <div id="search_panel">
-        <form>
-            <select id="chapterSelector" ng-change="ctrl.giveParam()"
+    <div id="search_panel" class="container">
+        <div class="pull-right" style="background-color: white">
+            <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+                <div class="circle" ng-click="ctrl.showUsers(event)">
+                    <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+                    <p ng-if="event.info['type'].contains('SelfMade')" ng-model="ctrl.user_notLogin">{{ctrl.user_notLogin.length}}</p>
+                </div>
+                <p>{{event.info['event_name']}}</p>
+            </div>
+        </div>
+        <form class="col-lg-2">
+            <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParam()"
                     onchange="giveParams(null,this.options[this.selectedIndex].index)">
                 <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
             </select>
-            <select id="roomSelector" ng-change="ctrl.giveParam()"
+        </form>
+        <form class="col-lg-2">
+            <select class="form-control" id="roomSelector" ng-change="ctrl.giveParam()"
                     onchange="giveParams(this.options[this.selectedIndex].index,null)">
                 <optgroup label="西外" ng-model="ctrl.XW">
                     <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
@@ -27,7 +38,7 @@
             </select>
         </form>
     </div>
-	<div class="panel" id="chapter-panel">
+	<div id="chapter-panel" class="container">
 		<div>
 			<table>
                 <tbody>
@@ -35,7 +46,7 @@
                         <td class="lesson_card" ng-repeat="lesson in rowLesson">
                             <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
                             <div class="event_container">
-                                <div class="event" ng-repeat="event in ctrl.events | eventfilter:lesson['id']">
+                                <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
                                     <div class="circle" ng-click="ctrl.showUsers(event)">
                                         <p>{{event.info['result'].legend_size}}</p>
                                     </div>
@@ -48,14 +59,17 @@
 			</table>
 		</div>
 	</div>
-	<div class="panel" id="right-panel" style="float: right"></div>
+	<div class="panel" id="right-panel" style="float: right">
+        <div class="">
+        </div>
+	</div>
 	<script type="application/dart" src="web/statisticdashboard.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
-    <link rel="stylesheet" href="web/files/lib/bootstrap-combined.min.css" />
-    <link rel="stylesheet" href="web/files/lib/jquery.selectBoxIt.css" />
+    <link rel="stylesheet" href="web/files/lib/bootstrap.min.css" />
+   <!-- <link rel="stylesheet" href="web/files/lib/jquery.selectBoxIt.css" />
     <script src="web/files/lib/jquery-1.10.2.min.js"></script>
-    <script src="web/files/lib/jquery.selectBoxIt.min.js"></script>
+    <script src="web/files/lib/jquery.selectBoxIt.min.js"></script>-->
     <link rel="stylesheet" href="web/statisticdashboard.css">
     <script src="web/js/selector.js"></script>
 </body>

@@ -25,13 +25,25 @@ class SchoolFilter {
 
 @NgFilter(name: 'eventfilter')
 class EventFilter {
-  call(List<Event> events, lessonId){
-    List<Event> filteredEvents = new List<Event>();
-    for (Event event in events){
-      if(lessonId == event.info['lessonId']){
-        filteredEvents.add(event);
+  call(List<Event> events,String type,String lessonId){
+    List<Event> learningEvents = new List<Event>();
+    List<Event> loginEvents = new List<Event>();
+    if(type=="LoginRelated"){
+      for (Event event in events){
+        if(event.info['type'].contains(type)){
+          loginEvents.add(event);
+        }
       }
+      return loginEvents;
+    }else if(type=="LearningRelated"){
+      for (Event event in events){
+        if(event.info['type'].contains(type)){
+          if(lessonId == event.info['lessonId']){
+            learningEvents.add(event);
+          }
+        }
+      }
+      return learningEvents;
     }
-    return filteredEvents;
   }
 }

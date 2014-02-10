@@ -46,6 +46,8 @@ class BoardController {
   List<Event> events;
   List<String> rooms;
   List<Map> allUser;
+  List<String> user_notLogin;
+
   String XW = "xw";
   String Z8 = "8z";
 
@@ -99,7 +101,10 @@ class BoardController {
       currentChapterIndex = chapterIndex;
     }
     print("room"+currentRoomIndex.toString()+"chapter"+currentChapterIndex.toString());
-    events = _loadEvents(currentRoomIndex,currentChapterIndex);
+    _loadEvents(currentRoomIndex,currentChapterIndex).then((value){
+      events = value;
+      user_notLogin = users_notLogin;
+    });
   }
   
   void showUsers(Event event){
@@ -133,7 +138,6 @@ class BoardController {
   appendUser(String key, Map value){
     strHtml.write('<p>'+key+'</p>');//</br><p>'+value.toString()+'</p></br>');
   }
-
 
   makeCombLesson(List<Map> lessons) {
     Map allLessons = new Map();
@@ -173,30 +177,31 @@ class BoardController {
     return new Future<Map>.value(allLessons);
   }
 
-
   // Give requirements and load all the data.
-  _loadEvents(int roomIndex, int chapterIndex) {
+  Future<List<Event>> _loadEvents(int roomIndex, int chapterIndex) {
     _roomName = userInfo.roomNames[roomIndex];
     Map chapter = chapterInfo[chapterIndex];
     lessons = chapter['lessons'];
     rowLessons = makeCombLesson(lessons);
 
-   // List mixpanelEvents = [map_login(),map_notLogin()];
-    List mixpanelEvents = new List();
+    List mixpanelEvents = [map_login(),map_notLogin()];
+    //List mixpanelEvents = new List();
     for (Map lesson in lessons){
       mixpanelEvents.add(map_enterLesson(lesson['title'],lesson['id']));
       mixpanelEvents.add(map_finishLesson(lesson['title'],lesson['id']));
     }
+
     List<Event> result = new List<Event>();
     for(var event in mixpanelEvents){
-      if(event['type']=="mixpanel"){
+      print(event['type']);
+      if(event['type'].contains("Mixpanel")){
         MixpanelExportDataAPI mixpanel =new MixpanelExportDataAPI(event['schema'],event['args'],event['api_secret']);
-        result.add(new Event(event['title'],lessonId:event['lessonId'],mixpanel:mixpanel));
+        result.add(new Event(event['title'],event['type'],lessonId:event['lessonId'],mixpanel:mixpanel));
       }else{
-        result.add(new Event(event['title']));
+        result.add(new Event(event['title'],event['type']));
       }
     }     
-    return result;
+    return new Future<List<Event>>.value(result);
   }
 }
 
@@ -210,16 +215,21 @@ class Student{
 class Event{
   Map info;
 
-  Event(String eventName,{String lessonId,MixpanelExportDataAPI mixpanel}){
+  Event(String eventName, List type, {String lessonId, MixpanelExportDataAPI mixpanel}){
     info = new Map();
     info['event_name'] = eventName;
-    info['lessonId'] = lessonId;
+    info['type'] = type;
+
+    if(lessonId!=''){
+      info['lessonId'] = lessonId;
+    }
+
     if(mixpanel!=null);{
-        fetchJson(mixpanel:mixpanel,eventName:eventName);
+      fetchJson(mixpanel:mixpanel,eventName:eventName);
     }
   }
   
-  void fetchJson({MixpanelExportDataAPI mixpanel,String eventName}) {
+  fetchJson({MixpanelExportDataAPI mixpanel,String eventName}) {
     Future<js.Proxy> result = jsonp.fetch(
         uriGenerator: (callback) =>
             mixpanel.apiUri+"&callback=$callback");
@@ -231,11 +241,11 @@ class Event{
         diffNotLoginUsers(dartJson);
       }
       info['result'] = dartJson;
-
     });
   }
 
   diffNotLoginUsers(Map loginUser){
+    users_notLogin.clear();
     List user = usersMap["$_roomName"];
     var loginusers = loginUser['data']['values'];
     List<String> users_all = new List<String>();
@@ -269,7 +279,6 @@ class MixpanelExportDataAPI{
   }
   
   String get apiUri => Uri.encodeFull(_apiUri);
-  
 }
 
 class MyAppModule extends Module {
