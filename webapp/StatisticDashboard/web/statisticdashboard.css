@@ -108,6 +108,10 @@ td {
     font-size:15px;
 }
 
+.event_name_bar{
+    position: fixed;
+}
+
 
 
 

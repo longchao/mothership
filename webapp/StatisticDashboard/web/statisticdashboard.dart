@@ -91,7 +91,7 @@ class BoardController {
   }
   
   void giveParam(){
-    (querySelector('#right-panel') as DivElement).innerHtml = "";
+    (querySelector('#users_container') as DivElement).innerHtml = "";
     var roomIndex = context['roomIndex'];
     var chapterIndex = context['chapterIndex'];
     if(roomIndex !=null){
@@ -107,8 +107,9 @@ class BoardController {
     });
   }
   
-  void showUsers(Event event){
+  void showUsersByEvent(Event event){
     strHtml.clear();
+    //strHtml.write('<div class="panel-heading"><h4>'+event.info['event_name']+'</h4></div>');
     if(event.info['event_name']=="已登录"){
       Map users = event.info['result']['data']['values'];
       List users_login = new List();
@@ -122,7 +123,9 @@ class BoardController {
       Map users = event.info['result']['data']['values'];
       users.forEach(appendUser);
     }
-    (querySelector('#right-panel') as DivElement).innerHtml = strHtml.toString();
+    print(strHtml.toString());
+
+    (querySelector('#users_container') as DivElement).innerHtml = strHtml.toString();
   }
 
   List<String> queryUserNames(var users){
