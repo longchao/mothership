@@ -1,0 +1,18 @@
+td {
+    width:307px;
+    height:127px;
+    display: inline-block;
+    margin: 20px;
+    text-overflow:ellipsis;
+    border-radius:5px;
+    background-color:white;
+}
+
+.lesson_title{
+    margin:20px 20px 0 20px;
+    width: auto;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:15px;
+}

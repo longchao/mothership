@@ -32,12 +32,6 @@ select{
     padding-left:50px;
 }
 
-#sample_text_id {
-	font-size: 24pt;
-	text-align: center;
-	margin-top: 140px;
-}
-
 .event_container{
     padding: 0 10px 0 10px;
 }
@@ -50,6 +44,7 @@ select{
 .event > p {
     margin-top: 5px;
 }
+
 #search_panel {
 	margin-top: 10px;
 	text-align: center;
@@ -108,11 +103,24 @@ td {
     font-size:15px;
 }
 
-.event_name_bar{
-    position: fixed;
+#users_container{
+    width: 100%;
+    padding-top: 20px;
 }
 
+#users_container > div{
+    display: inline-block;
+    margin-bottom: 3px;
 
+}
+
+.panel-heading{
+    border-bottom:1px solid #ccc;
+}
+
+#right-panel > div {
+    display: none;
+}
 
 
 
