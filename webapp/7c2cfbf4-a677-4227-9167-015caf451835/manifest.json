@@ -104,8 +104,7 @@
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
         "requirements": ["cbef8a0c-90aa-4c36-8b1c-433b9d4650ea"],
         "mainline": true,
-        "seq": 0,
-        "status": "closed"
+        "seq": 0
     },
     {
         "id": "d4db266f-ecc3-4301-ae0d-5429ce9aa5ce",
