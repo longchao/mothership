@@ -6,64 +6,67 @@
 <title>StatisticDashboard</title>
 </head>
 <body board>
-    <div class="navbar-fixed-top container" style="background-color: goldenrod;">
-        <h2>StatisticDashboard</h2>
-        <p>欢迎来到数学提高班统计面板!</p>
-        <div id="search_panel" class="container">
-            <div class="pull-right" style="background-color: white">
-                <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
-                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
-                        <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
-                        <p ng-if="event.info['type'].contains('SelfMade')" ng-model="ctrl.user_notLogin">{{ctrl.user_notLogin.length}}</p>
-                    </div>
-                    <p>{{event.info['event_name']}}</p>
-                </div>
-            </div>
-            <form class="col-lg-2">
-                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParam()"
-                        onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                    <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
-                </select>
-            </form>
-            <form class="col-lg-2">
-                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParam()"
-                        onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                    <optgroup label="西外" ng-model="ctrl.XW">
-                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
-                    </optgroup>
-                    <optgroup label="八中" ng-model="ctrl.Z8">
-                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                    </optgroup>
-                </select>
-            </form>
-        </div>
-    </div>
-
-	<div  style="margin-top: 180px;width: 100%; border-top: 1px solid #ccc;">
-		<div id="chapter-panel" class="container" style="width: auto">
-			<table>
-                <tbody>
-                    <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
-                        <td class="lesson_card" ng-repeat="lesson in rowLesson">
-                            <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
-                            <div class="event_container">
-                                <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
-                                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
-                                        <p>{{event.info['result'].legend_size}}</p>
-                                    </div>
-                                    <p>{{event.info['event_name']}}</p>
-                                </div>
+    <div>
+        <div style="background-color: white;"  class="container">
+            <h2>StatisticDashboard</h2>
+            <p>欢迎来到数学提高班统计面板!</p>
+            <div id="search_panel">
+                    <div class="pull-right" style="background-color: white">
+                        <p>全班学生，{{ctrl.user_notLogin.length}}个学生还未登录</p>
+                        <!-- <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+                            <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
+                                <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+                                <p ng-if="event.info['type'].contains('SelfMade')" ng-model="ctrl.user_notLogin">{{ctrl.user_notLogin.length}}</p>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-			</table>
-		</div>
-        <div class="panel pull-right" id="right-panel" style="float: right">
-            <div id="users_container"></div>
+                            <p>{{event.info['event_name']}}</p>
+                        </div> -->
+                    </div>
+                <form class="col-lg-2 col-md-2">
+                    <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParam()"
+                            onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                        <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+                    </select>
+                </form>
+                <form class="col-lg-2 col-md-2">
+                    <select class="form-control" id="roomSelector" ng-change="ctrl.giveParam()"
+                            onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                        <optgroup label="西外" ng-model="ctrl.XW">
+                            <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                        </optgroup>
+                        <optgroup label="八中" ng-model="ctrl.Z8">
+                            <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                        </optgroup>
+                    </select>
+                </form>
+            </div>
         </div>
-	</div>
 
+    	<div  style=" border-top: 1px solid #ccc;">
+    		<div id="chapter-panel" class="container">
+    			<table>
+                    <tbody>
+                        <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
+                            <td class="lesson_card" ng-repeat="lesson in rowLesson">
+                                <button class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><span class="glyphicon glyphicon-star"> </span></button>
+                                <h4 class="lesson_title">{{lesson['title']}}</h4>
+                                <div class="event_container">
+                                    <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
+                                        <div class="event-label" ng-click="ctrl.showUsersByEvent(event)">
+                                            <small>{{event.info['event_name']}}</small>
+                                        </div>
+                                        <span>{{event.info['result'].legend_size}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+    			</table>
+    		</div>
+            <div class="panel pull-right slide-in" id="right-panel" style="float: right">
+                <div id="users_container"></div>
+            </div>
+    	</div>
+    </div>
 	<script type="application/dart" src="web/statisticdashboard.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
