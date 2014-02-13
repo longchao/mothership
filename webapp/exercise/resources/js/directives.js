@@ -476,6 +476,8 @@ angular.module('SunExercise.directives', [])
                     //check global badges after each lesson is finished
                     $scope.$on("lesson.complete", function (event) {
 
+                        LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
+
                         var incompleteBadgesPromise = lessonSandbox.getIncompleteGlobalBadges(event);
                         incompleteBadgesPromise.then(function (globalBadges) {
                             var userDataToGrade = {
@@ -569,7 +571,7 @@ angular.module('SunExercise.directives', [])
                                     ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
                             $scope.showLessonSummary = true;
                             //Mixpanel
-                            LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
+                            //LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
                         }
 
                     })

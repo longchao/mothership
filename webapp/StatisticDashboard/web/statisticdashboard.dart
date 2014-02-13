@@ -115,7 +115,6 @@ class BoardController {
   }
   
   void showUsersByEvent(Event event){
-
     StringBuffer strEventHtml = new StringBuffer();
     isEvent = true;
     querySelector('#isEvent')..setAttribute("style","display:block");
