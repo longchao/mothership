@@ -107,14 +107,6 @@
         "seq": 0
     },
     {
-        "id": "d4db266f-ecc3-4301-ae0d-5429ce9aa5ce",
-        "title": "平行线与内错角（判定）",
-        "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
-        "requirements": ["4f7d2de1-642e-4809-a049-8499bb6ba2cc"],
-        "seq": 1,
-        "status": "closed"
-    },
-    {
         "id": "3c4a3eec-2ed3-4a2a-a01a-7526da810f7b",
         "title": "平行线与同位角和同旁内角（性质）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
