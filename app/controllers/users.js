@@ -60,8 +60,9 @@ exports.create = function (req, res, next) {
     if (user.usergroup != "teacher") {
         user.usergroup = 'student';
     }
-    user.profile.school_name = user.username.substring(0, 2);
-    user.profile.room_name = user.username.substring(2, 6);
+//    user.profile.school_name = user.username.substring(0, 2);
+//    user.profile.room_name = user.username.substring(2, 6);
+//    user.profile.room_uid = user.username.substring(6, 8);
     user.save(function (err) {
         if (err) {
             switch (err.code) {

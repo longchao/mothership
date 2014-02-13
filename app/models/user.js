@@ -26,6 +26,9 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
+    rooms: [
+        { type: String }
+    ],
     active: Boolean,
     hashed_password: String,
     provider: String,
