@@ -40,8 +40,8 @@
     </div>
 
 	<div  style="margin-top: 180px;width: 100%; border-top: 1px solid #ccc;">
-		<div id="chapter-panel" class="container" style="width: auto">
-            <comblesson lesson-data="{{ctrl.lessons}}"></comblesson>
+		<div id="chapter-panel" class="container" style="width: auto" ng-model="ctrl.events">
+            <comblesson lesson-data="{{ctrl.lessons}}" events-data="{{ctrl.events}}"></comblesson>
 		</div>
 
         <div class="panel pull-right" id="right-panel">

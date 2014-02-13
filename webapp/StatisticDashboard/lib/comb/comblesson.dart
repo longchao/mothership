@@ -1,6 +1,7 @@
 library comb;
 import 'package:angular/angular.dart';
 import 'package:json_object/json_object.dart';
+import '../../web/statisticdashboard.dart';
 
 @NgComponent(
     selector: 'comblesson',
@@ -8,19 +9,23 @@ import 'package:json_object/json_object.dart';
     cssUrl: 'lib/comb/comblesson.css',
     publishAs: 'comb',
     map: const {
-      'lesson-data': '@setRowLessons'
+      'lesson-data': '@setRowLessons',
+      'events-data': '@setEvents'
     }
 )
 class CombLesson {
   List<List<Map>> rowLessons = new List<List<Map>>();
-  JsonObject lessonJson;
+  List<Event> events = new List<Event>();
 
   set setRowLessons(String value){
-    lessonJson = new JsonObject.fromJsonString(value);
-    rowLessons = makeCombLesson(lessonJson);
+    rowLessons = makeCombLesson(new JsonObject.fromJsonString(value));
   }
 
-  makeCombLesson(var lessons) {
+  set setEvents(List<Event> value){
+    events = value;
+  }
+
+  makeCombLesson(JsonObject lessons) {
     Map allLessons = new Map();
     for(var lesson in lessons){
       if(lesson['mainline']==true){

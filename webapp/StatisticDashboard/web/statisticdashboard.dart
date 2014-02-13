@@ -12,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:json_object/json_object.dart';
 import '../lib/comb/comblesson.dart';
 
+
 part 'requirement_product.dart';
 part 'filters.dart';
 

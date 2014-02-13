@@ -16,3 +16,33 @@ td {
     white-space: nowrap;
     font-size:15px;
 }
+
+.circle {
+    border-radius: 15px;
+    width: 70px;
+    height: 30px;
+    position: relative;
+    margin: 0;
+    border:1px solid #e5e5e5;
+
+}
+
+.circle > p {
+    font-size: 16px;
+    color: lightgray;
+    text-align: center;
+    margin: 7px 0 7px 0;
+}
+
+.event_container{
+    padding: 0 10px 0 10px;
+}
+.event {
+    display: inline-block;
+    text-align: center;
+    margin:20px 10px 0 10px;
+}
+
+.event > p {
+    margin-top: 5px;
+}
