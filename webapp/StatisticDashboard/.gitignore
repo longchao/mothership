@@ -2,8 +2,9 @@
 .DS_Store
 
 # Dart Library files
-packages/
-.settings/
+packages
+.settings
+pubspec.lock
 
 # WebStorm Setting files
 .idea

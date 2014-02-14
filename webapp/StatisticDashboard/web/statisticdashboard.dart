@@ -10,6 +10,8 @@ import 'package:crypto/crypto.dart';
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
 import 'package:json_object/json_object.dart';
+import '../lib/comb/comblesson.dart';
+
 
 part 'requirement_product.dart';
 part 'filters.dart';
@@ -42,11 +44,14 @@ List<String> users_notLogin = new List<String>();
 class BoardController {
   List<Map> chapters;
   List<Map> lessons;
-  List<List<Map>> rowLessons;
+ // List<List<Map>> rowLessons;
   List<Event> events;
   List<String> rooms;
   List<Map> allUser;
   List<String> user_notLogin;
+
+  String panelDetails = '';
+  bool isEvent = false;
 
   String XW = "xw";
   String Z8 = "8z";
@@ -87,11 +92,13 @@ class BoardController {
       users["$room"]= userList;
     });
     usersMap = users;
-    //print(users);
   }
   
   void giveParam(){
-    (querySelector('#users_container') as DivElement).innerHtml = "";
+    if(querySelector('#users_container') !=null){
+      (querySelector('.panel-heading') as DivElement).innerHtml = "";
+      (querySelector('#users_container') as DivElement).innerHtml = "";
+    }
     var roomIndex = context['roomIndex'];
     var chapterIndex = context['chapterIndex'];
     if(roomIndex !=null){
@@ -108,27 +115,42 @@ class BoardController {
   }
   
   void showUsersByEvent(Event event){
-    strHtml.clear();
-    //strHtml.write('<div class="panel-heading"><h4>'+event.info['event_name']+'</h4></div>');
+    StringBuffer strEventHtml = new StringBuffer();
+    isEvent = true;
+    querySelector('#isEvent')..setAttribute("style","display:block");
+    DivElement div = querySelector('.panel-heading');
+
     if(event.info['event_name']=="已登录"){
       Map users = event.info['result']['data']['values'];
       List users_login = new List();
       users.forEach((k,v){
         users_login.add(k);
       });
-      queryUserNames(users_login).forEach((item)=>strHtml.write('<p>'+item+'</p>'));
+      appendTitle(div,event.info['event_name'],number:users_login.length.toString());
+      queryNameFromUsernameList(users_login).forEach((item)=>strEventHtml.write('<div class="col-lg-4">'+item+'</div>'));
     }else if(event.info['event_name']=="未登录"){
-      queryUserNames(users_notLogin).forEach((item)=>strHtml.write('<p>'+item+'</p>'));
+      appendTitle(div,event.info['event_name'],number:users_notLogin.length.toString());
+      queryNameFromUsernameList(users_notLogin).forEach((item)=>strEventHtml.write('<div class="col-lg-4">'+item+'</div>'));
     }else{
+      appendTitle(div,event.info['event_name'],number:event.info['result']['legend_size'].toString());
       Map users = event.info['result']['data']['values'];
-      users.forEach(appendUser);
+      users.forEach((k,v)=>strEventHtml.write('<div class="col-lg-4">'+k+'</div>'));
     }
-    print(strHtml.toString());
+    print(strEventHtml.toString());
 
-    (querySelector('#users_container') as DivElement).innerHtml = strHtml.toString();
+    (querySelector('#users_container') as DivElement).innerHtml = strEventHtml.toString();
   }
 
-  List<String> queryUserNames(var users){
+ /* void showUserByLesson(Map lesson){
+    isEvent = false;
+    strHtml.clear();
+    //appendTitle(lesson['title']);
+
+    (querySelector('#users_container') as DivElement).innerHtml = strHtml.toString();
+  }*/
+
+  List<String> queryNameFromUsernameList(var users){
+    assert(users is List);
     List<String> names = new List<String>();
     for (var singleUser in usersMap["$_roomName"]){
       if(users.contains(singleUser['username'])){
@@ -137,9 +159,18 @@ class BoardController {
     }
     return names;
   }
-  
-  appendUser(String key, Map value){
-    strHtml.write('<p>'+key+'</p>');//</br><p>'+value.toString()+'</p></br>');
+
+  appendTitle(DivElement div,String eventName,{String number}){
+    StringBuffer strTitleHtml = new StringBuffer();
+    if(number!=null){
+      // is Event
+      strTitleHtml.write('<h4>'+eventName+"("+number+")"'</h4>');
+    }else{
+      // is Lesson
+      strTitleHtml.write('<div class="panel-heading"><h3>'+eventName+'</h3></div>');
+    }
+    div.innerHtml = strTitleHtml.toString();
+    strTitleHtml.clear();
   }
 
   makeCombLesson(List<Map> lessons) {
@@ -163,7 +194,6 @@ class BoardController {
     allLessons.forEach((k,v){
       rowLessons.add(v);
     });
-    print(rowLessons);
     return rowLessons;
   }
 
@@ -185,7 +215,7 @@ class BoardController {
     _roomName = userInfo.roomNames[roomIndex];
     Map chapter = chapterInfo[chapterIndex];
     lessons = chapter['lessons'];
-    rowLessons = makeCombLesson(lessons);
+    //rowLessons = makeCombLesson(lessons);
 
     List mixpanelEvents = [map_login(),map_notLogin()];
     //List mixpanelEvents = new List();
@@ -289,6 +319,7 @@ class MyAppModule extends Module {
     type(BoardController);
     type(SchoolFilter);
     type(EventFilter);
+    type(CombLesson);
   }
 }
 

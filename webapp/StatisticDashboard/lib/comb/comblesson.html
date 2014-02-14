@@ -1,0 +1,20 @@
+<table>
+    <tbody>
+    <tr class="row_lesson_cards" ng-repeat = "rowLesson in comb.rowLessons">
+        <td class="lesson_card" ng-repeat="lesson in rowLesson" >
+            <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
+            <div class="event_container">
+                <div class="event" ng-repeat="event in comb.events | eventfilter:'LearningRelated':lesson['id']">
+<!--
+                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
+-->
+                    <div class="circle">
+                        <p>{{event.info['result'].legend_size}}</p>
+                    </div>
+                    <p>{{event.info['event_name']}}</p>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

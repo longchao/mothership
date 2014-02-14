@@ -475,6 +475,8 @@ angular.module('SunExercise.directives', [])
 
                     //check global badges after each lesson is finished
                     $scope.$on("lesson.complete", function (event) {
+                        // Mixpanel
+                        LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
 
                         var incompleteBadgesPromise = lessonSandbox.getIncompleteGlobalBadges(event);
                         incompleteBadgesPromise.then(function (globalBadges) {
@@ -515,11 +517,9 @@ angular.module('SunExercise.directives', [])
                             if (typeof lessonData.pass_score != "undefined") {
                                 if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
                                     lessonUserdata.is_complete = true;
-                                    //Mixpanel
                                 }
                             } else {
                                 lessonUserdata.is_complete = true;
-
                             }
                         }
 
@@ -555,8 +555,7 @@ angular.module('SunExercise.directives', [])
                                     }
                                 }
                             }
-                            //send an event to check the global badges
-                            lessonSandbox.sendEvent("lesson.complete", $scope);
+
                             //userdata analyzing completed, flush the current userdata
                             lessonSandbox.flushUserdata(lessonData.id, $routeParams.cid);
 
@@ -568,8 +567,8 @@ angular.module('SunExercise.directives', [])
                                 ((lessonUserdata.summary.star == 2) ? " 获得 银杯" :
                                     ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
                             $scope.showLessonSummary = true;
-                            //Mixpanel
-                            LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
+                            //send an event to check the global badges
+                            lessonSandbox.sendEvent("lesson.complete", $scope);
                         }
 
                     })
@@ -647,8 +646,7 @@ angular.module('SunExercise.directives', [])
                                             }
                                         }
                                     }
-                                    //send an event to check the global badges
-                                    lessonSandbox.sendEvent("lesson.complete", $scope);
+
                                     //userdata analyzing completed, flush the current userdata
                                     lessonSandbox.flushUserdata(lessonData.id, $routeParams.cid);
 
@@ -661,6 +659,8 @@ angular.module('SunExercise.directives', [])
                                         ((lessonUserdata.summary.star == 2) ? " 获得 银杯" :
                                             ((lessonUserdata.summary.star == 3) ? " 获得 金杯" : null));
                                     $scope.showLessonSummary = true;
+                                    //send an event to check the global badges
+                                    lessonSandbox.sendEvent("lesson.complete", $scope);
 
                                 }
                             }
@@ -1772,8 +1772,3 @@ angular.module('SunExercise.directives', [])
         };
 
     });
-
-
-
-
-

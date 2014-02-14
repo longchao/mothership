@@ -99,34 +99,25 @@
         "seq": 0
     },
     {
-        "id": "677504f7-e26c-4abb-b573-52bf6dd54369",
-        "title": "平行线与内错角（性质）",
-        "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
+        "id": "4f7d2de1-642e-4809-a049-8499bb6ba2cc",
+        "title": "平行线与同旁内角（性质）",
+        "summary": "宇宙第一大杀器使用指南",
         "requirements": ["cbef8a0c-90aa-4c36-8b1c-433b9d4650ea"],
         "mainline": true,
-        "seq": 0,
-        "status": "closed"
-    },
-    {
-        "id": "d4db266f-ecc3-4301-ae0d-5429ce9aa5ce",
-        "title": "平行线与内错角（判定）",
-        "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
-        "requirements": ["677504f7-e26c-4abb-b573-52bf6dd54369"],
-        "seq": 1,
-        "status": "closed"
+        "seq": 0
     },
     {
         "id": "3c4a3eec-2ed3-4a2a-a01a-7526da810f7b",
-        "title": "平行线与同位角和同旁内角（性质）",
+        "title": "平行线与同位角和内错角（性质）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
-        "requirements": ["677504f7-e26c-4abb-b573-52bf6dd54369"],
+        "requirements": ["4f7d2de1-642e-4809-a049-8499bb6ba2cc"],
         "mainline": true,
         "seq": 0,
         "status": "closed"
     },
     {
         "id": "1cd19a4a-e453-4a21-8e32-3472a68bc321",
-        "title": "平行线与同位角和同旁内角（判定）",
+        "title": "平行线与同位角（判定）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
         "requirements": ["3c4a3eec-2ed3-4a2a-a01a-7526da810f7b"],
         "mainline": true,
@@ -135,7 +126,7 @@
     },
     {
         "id": "89faf598-5a7b-47eb-8a32-48a08b1f05f1",
-        "title": "平行线证明综合",
+        "title": "平行线与同旁内角和内错角 （判定）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
         "requirements": ["1cd19a4a-e453-4a21-8e32-3472a68bc321"],
         "mainline": true,
