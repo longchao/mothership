@@ -6,7 +6,7 @@
 <title>StatisticDashboard</title>
 </head>
 <body board>
-    <div class="navbar-fixed-top container" style="background-color: goldenrod;">
+    <div class="navbar-fixed-top container" style="background-color: gray;">
         <h2>StatisticDashboard</h2>
         <p>欢迎来到数学提高班统计面板!</p>
         <div id="search_panel" class="container">
@@ -41,23 +41,34 @@
 
 	<div  style="margin-top: 180px;width: 100%; border-top: 1px solid #ccc;">
 		<div id="chapter-panel" class="container" style="width: auto" ng-model="ctrl.events">
-            <comblesson lesson-data="{{ctrl.lessons}}" events-data="{{ctrl.events}}"></comblesson>
-		</div>
+           <!-- <comblesson lesson-data="{{ctrl.lessons}}" events-data="{{ctrl.events}}"></comblesson>-->
+<table>
+    <tbody>
+    <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
+        <td class="lesson_card" ng-repeat="lesson in rowLesson"">
+            <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
+            <div class="event_container">
+                <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
+                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
+                        <p>{{event.info['result'].legend_size}}</p>
+                    </div>
+                    <p>{{event.info['event_name']}}</p>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+		</div>
 
         <div class="panel pull-right" id="right-panel">
             <div id="isEvent">
                 <div class="panel-heading"></div>
                 <div id="users_container" class="container"></div>
             </div>
-
-            <div id="isLesson"></div>
-            <!--<div ng-if="!ctrl.isEvent">
-                <div class="panel-heading" id="panel-title" style="border-bottom:1px solid #ccc"></div>
-                <div id="users_container" class="container"></div>
-            </div>-->
-
         </div>
-	</div>
+</div>
 
 	<script type="application/dart" src="web/statisticdashboard.dart"></script>
 	<script src="packages/browser/dart.js"></script>

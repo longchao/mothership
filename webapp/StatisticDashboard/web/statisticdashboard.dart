@@ -44,7 +44,7 @@ List<String> users_notLogin = new List<String>();
 class BoardController {
   List<Map> chapters;
   List<Map> lessons;
- // List<List<Map>> rowLessons;
+  List<List<Map>> rowLessons;
   List<Event> events;
   List<String> rooms;
   List<Map> allUser;
@@ -215,7 +215,7 @@ class BoardController {
     _roomName = userInfo.roomNames[roomIndex];
     Map chapter = chapterInfo[chapterIndex];
     lessons = chapter['lessons'];
-    //rowLessons = makeCombLesson(lessons);
+    rowLessons = makeCombLesson(lessons);
 
     List mixpanelEvents = [map_login(),map_notLogin()];
     //List mixpanelEvents = new List();
