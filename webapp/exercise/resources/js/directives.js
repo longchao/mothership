@@ -611,15 +611,17 @@ angular.module('SunExercise.directives', [])
                                         if (typeof lessonData.pass_score != "undefined") {
                                             if (lessonSandbox.parseCompleteCondition(lessonData.pass_score, lessonUserdata.summary)) {
                                                 lessonUserdata.is_complete = true;
+                                            } else {
+                                                lessonUserdata.ever_failed = true;
                                             }
                                         } else {
                                             lessonUserdata.is_complete = true;
                                         }
                                     }
 
-
                                     //give student star if qualified
-                                    if (typeof lessonUserdata.summary.correct_percent != "undefined") {
+                                    if (typeof lessonUserdata.summary.correct_percent != "undefined"
+                                        && (lessonUserdata.is_complete == true)) {
                                         if ((typeof lessonData.star3 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star3)) {
                                             lessonUserdata.summary.star = 3;
                                         } else if ((typeof lessonData.star2 == "undefined") || (lessonUserdata.summary.correct_percent >= lessonData.star2)) {
