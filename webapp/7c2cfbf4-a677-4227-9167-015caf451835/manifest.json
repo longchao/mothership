@@ -123,12 +123,11 @@
         "seq": 0
     },
     {
-        "id": "89faf598-5a7b-47eb-8a32-48a08b1f05f1",
+        "id": "fdca06b8-25a8-4a0c-9c42-e4d96562e11a",
         "title": "平行线与同旁内角和内错角 （判定）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
         "requirements": ["1738dc4c-82f7-4c79-ae5f-fdb3cdf074ee"],
         "mainline": true,
-        "seq": 0,
-        "status": "closed"
+        "seq": 0
     }
 ], "grade": 0, "title": "相交线和平行线", "ts": 1389688883455}
