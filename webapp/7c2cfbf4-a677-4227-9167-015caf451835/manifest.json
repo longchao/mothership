@@ -115,19 +115,18 @@
         "seq": 0
     },
     {
-        "id": "1cd19a4a-e453-4a21-8e32-3472a68bc321",
+        "id": "1738dc4c-82f7-4c79-ae5f-fdb3cdf074ee",
         "title": "平行线与同位角（判定）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
         "requirements": ["c2b93673-b1d4-4532-b6d6-4c6c327b2c79"],
         "mainline": true,
-        "seq": 0,
-        "status": "closed"
+        "seq": 0
     },
     {
         "id": "89faf598-5a7b-47eb-8a32-48a08b1f05f1",
         "title": "平行线与同旁内角和内错角 （判定）",
         "summary": "想知道这节课讲了什么吗？过两天回来看看吧~",
-        "requirements": ["1cd19a4a-e453-4a21-8e32-3472a68bc321"],
+        "requirements": ["1738dc4c-82f7-4c79-ae5f-fdb3cdf074ee"],
         "mainline": true,
         "seq": 0,
         "status": "closed"
