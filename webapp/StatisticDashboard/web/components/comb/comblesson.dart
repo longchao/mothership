@@ -1,31 +1,41 @@
-library comb;
+import 'dart:html' as dom;
 import 'package:angular/angular.dart';
-import 'package:json_object/json_object.dart';
-import '../../web/statisticdashboard.dart';
+import '../../model/event.dart' as sta;
 
 @NgComponent(
     selector: 'comblesson',
-    templateUrl: 'lib/comb/comblesson.html',
-    cssUrl: 'lib/comb/comblesson.css',
+    templateUrl: 'web/components/comb/comblesson.html',
+    cssUrl: 'web/components/comb/comblesson.css',
     publishAs: 'comb',
     map: const {
-      'lesson-data': '@setRowLessons',
-      'events-data': '@setEvents'
+      'lessons-data': '=>setRowLessons',
+      'events-data': '=>setEvents',
+      'on-lesson-click': '&onLessonClick'
     }
 )
-class CombLesson {
+class CombLesson implements NgShadowRootAware {
   List<List<Map>> rowLessons = new List<List<Map>>();
-  List<Event> events = new List<Event>();
+  List<sta.Event> events = new List<sta.Event>();
+  ParsedFn onLessonClick;
+  NgModel ngModel;
 
-  set setRowLessons(String value){
-    rowLessons = makeCombLesson(new JsonObject.fromJsonString(value));
+  CombLesson(this.ngModel);
+  onShadowRoot(dom.ShadowRoot shadowRoot){}
+
+  set setRowLessons(List<Map> value){
+    rowLessons = makeCombLesson(value);
   }
 
-  set setEvents(List<Event> value){
+  set setEvents(List<sta.Event> value){
     events = value;
   }
 
-  makeCombLesson(JsonObject lessons) {
+  void onItemClicked(Map lesson){
+    ngModel.modelValue = lesson;
+    onLessonClick();
+  }
+
+  makeCombLesson(List<Map> lessons) {
     Map allLessons = new Map();
     for(var lesson in lessons){
       if(lesson['mainline']==true){

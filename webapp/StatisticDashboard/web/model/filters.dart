@@ -1,4 +1,5 @@
-part of statistic;
+import 'package:angular/angular.dart';
+import '../model/event.dart' as sta;
 
 @NgFilter(name: 'schoolfilter')
 class SchoolFilter {
@@ -25,18 +26,18 @@ class SchoolFilter {
 
 @NgFilter(name: 'eventfilter')
 class EventFilter {
-  call(List<Event> events,String type,String lessonId){
-    List<Event> learningEvents = new List<Event>();
-    List<Event> loginEvents = new List<Event>();
+  call(List<sta.Event> events,String type,String lessonId){
+    List<sta.Event> learningEvents = new List<sta.Event>();
+    List<sta.Event> loginEvents = new List<sta.Event>();
     if(type=="LoginRelated"){
-      for (Event event in events){
+      for (sta.Event event in events){
         if(event.info['type'].contains(type)){
           loginEvents.add(event);
         }
       }
       return loginEvents;
     }else if(type=="LearningRelated"){
-      for (Event event in events){
+      for (sta.Event event in events){
         if(event.info['type'].contains(type)){
           if(lessonId == event.info['lessonId']){
             learningEvents.add(event);

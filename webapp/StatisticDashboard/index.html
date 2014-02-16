@@ -6,18 +6,19 @@
 <title>StatisticDashboard</title>
 </head>
 <body board>
+
     <div class="navbar-fixed-top container" style="background-color: goldenrod;">
         <h2>StatisticDashboard</h2>
         <p>欢迎来到数学提高班统计面板!</p>
         <div id="search_panel" class="container">
             <form class="col-lg-2">
-                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParam()"
+                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                         onchange="giveParams(null,this.options[this.selectedIndex].index)">
                     <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
                 </select>
             </form>
             <form class="col-lg-2">
-                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParam()"
+                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                         onchange="giveParams(this.options[this.selectedIndex].index,null)">
                     <optgroup label="西外">
                         <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
@@ -29,7 +30,7 @@
             </form>
             <div class="pull-right">
                 <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
-                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
+                    <div class="circle" ng-click="ctrl.showUsers(true,event)">
                         <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
                         <p ng-if="event.info['type'].contains('SelfMade')">{{ctrl.user_notLogin.length}}</p>
                     </div>
@@ -40,31 +41,27 @@
     </div>
 
 	<div  style="margin-top: 180px;width: 100%; border-top: 1px solid #ccc;">
-		<div id="chapter-panel" class="container" style="width: auto" ng-model="ctrl.events">
-            <comblesson lesson-data="{{ctrl.lessons}}" events-data="{{ctrl.events}}"></comblesson>
+		<div id="chapter-panel" class="container" style="width: auto">
+            <comblesson lessons-data="ctrl.lessons" events-data="ctrl.events"
+                        ng-model="ctrl.userClickedLesson"
+                        on-lesson-click="ctrl.showUsers(false)">
+            </comblesson>
 		</div>
 
         <div class="panel pull-right" id="right-panel">
-            <div id="isEvent">
-                <div class="panel-heading"></div>
-                <div id="users_container" class="container"></div>
+            <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
+                <h4>{{ctrl.detailsTitle}}</h4>
             </div>
-
-            <div id="isLesson"></div>
-            <!--<div ng-if="!ctrl.isEvent">
-                <div class="panel-heading" id="panel-title" style="border-bottom:1px solid #ccc"></div>
-                <div id="users_container" class="container"></div>
-            </div>-->
-
+            <div class="container" id="details-body"></div>
         </div>
 	</div>
 
-	<script type="application/dart" src="web/statisticdashboard.dart"></script>
+	<script type="application/dart" src="web/main.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
     <link rel="stylesheet" href="web/files/lib/bootstrap.min.css" />
 <!--<script src="web/files/lib/jquery-1.10.2.min.js"></script>-->
-    <link rel="stylesheet" href="web/statisticdashboard.css">
-    <script src="web/js/selector.js"></script>
+    <link rel="stylesheet" href="web/css/statisticdashboard.css">
+    <script src="web/files/js/selector.js"></script>
 </body>
 </html>

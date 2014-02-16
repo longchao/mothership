@@ -103,15 +103,22 @@ td {
     font-size:15px;
 }
 
-#users_container{
+#details-body,
+.event-users-container,
+.lesson-data-container{
     width: 100%;
+}
+
+.event-users-container,
+.lesson-data-container{
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 20px;
 }
 
-#users_container > div{
+.event-users-container > div{
     display: inline-block;
     margin-bottom: 3px;
-
 }
 
 .panel-heading{
@@ -119,7 +126,9 @@ td {
 }
 
 #right-panel > div {
+/*
     display: none;
+*/
 }
 
 
