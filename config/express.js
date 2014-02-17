@@ -8,7 +8,7 @@ var express = require('express'),
     flash = require('connect-flash'),
     config = require('./config');
 
-module.exports = function (app, passport, db) {
+module.exports = function (app, passport, db, auth) {
     app.set('showStackError', true);
 
     //Prettify HTML
@@ -63,6 +63,10 @@ module.exports = function (app, passport, db) {
 
         //routes should be at the last
         app.use(app.router);
+
+        //Wpk
+        app.use('/wpk', auth.requiresLogin);
+        app.use('/wpk', express.static(config.root + '/wpk'));
 
         //Setting the fav icon and static folder
         app.use(express.favicon());
