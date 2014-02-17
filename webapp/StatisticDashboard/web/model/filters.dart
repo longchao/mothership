@@ -29,22 +29,29 @@ class EventFilter {
   call(List<sta.Event> events,String type,String lessonId){
     List<sta.Event> learningEvents = new List<sta.Event>();
     List<sta.Event> loginEvents = new List<sta.Event>();
-    if(type=="LoginRelated"){
+    List<sta.Event> apiEvents = new List<sta.Event>();
+    /*if(type=="LoginRelated"){
       for (sta.Event event in events){
         if(event.info['type'].contains(type)){
           loginEvents.add(event);
         }
       }
       return loginEvents;
-    }else if(type=="LearningRelated"){
+    }else*/ if(type=="LearningRelated"){
       for (sta.Event event in events){
-        if(event.info['type'].contains(type)){
-          if(lessonId == event.info['lessonId']){
+        if(event.info['type'].contains(type)&& !event.info['type'].contains('notDisplay')){
+          if(lessonId == event.info['lessonId'] ){
             learningEvents.add(event);
           }
         }
       }
       return learningEvents;
+    }else if(type=="APIRelated"){
+      for (sta.Event event in events){
+        if(event.info['type'].contains(type)){
+          apiEvents.add(event);
+        }
+      }
     }
   }
 }

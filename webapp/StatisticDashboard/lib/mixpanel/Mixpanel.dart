@@ -1,11 +1,15 @@
 library mixpanel;
 
 import 'dart:convert';
+import 'dart:async';
 import 'package:crypto/crypto.dart';
+import "package:jsonp/jsonp.dart" as jsonp;
+import "package:js/js.dart" as js;
 
 class Mixpanel{
   String _sig;
   String _apiUri;
+  Map _dartJson;
 
   Mixpanel(String schema, List<String> args, String api_secret){
     _sig = _sigGenerator(args,api_secret);
@@ -21,5 +25,15 @@ class Mixpanel{
     return CryptoUtils.bytesToHex(md5.close());
   }
 
-  String get apiUri => Uri.encodeFull(_apiUri);
+  Future fetchJson() {
+    return
+      jsonp.fetch(uriGenerator: (callback) =>  Uri.encodeFull(_apiUri)+"&callback=$callback")
+      .then((js.Proxy proxy) {
+        String jsonValue = js.context.JSON.stringify(proxy);
+        _dartJson = JSON.decode(jsonValue);
+        return _dartJson;
+      });
+  }
+
+  Map get result => _dartJson;
 }
