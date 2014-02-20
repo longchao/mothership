@@ -1,21 +1,19 @@
 body {
-	background-color: white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 1.2em;
-	margin: 15px;
-	background-image: url("files/landscape.jpg"); ";
+    background-color: #f5f5f5;
 	display: inline;
 }
 
-h1,p {
-	color: #333;
-}
+/*select{
+    width: 100px;
+}*/
 
-.panel {
-	width: 40%;
-	height: 400px;
+.slide-in {
+	width: 300px;
+	height: 500px;
 	position: relative;
 	border: 1px solid #ccc;
 	background-color: #ffffff;
@@ -24,49 +22,105 @@ h1,p {
 	margin: 20px;
 }
 
-#sample_text_id {
+#search_panel p{
+	margin-top: 9px;
+}
+
+#chapter-panel{
+    border-top: 1px solid #ddd;
+}
+
+/*#sample_text_id {
 	font-size: 24pt;
 	text-align: center;
 	margin-top: 140px;
-}
+}*/
 
-.students_container {
+#chapter-panel td {
+    width:307px;
+    height:127px;
+    display: inline-block;
+    margin: 15px 20px 15px 0;
+    padding:8px 15px;
+    text-overflow:ellipsis;
+    border-radius:5px;
+    background-color:white;
+    cursor:pointer;
+    -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.1);  
+    -moz-box-shadow:0 1px 1px rgba(0,0,0,0.1); 
+    -o-box-shadow:0 1px 1px rgba(0,0,0,0.1);
+    box-shadow:0 1px 1px rgba(0,0,0,0.1);  
+ 
+    transition:0.2s;
+}
+#chapter-panel td:hover {
+    -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3);  
+    -moz-box-shadow:0 1px 1px rgba(0,0,0,0.3); 
+    -o-box-shadow:0 1px 1px rgba(0,0,0,0.3);  
+    box-shadow:0 1px 1px rgba(0,0,0,0.3);  
+} 
+#chapter-panel td button{
+	opacity: 0;
+    transition:0.2s;
+}
+#chapter-panel td:hover button{
+	opacity: 1;
+} 
+
+.lesson_title{
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #777777;
+    transition:0.2s;
+}
+#chapter-panel td:hover .lesson_title{
+	color: #FF9449;
+} 
+.event {
 	display: inline-block;
-	margin: 20px;
 	text-align: center;
+	margin:8px 20px 0 0;
+	color: #777777;
 }
 
-#search_panel {
-	margin-top: 20px;
-	text-align: center;
-	display: block;
+.event-label {
+	border-radius: 15px;
+/*	width: 70px;
+	height: 30px;*/
+	padding:4px 12px;
+	position: relative;
+    border:1px solid #e5e5e5;
+}
+.event > span{
+	font-size: 1.7em;
+	line-height: 1.5;
+	margin-top: 5px;
+	font-weight: 300;
 }
 
-#search_panel>button {
-	color: white;
-	background-color: green;
-	width: 50px;
-	height: 20px;
+form{
+    margin-bottom: 10px;
 }
+
 
 #inputRoomName {
 	width: 100px;
 	height: 20px;
 }
 
-.circle {
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-	background-color: orange;
-	position: relative;
-	margin: 0px;
+
+.event_name_bar{
+    position: fixed;
 }
 
-.circle>p {
-	font-size: 20px;
-	color: white;
-	text-align: center;
-	margin-top: 0px;
-}
+
+
+
+
+
+
+
+
+
 

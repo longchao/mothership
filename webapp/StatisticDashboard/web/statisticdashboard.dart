@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:json_object/json_object.dart';
 
 part 'requirement_product.dart';
-part 'SchoolFilter.dart';
+part 'filters.dart';
 
 String apiKey = '1291ff9d8ceb337db6a0069d88079474';
 String apiSecret = '05b9aae8d5305855b1cdfec0db2db140';
@@ -41,9 +41,13 @@ List<String> users_notLogin = new List<String>();
     publishAs: 'ctrl')
 class BoardController {
   List<Map> chapters;
+  List<Map> lessons;
+  List<List<Map>> rowLessons;
   List<Event> events;
   List<String> rooms;
   List<Map> allUser;
+  List<String> user_notLogin;
+
   String XW = "xw";
   String Z8 = "8z";
 
@@ -87,7 +91,7 @@ class BoardController {
   }
   
   void giveParam(){
-    (querySelector('#right-panel') as DivElement).innerHtml = "";
+    (querySelector('#users_container') as DivElement).innerHtml = "";
     var roomIndex = context['roomIndex'];
     var chapterIndex = context['chapterIndex'];
     if(roomIndex !=null){
@@ -97,11 +101,15 @@ class BoardController {
       currentChapterIndex = chapterIndex;
     }
     print("room"+currentRoomIndex.toString()+"chapter"+currentChapterIndex.toString());
-    events = _loadEvents(currentRoomIndex,currentChapterIndex);
+    _loadEvents(currentRoomIndex,currentChapterIndex).then((value){
+      events = value;
+      user_notLogin = users_notLogin;
+    });
   }
   
-  void showUsers(Event event){
+  void showUsersByEvent(Event event){
     strHtml.clear();
+    //strHtml.write('<div class="panel-heading"><h4>'+event.info['event_name']+'</h4></div>');
     if(event.info['event_name']=="已登录"){
       Map users = event.info['result']['data']['values'];
       List users_login = new List();
@@ -115,7 +123,9 @@ class BoardController {
       Map users = event.info['result']['data']['values'];
       users.forEach(appendUser);
     }
-    (querySelector('#right-panel') as DivElement).innerHtml = strHtml.toString();
+    print(strHtml.toString());
+
+    (querySelector('#users_container') as DivElement).innerHtml = strHtml.toString();
   }
 
   List<String> queryUserNames(var users){
@@ -131,27 +141,70 @@ class BoardController {
   appendUser(String key, Map value){
     strHtml.write('<p>'+key+'</p>');//</br><p>'+value.toString()+'</p></br>');
   }
-   
+
+  makeCombLesson(List<Map> lessons) {
+    Map allLessons = new Map();
+    for(var lesson in lessons){
+      if(lesson['mainline']==true){
+        List rowLesson = new List();
+        rowLesson.add(lesson);
+        String lessonId = lesson['id'];
+        allLessons[lessonId] = rowLesson;
+      }else{
+        allLessons.forEach((String k,List v){
+          List requirements = lesson['requirements'];
+          if(k==requirements[0]){
+            v.add(lesson);
+          }
+        });
+      }
+    }
+    List rowLessons = new List();
+    allLessons.forEach((k,v){
+      rowLessons.add(v);
+    });
+    print(rowLessons);
+    return rowLessons;
+  }
+
+  Future<Map> addMainlineLessons(List lessons) {
+    Map allLessons = new Map();
+    for(var lesson in lessons){
+      if(lesson['mainline']==true){
+        List rowLesson = new List();
+        rowLesson.add(lesson);
+        String lessonId = lesson['id'];
+        allLessons[lessonId] = rowLesson;
+      }
+    }
+    return new Future<Map>.value(allLessons);
+  }
+
   // Give requirements and load all the data.
-  _loadEvents(int roomIndex, int chapterIndex) {
+  Future<List<Event>> _loadEvents(int roomIndex, int chapterIndex) {
     _roomName = userInfo.roomNames[roomIndex];
     Map chapter = chapterInfo[chapterIndex];
-    List<Map> lessons = chapter['lessons'];
+    lessons = chapter['lessons'];
+    rowLessons = makeCombLesson(lessons);
+
     List mixpanelEvents = [map_login(),map_notLogin()];
+    //List mixpanelEvents = new List();
     for (Map lesson in lessons){
       mixpanelEvents.add(map_enterLesson(lesson['title'],lesson['id']));
       mixpanelEvents.add(map_finishLesson(lesson['title'],lesson['id']));
     }
+
     List<Event> result = new List<Event>();
     for(var event in mixpanelEvents){
-      if(event['type']=="mixpanel"){
+      print(event['type']);
+      if(event['type'].contains("Mixpanel")){
         MixpanelExportDataAPI mixpanel =new MixpanelExportDataAPI(event['schema'],event['args'],event['api_secret']);
-        result.add(new Event(event['title'],mixpanel:mixpanel));
+        result.add(new Event(event['title'],event['type'],lessonId:event['lessonId'],mixpanel:mixpanel));
       }else{
-        result.add(new Event(event['title']));
+        result.add(new Event(event['title'],event['type']));
       }
     }     
-    return result;
+    return new Future<List<Event>>.value(result);
   }
 }
 
@@ -165,15 +218,21 @@ class Student{
 class Event{
   Map info;
 
-  Event(String eventName,{MixpanelExportDataAPI mixpanel}){
+  Event(String eventName, List type, {String lessonId, MixpanelExportDataAPI mixpanel}){
     info = new Map();
     info['event_name'] = eventName;
+    info['type'] = type;
+
+    if(lessonId!=''){
+      info['lessonId'] = lessonId;
+    }
+
     if(mixpanel!=null);{
-        fetchJson(mixpanel:mixpanel,eventName:eventName);
+      fetchJson(mixpanel:mixpanel,eventName:eventName);
     }
   }
   
-  void fetchJson({MixpanelExportDataAPI mixpanel,String eventName}) {
+  fetchJson({MixpanelExportDataAPI mixpanel,String eventName}) {
     Future<js.Proxy> result = jsonp.fetch(
         uriGenerator: (callback) =>
             mixpanel.apiUri+"&callback=$callback");
@@ -185,11 +244,11 @@ class Event{
         diffNotLoginUsers(dartJson);
       }
       info['result'] = dartJson;
-
     });
   }
 
   diffNotLoginUsers(Map loginUser){
+    users_notLogin.clear();
     List user = usersMap["$_roomName"];
     var loginusers = loginUser['data']['values'];
     List<String> users_all = new List<String>();
@@ -223,13 +282,13 @@ class MixpanelExportDataAPI{
   }
   
   String get apiUri => Uri.encodeFull(_apiUri);
-  
 }
 
 class MyAppModule extends Module {
   MyAppModule() {
     type(BoardController);
     type(SchoolFilter);
+    type(EventFilter);
   }
 }
 

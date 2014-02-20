@@ -4,50 +4,115 @@
 <head>
 <meta charset="utf-8">
 <title>StatisticDashboard</title>
-<link rel="stylesheet" href="web/statisticdashboard.css">
-<script src="web/js/selector.js"></script>
 </head>
 <body board>
-	<h1>StatisticDashboard</h1>
-	<p>欢迎来到数学提高班统计面板!</p>
-    <div id="search_panel">
-        <form>
-            <select id="chapterSelector" ng-change="ctrl.giveParam()"
-                    onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
-            </select>
-            <select id="roomSelector" ng-change="ctrl.giveParam()"
-                    onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                <optgroup label="西外" ng-model="ctrl.XW">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
-                </optgroup>
-                <optgroup label="八中" ng-model="ctrl.Z8">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                </optgroup>
-            </select>
-        </form>
+  <nav class="navbar navbar-default navbar-static-top" style="background:white;margin-bottom:20px">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">ghxz</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="#"><span class="glyphicon glyphicon-stats"> </span> 学生数据</a>
+          </li>
+        </ul> 
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">金灭国老师 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">帐号管理</a></li>
+              <li class="divider"></li>
+              <li><a href="#">登出</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <hr/>
-	<div class="panel" id="left-panel" style="float: left">
-		<div>
-			<ul style="display: table">
-				<li class="students_container" ng-repeat="event in ctrl.events">
-					<div class="circle" ng-click="ctrl.showUsers(event)">
-						<p>{{event.info['result'].legend_size}}</p>
-					</div>
-					<h5>{{event.info['event_name']}}</h5>
-				</li>
-			</ul>
+  </nav>
+
+    <div class="container" style="margin-bottom:5px;">
+<!--             <h2>StatisticDashboard</h2>
+        <p>欢迎来到数学提高班统计面板!</p> -->
+        <div id="search_panel">
+            <div class="pull-right">
+                <p>全班学生，{{ctrl.user_notLogin.length}}个学生还未登录</p>
+                <!-- <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+                    <div class="circle" ng-click="ctrl.showUsersByEvent(event)">
+                        <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+                        <p ng-if="event.info['type'].contains('SelfMade')" ng-model="ctrl.user_notLogin">{{ctrl.user_notLogin.length}}</p>
+                    </div>
+                    <p>{{event.info['event_name']}}</p>
+                </div> -->
+            </div>
+            <form class="col-lg-2 col-md-2">
+                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParam()"
+                        onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                    <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+                </select>
+            </form>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Action <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header">西外</li>
+                <li><a href="#">xw1231231</a></li>
+                <li><a href="#">xw2353234</a></li>
+                <li><a href="#">xw4423452</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">八中</li>
+                <li><a href="#">8z234131</a></li>
+              </ul>
+            </div>
+            <form class="col-lg-2 col-md-2">
+                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParam()"
+                        onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                    <optgroup label="西外" ng-model="ctrl.XW">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                    <optgroup label="八中" ng-model="ctrl.Z8">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                </select>
+            </form>
+        </div>
+    </div>
+
+	<div>
+		<div id="chapter-panel" class="container">
+			<table>
+                <tbody>
+                    <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
+                        <td class="lesson_card" ng-repeat="lesson in rowLesson">
+                            <button class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><span class="glyphicon glyphicon-star"> </span></button>
+                            <h4 class="lesson_title" title="{{lesson['title']}}">{{lesson['title']}}</h4>
+                            <div class="event_container">
+                                <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
+                                    <div class="event-label" ng-click="ctrl.showUsersByEvent(event)">
+                                        <small>{{event.info['event_name']}}</small>
+                                    </div>
+                                    <span>{{event.info['result'].legend_size}}</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+			</table>
 		</div>
+        <div class="panel pull-right slide-in" id="right-panel" style="float: right">
+            <div id="users_container"></div>
+        </div>
 	</div>
-	<div class="panel" id="right-panel" style="float: right"></div>
+
 	<script type="application/dart" src="web/statisticdashboard.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
-    <link rel="stylesheet" href="web/files/lib/bootstrap-combined.min.css" />
-    <link rel="stylesheet" href="web/files/lib/jquery.selectBoxIt.css" />
-    <script src="web/files/lib/jquery-1.10.2.min.js"></script>
-    <script src="web/files/lib/jquery.selectBoxIt.min.js"></script>
-    <script>$(function() {$("select").selectBoxIt();});</script>
+    <link rel="stylesheet" href="web/files/lib/bootstrap.min.css" />
+<!--<script src="web/files/lib/jquery-1.10.2.min.js"></script>-->
+    <link rel="stylesheet" href="web/statisticdashboard.css">
+    <script src="web/js/selector.js"></script>
 </body>
 </html>
