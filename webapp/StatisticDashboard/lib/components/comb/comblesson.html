@@ -4,9 +4,6 @@
             <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="comb.onItemClicked(lesson)">
                 <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
                 <div class="event_container">
-<!--
-                    <div class="event" ng-repeat="event in lesson['events']" ng-if="!event.info['type'].contains('notDisplay')">
--->
                     <div class="event" ng-repeat="event in comb.events | eventfilter:'LearningRelated':lesson['id']">
                     <div class="circle">
                             <p ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>

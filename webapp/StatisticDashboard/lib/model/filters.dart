@@ -1,3 +1,5 @@
+library filters;
+
 import 'package:angular/angular.dart';
 import '../model/event.dart' as sta;
 
@@ -30,28 +32,30 @@ class EventFilter {
     List<sta.Event> learningEvents = new List<sta.Event>();
     List<sta.Event> loginEvents = new List<sta.Event>();
     List<sta.Event> apiEvents = new List<sta.Event>();
-    /*if(type=="LoginRelated"){
+    if(type=="LoginRelated"){
       for (sta.Event event in events){
-        if(event.info['type'].contains(type)){
+        List eventType = event.info['type'];
+        if(eventType.contains(type)&&!eventType.contains('notDisplay')){
           loginEvents.add(event);
         }
       }
       return loginEvents;
-    }else*/ if(type=="LearningRelated"){
+    }else if(type=="LearningRelated"){
       for (sta.Event event in events){
-        if(event.info['type'].contains(type)&& !event.info['type'].contains('notDisplay')){
+        List eventType = event.info['type'];
+        if(eventType.contains(type)&& !eventType.contains('notDisplay')){
           if(lessonId == event.info['lessonId'] ){
             learningEvents.add(event);
           }
         }
       }
       return learningEvents;
-    }else if(type=="APIRelated"){
+    }/*else if(type=="APIRelated"){
       for (sta.Event event in events){
         if(event.info['type'].contains(type)){
           apiEvents.add(event);
         }
       }
-    }
+    }*/
   }
 }

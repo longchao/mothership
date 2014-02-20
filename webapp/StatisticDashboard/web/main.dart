@@ -1,6 +1,8 @@
-import 'model/filters.dart';
-import 'components/comb/comblesson.dart';
-import 'controller/boardcontroller.dart';
+library dashboard;
+
+import '../lib/model/filters.dart';
+import '../lib/components/comb/comblesson.dart';
+import '../lib/controller/boardcontroller.dart';
 import 'package:angular/angular.dart';
 
 class MyAppModule extends Module {

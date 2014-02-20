@@ -4,9 +4,11 @@
 <head>
 <meta charset="utf-8">
 <title>StatisticDashboard</title>
+<link rel="stylesheet" href="files/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="css/statisticdashboard.css">
+<script src="files/js/selector.js"></script>
 </head>
 <body board>
-
     <div class="navbar-fixed-top container" style="background-color: goldenrod;">
         <h2>StatisticDashboard</h2>
         <p>欢迎来到数学提高班统计面板!</p>
@@ -28,40 +30,57 @@
                     </optgroup>
                 </select>
             </form>
-            <!--<div class="pull-right">
+            <div class="pull-right">
                 <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
                     <div class="circle" ng-click="ctrl.showUsers(true,event)">
                         <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
-                        <p ng-if="event.info['type'].contains('SelfMade')">{{ctrl.user_notLogin.length}}</p>
+                        <p ng-if="event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
                     </div>
                     <p>{{event.info['event_name']}}</p>
                 </div>
-            </div>-->
+            </div>
         </div>
     </div>
 
 	<div  style="margin-top: 180px;width: 100%; border-top: 1px solid #ccc;">
 		<div id="chapter-panel" class="container" style="width: auto">
-            <comblesson lessons-data="ctrl.lessons" events-data="ctrl.events"
+           <!-- <comblesson lessons-data="ctrl.lessons" events-data="ctrl.events"
                         ng-model="ctrl.userClickedLesson"
                         on-lesson-click="ctrl.showUsers(false)">
-            </comblesson>
-		</div>
+            </comblesson>-->
+
+            <table>
+                <tbody>
+                <tr class="row_lesson_cards" ng-repeat = "rowLesson in ctrl.rowLessons">
+                    <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="ctrl.onLessonClick(lesson)">
+                        <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
+                        <div class="event_container">
+                            <div class="event" ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
+                                <div class="circle">
+                                    <p ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+                                    <p ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
+                                    <p ng-if="lesson['status']=='closed'">- -</p>
+                                </div>
+                                <p>{{event.info['event_name']}}</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
 
         <div class="panel pull-right" id="right-panel">
             <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
-                <h4>{{ctrl.detailsTitle}}</h4>
+                <h4>{{ctrl.detailstitle}}</h4>
             </div>
             <div class="container" id="details-body"></div>
         </div>
 	</div>
 
-	<script type="application/dart" src="web/main.dart"></script>
+	<script type="application/dart" src="main.dart"></script>
 	<script src="packages/browser/dart.js"></script>
 	<script src="packages/browser/interop.js"></script>
-    <link rel="stylesheet" href="web/files/lib/bootstrap.min.css" />
-<!--<script src="web/files/lib/jquery-1.10.2.min.js"></script>-->
-    <link rel="stylesheet" href="web/css/statisticdashboard.css">
-    <script src="web/files/js/selector.js"></script>
 </body>
 </html>

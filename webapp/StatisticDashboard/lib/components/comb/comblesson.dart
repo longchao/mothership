@@ -1,23 +1,24 @@
+library comb;
+
 import 'dart:html' as dom;
 import 'package:angular/angular.dart';
 import '../../model/event.dart' as sta;
 
 @NgComponent(
     selector: 'comblesson',
-    templateUrl: 'web/components/comb/comblesson.html',
-    cssUrl: 'web/components/comb/comblesson.css',
+    templateUrl: '../lib/components/comb/comblesson.html',
+    cssUrl: '../lib/components/comb/comblesson.css',
     publishAs: 'comb',
     map: const {
       'lessons-data': '=>setRowLessons',
       'events-data': '<=>events',
-       // 'lessons-data': '<=>rowLessons',
       'on-lesson-click': '&onLessonClick'
     }
 )
 class CombLesson implements NgShadowRootAware {
   List<List<Map>> rowLessons = new List<List<Map>>();
   List<sta.Event> events = new List<sta.Event>();
-  ParsedFn onLessonClick;
+  var onLessonClick;
   NgModel ngModel;
   CombLesson(this.ngModel);
   onShadowRoot(dom.ShadowRoot shadowRoot){}
@@ -26,11 +27,8 @@ class CombLesson implements NgShadowRootAware {
     rowLessons = makeCombLesson(value);
   }
 
-/*  set setEvents(List<sta.Event> value){
-    events = value;
-  }*/
-
   void onItemClicked(Map lesson){
+    print("-=-=-=-=-=-=-=-=-=-=> "+lesson['id']);
     ngModel.modelValue = lesson;
     onLessonClick();
   }
