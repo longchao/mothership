@@ -20,7 +20,7 @@ var userInfoUrl = "/me";
 var chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
 var allUsersUrl = "/users";
 
-String _allUsersUrl = "files/all_user.json";
+String _allUsersUrl = "web/files/all_user.json";
 
 var currentRoomIndex = 0;
 var currentChapterIndex = 0;

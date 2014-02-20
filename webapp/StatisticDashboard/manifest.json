@@ -1,7 +1,7 @@
 {
     "id": "StatisticDashboard",
     "version_code": 1,
-    "name": "数学提高班统计面板",
+    "name": "教师后台（统计）",
     "type": "web_app",
     "launchable": 1,
     "package_name": "org.sunlib.exercise",
