@@ -2,11 +2,8 @@
 .DS_Store
 
 # Dart Library files
-packages
+pubspec.*
 .settings
 
 # WebStorm Setting files
 .idea
-
-# Compiled JS files
-*.dart.*
