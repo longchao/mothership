@@ -1,9 +1,0 @@
-name: StatisticDashboard
-description: A sample web application
-dependencies:
-  browser: any
-  jsonp: any
-  angular: any
-  crypto: any
-  intl: any
-  json_object: any
