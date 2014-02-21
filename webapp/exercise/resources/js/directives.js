@@ -857,6 +857,8 @@ angular.module('SunExercise.directives', [])
                                 } else {
                                     //do a page transition and show the next problem
                                     PageTransitions.nextPage(1, $("#buttonContainer"));
+                                    // update the start time of next problem
+                                    activityUserdata.problems[activityData.problems[index+1].id].enter_time = Date.now();
                                     //update the progress bar
                                     $scope.progressWidth = (index + 2) * 100 / activityData.problems.length;
                                 }
