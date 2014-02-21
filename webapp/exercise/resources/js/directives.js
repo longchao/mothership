@@ -883,6 +883,7 @@ angular.module('SunExercise.directives', [])
                         activityUserdata.end_time = Date.now();
                         //set is_complete to true for later reviewing
                         activityUserdata.is_complete = true;
+                        activityUserdata.rate = activityData.rate;
 
                         //check if the student achieves certain achievements
                         if (typeof activityData.achievements != "undefined") {
@@ -953,6 +954,7 @@ angular.module('SunExercise.directives', [])
             restrict: "E",
             link: function ($scope, $element, $attrs) {
                 var activitySandbox = SandboxProvider.getSandbox();
+                var activityUserdata = activitySandbox.getActivityUserdata($routeParams.aid);
                 var activityData = activitySandbox.getActivityMaterial($routeParams.aid, null);
 
                 var template = "<div ng-hide='showVideoRating'><video style='display: none' id='video' class='xvideo' src='" +
@@ -966,6 +968,7 @@ angular.module('SunExercise.directives', [])
                     "<input name='videoRating' type='radio' class='star' value='3' title='无所谓'/>" +
                     "<input name='videoRating' type='radio' class='star' value='4' title='喜欢'/>" +
                     "<input name='videoRating' type='radio' class='star' value='5' title='很喜欢'/>" +
+                    "<script>$('input').rating('select', '" +activityUserdata.rate + "');</script>" +
                     "<label id='ratingMsg'></label><br>" +
                     "<button class='play-button' ng-click='rePlayVideo()'>重新播放</button>" +
                     "</div>";
@@ -973,9 +976,8 @@ angular.module('SunExercise.directives', [])
                 var elements = $compile($element.contents())($scope);
                 elements.children().filter('input[type=radio].star').rating({
                     callback: function (value, link) {
-                        /**
-                         * TODO save the value in database
-                         */
+                        LearningRelated.rateVideo($attrs.src, activityData.title, value);
+                        activityData.rate = value;
                     },
                     focus: function (value, link) {
                         var tip = $('#ratingMsg');

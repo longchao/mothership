@@ -53,6 +53,10 @@
             mixpanel.track("FinishVideo",{VideoId:id, VideoTitle:title, VideoLength:Math.floor(length), VideoPlayedLength:Math.floor(played_length), VideoPlayedRatio:played_ratio});
         },
 
+        rateVideo: function(id,title,rating){
+            mixpanel.track("RateVideo",{VideoId:id, VideoTitle:title, VideoRating:rating});
+        },
+
         enterQuiz: function(quiz_id,quiz_title){
             mixpanel.track("EnterQuiz",{QuizId:quiz_id, QuizTitle:quiz_title});
             mixpanel.register({QuizId:quiz_id,QuizTitle:quiz_title});
