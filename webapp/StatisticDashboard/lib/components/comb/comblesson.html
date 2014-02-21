@@ -1,0 +1,19 @@
+<table>
+    <tbody>
+        <tr class="row_lesson_cards" ng-repeat = "rowLesson in comb.rowLessons">
+            <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="comb.onItemClicked(lesson)">
+                <div class="lesson_title"><p><strong>{{lesson['title']}}</strong></p></div>
+                <div class="event_container">
+                    <div class="event" ng-repeat="event in comb.events | eventfilter:'LearningRelated':lesson['id']">
+                    <div class="circle">
+                            <p ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+                            <p ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
+                            <p ng-if="lesson['status']=='closed'">- -</p>
+                        </div>
+                        <p>{{event.info['event_name']}}</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

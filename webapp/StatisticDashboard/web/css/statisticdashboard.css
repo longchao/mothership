@@ -1,0 +1,145 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2em;
+    background-color: #f5f5f5;
+    display: inline;
+}
+
+.slide-in {
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    overflow: scroll;
+    display: inline-block;
+    margin: 20px;
+    right: 0;
+}
+
+#search_panel p {
+    margin-top: 9px;
+}
+
+#chapter-panel {
+    border-top: 1px solid #ddd;
+    margin-left: 80px;
+}
+
+.event_container {
+    padding: 0 10px 0 10px;
+}
+
+#chapter-panel td {
+    width: 307px;
+    height: 127px;
+    display: inline-block;
+    margin: 15px 20px 15px 0;
+    padding: 8px 15px;
+    text-overflow: ellipsis;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+    transition: 0.2s;
+}
+
+#chapter-panel td:hover {
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#chapter-panel td button {
+    opacity: 0;
+    transition: 0.2s;
+}
+
+#chapter-panel td:hover button {
+    opacity: 1;
+}
+
+.lesson_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #777777;
+    transition: 0.2s;
+}
+
+#chapter-panel td:hover .lesson_title {
+    color: #FF9449;
+}
+
+.event {
+    display: inline-block;
+    text-align: center;
+    margin: 8px 20px 0 0;
+    color: #777777;
+}
+
+.event-label {
+    border-radius: 15px;
+    /*	width: 70px;
+        height: 30px;*/
+    padding: 4px 12px;
+    position: relative;
+    border: 1px solid #e5e5e5;
+}
+
+.event > span {
+    font-size: 1.7em;
+    line-height: 1.5;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+#inputRoomName {
+    width: 100px;
+    height: 20px;
+}
+
+#details-body,
+.event-users-container {
+    width: 100%;
+}
+
+.event-users-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 20px;
+}
+
+.event-users-container > div {
+    display: inline-block;
+    margin-bottom: 3px;
+}
+
+.panel-heading {
+    border-bottom: 1px solid #ccc;
+}
+
+.event_name_bar {
+    position: fixed;
+}
+
+
+
+
+
+
+
+
+
+

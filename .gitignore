@@ -1,5 +1,6 @@
 /dl
 /node_modules
+/wpk
 *~
 
 .idea
@@ -21,4 +22,3 @@ bower_components
 public/app
 public/dl
 dl
-webapp/StatisticDashboard

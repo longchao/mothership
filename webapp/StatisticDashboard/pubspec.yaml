@@ -1,0 +1,9 @@
+name: StatisticDashboard
+description: A dashboard for statistic.
+dependencies:
+  browser: any
+  jsonp: any
+  angular: any
+  crypto: any
+  intl: any
+  json_object: any
