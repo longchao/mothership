@@ -476,7 +476,8 @@ angular.module('SunExercise.directives', [])
                     //check global badges after each lesson is finished
                     $scope.$on("lesson.complete", function (event) {
                         // Mixpanel
-                        LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup);
+                        LearningRelated.finishLesson($scope.id, $scope.title, $scope.lessonCup, lessonUserdata.summary.correct_count,
+                          lessonUserdata.summary.correct_percent, lessonUserdata.is_complete);
 
                         var incompleteBadgesPromise = lessonSandbox.getIncompleteGlobalBadges(event);
                         incompleteBadgesPromise.then(function (globalBadges) {
@@ -856,6 +857,8 @@ angular.module('SunExercise.directives', [])
                                 } else {
                                     //do a page transition and show the next problem
                                     PageTransitions.nextPage(1, $("#buttonContainer"));
+                                    // update the start time of next problem
+                                    activityUserdata.problems[activityData.problems[index+1].id].enter_time = Date.now();
                                     //update the progress bar
                                     $scope.progressWidth = (index + 2) * 100 / activityData.problems.length;
                                 }
@@ -1450,11 +1453,12 @@ angular.module('SunExercise.directives', [])
 
                 }
 
+
                 //continue button if show_answer=true
                 $scope.continueProblem = function () {
                     //send problem complete event to activity directive
                     LearningRelated.finishProblem(currProblem.id, currProblem.body, currProblem.type, $scope.correct_answer_body[currProblem.id],
-                        $scope.user_answer_body[currProblem.id], problemUserdata.is_correct, problemUserdata.is_hint_checked);
+                        $scope.user_answer_body[currProblem.id], problemUserdata.is_correct, problemUserdata.is_hint_checked, (problemUserdata.submit_time-problemUserdata.enter_time)/1000);
                     problemSandbox.sendEvent('problemComplete_' + currProblem.id, $scope, {should_transition: true});
                 }
             }

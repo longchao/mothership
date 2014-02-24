@@ -62,7 +62,7 @@
             mixpanel.register({QuizId:quiz_id,QuizTitle:quiz_title});
         },
 
-        finishProblem: function(id,body,type,correct_answer,user_answer,correct_or_not,hint_or_not){
+        finishProblem: function(id,body,type,correct_answer,user_answer,correct_or_not,hint_or_not,time_spent){
             mixpanel.track("FinishProblem",{
                 ProblemId:id,
                 ProblemBody:body,
@@ -70,7 +70,8 @@
                 CorrectAnswer:correct_answer,
                 UserAnswer:user_answer,
                 CorrectOrNot:correct_or_not, //boolean
-                HintOrNot:hint_or_not //boolean
+                HintOrNot:hint_or_not, //boolean,
+                TimeSpent:time_spent
             });
         },
 
@@ -83,8 +84,8 @@
             Utils.unregisterSP(false,false,true); //unregister quiz
         },
 
-        finishLesson: function(lesson_id,lesson_title,star){
-            mixpanel.track("FinishLesson",{LessonId:lesson_id, LessonTitle:lesson_title, Star:star});
+        finishLesson: function(lesson_id,lesson_title,star,correct_count,correct_percent,pass){
+            mixpanel.track("FinishLesson",{LessonId:lesson_id, LessonTitle:lesson_title, Star:star, CorrectCount:correct_count,CorrectPercent:correct_percent, Pass:pass});
             Utils.unregisterSP(false,true,true); //unregister lesson
         }
     }
