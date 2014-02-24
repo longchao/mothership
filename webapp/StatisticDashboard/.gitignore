@@ -2,7 +2,6 @@
 .DS_Store
 
 # Dart Library files
-packages/
 .settings
 
 # WebStorm Setting files

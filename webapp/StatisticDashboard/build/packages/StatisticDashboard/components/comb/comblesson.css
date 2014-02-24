@@ -1,0 +1,48 @@
+td {
+    width:307px;
+    height:127px;
+    display: inline-block;
+    margin: 20px;
+    text-overflow:ellipsis;
+    border-radius:5px;
+    background-color:white;
+}
+
+.lesson_title{
+    margin:20px 20px 0 20px;
+    width: auto;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:15px;
+}
+
+.circle {
+    border-radius: 15px;
+    width: 70px;
+    height: 30px;
+    position: relative;
+    margin: 0;
+    border:1px solid #e5e5e5;
+
+}
+
+.circle > p {
+    font-size: 16px;
+    color: lightgray;
+    text-align: center;
+    margin: 7px 0 7px 0;
+}
+
+.event_container{
+    padding: 0 10px 0 10px;
+}
+.event {
+    display: inline-block;
+    text-align: center;
+    margin:20px 10px 0 10px;
+}
+
+.event > p {
+    margin-top: 5px;
+}
