@@ -92,18 +92,15 @@
 
         finishQuiz: function(quiz_id,quiz_title,correctRatio,time_spent){
             mixpanel.track("FinishQuiz",{QuizId:quiz_id,QuizTitle:quiz_title,CorrectRatio:correctRatio,TimeSpent:Math.floor(time_spent)});
-            //Utils.unregisterSP(false,false,true); //unregister quiz
             Utils.unregisterQuiz();
         },
 
         finishLesson: function(lesson_id,lesson_title,star,correct_count,correct_percent,pass){
             mixpanel.track("FinishLesson",{LessonId:lesson_id, LessonTitle:lesson_title, Star:star, CorrectCount:correct_count,CorrectPercent:correct_percent, Pass:pass});
-            //Utils.unregisterSP(false,true,true); //unregister lesson
             Utils.unregisterLesson();
         },
 
         quitChapter: function(){
-            //Utils.unregisterSP(true,true,true); //unregister chapter
             Utils.unregisterChapter();
         }
     }
