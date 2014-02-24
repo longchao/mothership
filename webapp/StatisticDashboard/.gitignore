@@ -3,6 +3,7 @@
 
 # Dart Library files
 .settings
+web/*.dart.*
 
 # WebStorm Setting files
 .idea
