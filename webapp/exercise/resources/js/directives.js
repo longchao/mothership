@@ -23,7 +23,7 @@ angular.module('SunExercise.directives', [])
         subjectSandbox.getMe(function (err, me) {
             console.log("USERINFO!!" + JSON.stringify(me));
             //Mixpanel
-            initMixpanel(me._id/*,me.username,me.utype*/);
+            initMixpanel(me._id);
         });
 
         return {
@@ -55,7 +55,7 @@ angular.module('SunExercise.directives', [])
                     $scope.loadProgress = {};
                     $scope.showProgress = {};
                     $scope.hasCached = {};
-                    var Chapter = {};//Mixpanel
+                    var Chapter = {};
                     angular.forEach(subjectMaterial.chapters, function (chapter) {
                         Chapter = chapter;
                         var currentStatusPromise = subjectSandbox.getCurrentChapterStatus(chapter.id);
@@ -183,7 +183,8 @@ angular.module('SunExercise.directives', [])
                 }
                 $scope.returnToSubject = function () {
                     //Mixpanel
-                    Utils.unregisterSP(true, true, true);
+                    //Utils.unregisterSP(true, true, true);
+                    Utils.unregisterChapter();
                     $rootScope.isBack = false;
                     $rootScope.shouldReload = false;
                     $location.path('/subject/' + $routeParams.sid);
@@ -737,7 +738,8 @@ angular.module('SunExercise.directives', [])
                 })
                 $scope.pauseLearn = function () {
                     //Mixpanel
-                    Utils.unregisterSP(false, true, true);
+                    //Utils.unregisterSP(false, true, true);
+                    Utils.unregisterLesson();
                     //send pause activity event to lesson directive
                     activitySandbox.sendEvent("pauseActivity", $scope);
                 }

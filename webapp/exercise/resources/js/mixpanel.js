@@ -9,11 +9,12 @@
         },
 
         // SP means super properties, which is an usage of Mixpanel.
-        registerSP: function(id,user_name,name){
+        registerSP: function(id,user_name,name,user_group){
             mixpanel.register({
                 UserId:id,
                 UserName:user_name,
-                Name:name
+                Name:name,
+                UserGroup:user_group
             });
         },
 
@@ -25,11 +26,21 @@
             mixpanel.track("Logout");
         },
 
-        setActive: function(){
+        setActive: function(callback){
             mixpanel.people.set_once("FirstActive", new Date());
             mixpanel.people.set("LastActive", new Date());
+        },
+
+        setProfile: function(id,user_name,name,user_group){
+            mixpanel.people.set({
+                UserId:id,
+                UserName:user_name,
+                $name:name, // SP to show on Profile MainPage.
+                UserGroup:user_group
+            })
         }
     }
+
 
     var LearningRelated = {
 
@@ -81,44 +92,55 @@
 
         finishQuiz: function(quiz_id,quiz_title,correctRatio,time_spent){
             mixpanel.track("FinishQuiz",{QuizId:quiz_id,QuizTitle:quiz_title,CorrectRatio:correctRatio,TimeSpent:Math.floor(time_spent)});
-            Utils.unregisterSP(false,false,true); //unregister quiz
+            Utils.unregisterQuiz();
         },
 
         finishLesson: function(lesson_id,lesson_title,star,correct_count,correct_percent,pass){
             mixpanel.track("FinishLesson",{LessonId:lesson_id, LessonTitle:lesson_title, Star:star, CorrectCount:correct_count,CorrectPercent:correct_percent, Pass:pass});
-            Utils.unregisterSP(false,true,true); //unregister lesson
+            Utils.unregisterLesson();
+        },
+
+        quitChapter: function(){
+            Utils.unregisterChapter();
         }
     }
 
     var Utils = {
-        unregisterSP: function(chapter,lesson,quiz){
 
-            if(chapter){
-                mixpanel.unregister("ChapterId");
-                mixpanel.unregister("ChapterTitle");
-            }
+        unregisterQuiz: function(){
+            mixpanel.unregister("QuizId");
+            mixpanel.unregister("QuizTitle");
+        },
 
-            if(lesson){
-                mixpanel.unregister("LessonId");
-                mixpanel.unregister("LessonTitle");
-            }
+        unregisterLesson: function(){
+            this.unregisterQuiz();
+            mixpanel.unregister("LessonId");
+            mixpanel.unregister("LessonTitle");
+        },
 
-            if(quiz){
-                mixpanel.unregister("QuizId");
-                mixpanel.unregister("QuizTitle");
-            }
+        unregisterChapter: function(){
+            this.unregisterLesson();
+            mixpanel.unregister("ChapterId");
+            mixpanel.unregister("ChapterTitle");
         }
     }
 
     //var BrowserRelated = {}
 
-    function initMixpanel(id,user_name,name){
-        UserRelated.identifyId(id/*,UserRelated.registerSP(id,user_name,name)*/);
+    function initMixpanelWithSP(id,user_name,name,user_group){
+        UserRelated.identifyId(id,UserRelated.registerSP(id,user_name,name,user_group));
     }
 
-    /*function signIn(){
-        UserRelated.login(UserRelated.setActive());
-    }*/
+    function initMixpanel(id){
+        UserRelated.identifyId(id);
+    }
 
+    function signIn(id,user_name,name,user_group){
+        UserRelated.login(UserRelated.setActive(UserRelated.setProfile(id,user_name,name,user_group)));
+    }
+
+    function unregisterAllSP(){
+        Utils.unregisterChapter();
+    }
 
 
