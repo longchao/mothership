@@ -20,7 +20,7 @@ var userInfoUrl = "/me";
 var chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
 var allUsersUrl = "/users";
 
-String _allUsersUrl = "web/files/all_user.json";
+String _allUsersUrl = "files/all_user.json";
 
 var currentRoomIndex = 0;
 var currentChapterIndex = 0;
@@ -71,7 +71,7 @@ class BoardController {
   }
 
   Future _loadAllUsersAndFindUsers(var rooms) {
-    return HttpRequest.getString(_allUsersUrl)
+    return HttpRequest.getString(allUsersUrl)
     .then((value){
       allUser = new JsonObject.fromJsonString(value).toList();
       findUsers(rooms);

@@ -2,7 +2,7 @@
 .DS_Store
 
 # Dart Library files
-pubspec.*
+packages/
 .settings
 
 # WebStorm Setting files
