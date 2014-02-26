@@ -20,7 +20,7 @@ angular.module('SunLesson', ['SunLesson.services', 'SunLesson.controllers', 'Sun
                  }
              })    
 
-             .when('/lesson/:lid/activity/:aid', {
+             .when('/chapter/:cid/lesson/:lid/activity/:aid', {
                  controller: 'ActivityCtrl',
                  templateUrl: 'resources/partials/activity.html',
                  resolve: {

@@ -6,14 +6,12 @@ angular.module('SunLesson.directives', [])
                 var activitySandbox = SandboxProvider.getSandbox();
  
                 var activityUserdata = activitySandbox.getActivityUserdata($routeParams.aid); 
-                //console.log('刚进来，最新的activity userdata='+angular.toJson(activityUserdata));
                 DataProvider.lessonUserdata.activities[$routeParams.aid] = activityUserdata;
                 var activityData = activitySandbox.getActivityMaterial($routeParams.aid, activityUserdata.seed);
                 $scope.current_activity = activityData.id;
                 var userInfo = activitySandbox.loadUserInfo();
                 DataProvider.userInfo = userInfo;
 
-//
                 $scope.activityTitle = activityData.title;
                 var multimediaBody = "<div>" + activityData.body + "</div>";
                 $scope.body = $compile(multimediaBody)($scope);  
@@ -26,12 +24,10 @@ angular.module('SunLesson.directives', [])
 
                 if (activityData.type == "quiz") {
                     var currProblem = 0;
-                    //alert('current_problem='+activityUserdata.current_problem);
                     for (var i = 0; i < activityData.problems.length; i++) {
                         if ((activityUserdata.current_problem != "undefined") &&
                             (activityUserdata.current_problem == activityData.problems[i].id)) {
                                 currProblem = i;  
-                           // alert('get the i = '+i);
                                 break;
                         }
                     }
@@ -54,7 +50,7 @@ angular.module('SunLesson.directives', [])
                     angular.forEach(activityData.problems, function (problem, index) {
                         $scope.$on("problemComplete_" + problem.id, function (event, args) {
                             if (index != activityData.problems.length - 1) {
-                                activityUserdata.current_problem = activityData.problems[index + 1].id;
+                                $scope.problemIndex = $scope.problemIndex + 1;
                                 PageTransitions.nextPage(1, $("#buttonContainer"));
                                 activityUserdata.problems[activityData.problems[index+1].id].enter_time = Date.now();
                                 $scope.progressWidth = (index + 2) * 100 / activityData.problems.length;      
@@ -188,13 +184,6 @@ angular.module('SunLesson.directives', [])
                     Utils.unregisterLesson();  
 
                     var ids = $rootScope.ids;
-             /*       
-                    var resourceSession = angular.fromJson(sessionStorage.getItem('resourceSession'));
-                    resourceSession.lessonsUserdataMap[ids.lid] = DataProvider.lessonUserdata;
-                    resourceSession.userInfo = DataProvider.userInfo;
-                    sessionStorage.setItem('resourceSession', angular.toJson(resourceSession));   
-             */
-                    //也需要等待userInfo的写入...
                     activitySandbox.flushUserdata(ids.lid, ids.cid).then(function(msg) {
                         console.log('write the lessonUserdata current_activity: '+DataProvider.lessonUserdata.current_activity+'current_problem='+DataProvider.lessonUserdata.activities[$routeParams.aid].current_problem);
                        // alert('msg='+msg);
@@ -212,15 +201,6 @@ angular.module('SunLesson.directives', [])
                     }, function(err) {
                         alert('backToChapter write userdata Error');
                     })
-               /*    if(sessionStorage) {
-                        var ids = $rootScope.ids;
-
-                       var resourceSession = angular.fromJson(sessionStorage.getItem('resourceSession'));
-                        resourceSession.lessonsUserdataMap[ids.lid] = DataProvider.lessonUserdata;
-                        resourceSession.userInfo = DataProvider.userInfo;
-                        sessionStorage.setItem('resourceSession', angular.toJson(resourceSession));        
-                    }
-                    */
                 } 
             }   //end of link
         }         //end of return
@@ -379,7 +359,7 @@ angular.module('SunLesson.directives', [])
     .directive("hypervideo", function (APIProvider, DataProvider, $compile, $timeout, $templateCache, $http, $rootScope, $routeParams, SandboxProvider) {
 //TODO:userdata的填充，MixPanel的填充
         var hvideoSandbox = SandboxProvider.getSandbox();
-        var activityData = hvideoSandbox.getActivityMaterial($routeParams.aid);//利用新的activity schema, type=lecture? or other something
+        var activityData = hvideoSandbox.getActivityMaterial($routeParams.aid);
         var video = activityData.video;
         var problemMaterial = activityData.problems;       
 
@@ -625,7 +605,7 @@ angular.module('SunLesson.directives', [])
     })
 
     //problem module
-    .directive("problem", function (SandboxProvider, $compile, $http, $templateCache, DataProvider) {
+    .directive("problem", function (SandboxProvider, $compile, $http, $templateCache, DataProvider, $routeParams) {
         var problemSandbox = SandboxProvider.getSandbox();
 
         return {
@@ -633,10 +613,10 @@ angular.module('SunLesson.directives', [])
             link: function ($scope, $element) {
                 var currProblem = $scope.problem;
                 var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);   
+                var activityUserdata = problemSandbox.getActivityUserdata($routeParams.aid);                
 
                 var current_activity = $scope.current_activity;        
-                var problemUserdata = DataProvider.lessonUserdata.activities[current_activity].problems[currProblem.id];   
-   console.log('problemUserdata='+problemUserdata+'------=-=-==-==-=');             
+                var problemUserdata = DataProvider.lessonUserdata.activities[current_activity].problems[currProblem.id];             
 
                 var templateUrl = 'resources/partials/choiceTemplates/_' + currProblem.type + 'Template.html';
                 $http.get(templateUrl, {cache: $templateCache}).success(function (contents) {
@@ -790,6 +770,9 @@ angular.module('SunLesson.directives', [])
                             return;
                         }
                     }
+
+                    //TODO:
+                    activityUserdata.current_problem = $scope.problems[$scope.problemIndex + 1].id;
 
                     var ids = [];
                     if(currProblem.type == 'singlechoice') {
