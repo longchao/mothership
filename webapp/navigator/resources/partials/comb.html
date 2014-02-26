@@ -1,0 +1,33 @@
+<table>
+<tr ng-repeat="lessons in allLessons">
+  <td ng-repeat="lesson in lessons">
+   <!--   <div class='chapter-tree-line'><img src='resources/img/middle-line.png' /></div>  -->
+      <lesson ng-if="lessonIsLoaded(lesson)" ng-init="obj={lesson:lesson, isFirst:$first}"></lesson>  
+
+      <div ng-if="!lessonIsLoaded(lesson)">
+          <div class="lesson-button-container-{{$first}} font-size-small" ng-click="mShowLockDialogue(lesson.id)">
+              <div class="lesson-button-icon-locked"><img src="resources/img/lesson-button-icon-locked.png"/></div>
+              <span class="lesson-button-title">{{lesson.title}}</span>
+          </div>
+          <div class="modal fade" id="lessonModal-{{lesson.id}}" tabindex="-1" role="dialog" aria-labelledby="lessonModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="lesson-container modal-content">
+                        <div class="lesson-header-locked"><img class="lesson-icon" src="resources/img/headerLocked.png"/>
+                              <span class="lesson-title font-size-big">{{lesson.title}}</span>
+                        </div>
+                        <div class="lesson-body-enter">
+                              <!-- <span>{{lesson.summary}}</span> -->
+                <div class="cao" ng-bind-html-unsafe="lesson.summary"></div>
+                        </div>
+                        <div class="lesson-footer modal-footer">
+                              <button class="lesson-enter-button-locked col-md-4 col-md-offset-4">开始学习</button>
+                        </div>
+                    </div>
+               </div>
+         </div>
+     </div>
+
+ <!--    <div class='chapter-tree-line' ng-><img src='resources/img/long-vertical-line.png' /></div>  -->
+  </td>
+</tr>
+</table>

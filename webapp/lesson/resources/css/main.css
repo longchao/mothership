@@ -1,0 +1,18 @@
+body {
+    color: #555555;
+    height: 100%;
+    font-size: 18px;
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", Microsoft YaHei, "微软雅黑", SimSun, "宋体", sans-serif;
+}
+
+.font-size-big {
+    /*font-size: 1.25em;*/
+}
+
+.font-size-small {
+    font-size: 0.75em;
+}
+
+.chapter-back-button, .lesson-button-container-true, .lesson-button-container-false, .achievements-button, .chapters-container, .open-menu, .subject-container, .achievements-back-button {
+    cursor: pointer;
+}
