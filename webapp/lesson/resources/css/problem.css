@@ -1,0 +1,71 @@
+.videoContainer {
+    position: relative;
+}
+
+.problemContainer {
+    position: absolute;
+    bottom: 0px;
+    /*height: 100px;*/
+    /*opacity: 0.8;*/
+    z-index: 999999;
+    color: white;
+    padding: 0 20px;
+    -webkit-animation: appearFromBottom 0.5s ease-in-out both;
+    -moz-animation: appearFromBottom 0.5s ease-in-out both;
+    animation: appearFromBottom 0.5s ease-in-out both;
+}
+
+.choiceContainer {
+    position: absolute;
+    bottom: -60px;
+    padding: 15px 50px;
+    background-color: #aaaaaa;
+    cursor: pointer;
+    border: 1px solid white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/*.choiceContainer:hover {*/
+/*background-color: #888;*/
+/*cursor: pointer;*/
+/*}*/
+
+.choiceContainer.selected {
+    background-color: #333;
+}
+
+.video {
+    position: absolute;
+    z-index: 0;
+}
+
+.choiceContainer.ng-hide-add, .choiceContainer.ng-hide-remove {
+    /*-webkit-transition: all linear 0.5s;*/
+    /*-moz-transition: all linear 0.5s;*/
+    /*-o-transition: all linear 0.5s;*/
+    /*transition: all linear 0.5s;*/
+    display: block !important;
+
+}
+
+/*.problemContainer.ng-hide-add.ng-hide-add-active,*/
+/*.problemContainer.ng-hide-remove {*/
+/*opacity: 0;*/
+/*}*/
+
+/*.problemContainer.ng-hide-add,*/
+/*.problemContainer.ng-hide-remove.ng-hide-remove-active {*/
+/*opacity: 1;*/
+/*}*/
+
+@-webkit-keyframes appearFromBottom {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(-80px);
+    }
+}
