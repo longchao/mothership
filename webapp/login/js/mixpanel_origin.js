@@ -142,5 +142,3 @@
     function unregisterAllSP(){
         Utils.unregisterChapter();
     }
-
-

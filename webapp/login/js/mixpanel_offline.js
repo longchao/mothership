@@ -1,14 +1,11 @@
 /**
  * Created by solomon on 14-2-25.
  */
-
-    var offline_mixpanel;
-
+     
     var UserRelated = {
-
         identifyId: function(id){
+            offline_mixpanel.setUserId(id);
             mixpanel.identify(id);
-            offline_mixpanel = new offline_mixpanel($http,id);
         },
 
         // SP means super properties, which is an usage of Mixpanel.
@@ -29,10 +26,7 @@
             offline_mixpanel.track("Logout");
         },
 
-
-
-        // Because people can't work in mixpanel's import API, we couldn't make it offline.
-
+        // Because "people" can't work in mixpanel's import API, we couldn't make it offline.
         setActive: function(callback){
             mixpanel.people.set_once("FirstActive", new Date());
             //I only hava one chance that the user is abs online. Use LastSeen property by origin Mixpanel instead. 
