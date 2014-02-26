@@ -6,6 +6,9 @@ module.exports = {
     app: {
         name: "MEAN - A Modern Stack - Test"
     },
+    mixpanel: {
+        api_key: "339c926e7e417f3bc6f2c986d9ac163a"
+    },
     facebook: {
         clientID: "APP_ID",
         clientSecret: "APP_SECRET",
