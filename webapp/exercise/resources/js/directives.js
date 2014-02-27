@@ -17,13 +17,12 @@ angular.module('SunExercise.directives', [])
 
     //subject module
     .directive("subject", function (SandboxProvider, $routeParams, $location, $rootScope) {
+        var user = $rootScope.user;
 
         //create the subject sandbox 
         var subjectSandbox = SandboxProvider.getSandbox();
         subjectSandbox.getMe(function (err, me) {
             console.log("USERINFO!!" + JSON.stringify(me));
-            //Mixpanel
-            initMixpanel(me._id);
         });
 
         return {
@@ -31,6 +30,8 @@ angular.module('SunExercise.directives', [])
             link: function ($scope) {
                 $scope.initResourcePromise.then(function (msg) {
                     console.log("Loading initial resources complete: " + msg);
+                    //Mixpanel
+                    initMixpanelWithSP(user._id,user.username,user.name,user.usergroup);
                     if (typeof $routeParams.sid === "undefined") {
                         console.log("subject id is null");
                         return;
