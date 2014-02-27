@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <title>StatisticDashboard</title>
     <link rel="stylesheet" href="files/lib/bootstrap-3.1.1/css/bootstrap.min.css"/>
+    <link href="css/c-flat-ui.less" rel="stylesheet/less"> 
     <link rel="stylesheet" href="css/statisticdashboard.css"/>
     <script src="files/js/selector.js"></script>
+    <script src="files/js/less-1.5.0.min.js"></script>
 </head>
 <body board>
-<nav class="navbar navbar-default navbar-static-top" style="background:white;margin-bottom:20px">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <a href="#" class="navbar-brand">ghxz</a>
@@ -35,8 +37,8 @@
         </div>
     </div>
 </nav>
-<div class="container" style="margin-bottom:5px;">
-    <div id="search_panel" class="col-lg-10">
+<div class="container">
+    <div id="search_panel" class="col-lg-12 col-md-12">
         <!--<div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 Action <span class="caret"></span>
@@ -51,7 +53,7 @@
                 <li><a href="#">8z234131</a></li>
             </ul>
         </div>-->
-        <form class="col-lg-3 col-md-2">
+        <form class="col-lg-3 col-md-3">
             <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                     onchange="giveParams(null,this.options[this.selectedIndex].index)">
                 <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
@@ -68,23 +70,28 @@
                 </optgroup>
             </select>
         </form>
+        <p class="pull-right">
+            全班学生中，
+            <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+                <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)">{{event.info['result'].length}}</a>
+                
+            </span>
+            人从未登录
+
+<!--             <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+                <div class="circle" ng-click="ctrl.showUsers(true,event)">
+                    <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
+
+                    <p ng-if="event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
+                </div>
+                <p>{{event.info['event_name']}}</p>
+            </div> -->
+
+        </p>
     </div>
-    <div class="pull-right">
-        <p>全班学生登录情况</p>
 
-        <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
-            <div class="circle" ng-click="ctrl.showUsers(true,event)">
-                <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
 
-                <p ng-if="event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
-            </div>
-            <p>{{event.info['event_name']}}</p>
-        </div>
-    </div>
-</div>
-
-<div style="display: inline-flex">
-    <div id="chapter-panel" class="container">
+    <div id="chapter-panel" class="col-lg-12 col-md-12">
         <!-- <comblesson lessons-data="ctrl.lessons" events-data="ctrl.events"
                      ng-model="ctrl.userClickedLesson"
                      on-lesson-click="ctrl.showUsers(false)">

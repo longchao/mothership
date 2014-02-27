@@ -1,0 +1,76 @@
+
+// 错题列表
+// --------------------------------------------------
+
+
+.list-group.cuoti .list-group-item{
+	position: relative;
+	padding: 0;
+	border: 1px solid #ddd;
+	border-width: 1px 0px;
+	
+	a.quiz-text{
+		display: block;
+		padding: 12px 20px 12px @line-height-computed * 2 + 44px;
+		margin-right: 16px;
+
+		span{
+			display: block;
+			height: @line-height-computed * 2;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		img{
+			height: @line-height-computed * 2 + 24px;
+			width: @line-height-computed * 2 + 24px;
+			margin: -12px -20px -12px -(@line-height-computed * 2 + 40px);
+		}
+	}
+
+	&:hover{
+		a.fav{
+			opacity: 1;
+		}
+	}
+
+	&:first-child{
+		border-width: 0 0 1px 0;
+	}
+
+	a.fav{
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		display: block;
+		opacity: 0;	
+		font-size: @font-size-large;
+		color: @gray;
+
+		&:hover{
+			color: @gray-light;
+		}
+
+		&.fav-faved{
+			color: @sun-flower;
+			opacity: 1;
+
+			&:hover{
+				color: lighten(@sun-flower, 10%);
+			}
+		}
+	}
+}
+
+
+/*strong.fav{
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 0;
+	height: 0;
+	border: 12px solid #ffcd5a;
+	border-color: #ffcd5a transparent transparent #ffcd5a;
+	font-size: 12px;
+}*/
