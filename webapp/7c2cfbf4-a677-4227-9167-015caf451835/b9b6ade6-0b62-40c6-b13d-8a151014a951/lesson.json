@@ -1,1 +1,274 @@
-{"title":"章节预习","summary":"超级五角组合闪亮登场，五大主角将依次亮相，等着看他们各（暴）显（露）神（本）通（性）吧","mainline":true,"pass_score":"6","id":"b9b6ade6-0b62-40c6-b13d-8a151014a951","activities":[{"title":"角章节介绍","type":"lecture","redoable":true,"body":"<xvideo src='7aa2095c-d483-4f05-a8de-d38e28fc05f8'></xvideo>","id":"f88d72ae-ebab-4f52-98b8-8512c7c6fa15","parent_id":"b9b6ade6-0b62-40c6-b13d-8a151014a951","problems":[]},{"title":"课后练习来啦~","type":"quiz","randomize_questions":false,"randomize_choices":true,"show_answer":true,"show_summary":true,"is_final":true,"redoable":true,"jump":["end_of_lesson_if_correctness:>=6","to_activity_if_correctness:f88d72ae-ebab-4f52-98b8-8512c7c6fa15:<6"],"id":"8eb24161-de14-43cc-bfc1-a41040dadab2","parent_id":"b9b6ade6-0b62-40c6-b13d-8a151014a951","problems":[{"title":"","type":"singlefilling","body":"下面两幅图中，两条相交线组成的是：","layout":"card","correct_answer":"cao","choices":[{"body":"<ximage src='612ce004-f4a3-4401-b00c-799bbf9c2356'></ximage>","is_correct":true,"id":"8d4ff05e-d426-49f7-b6b3-2552c2898e76"},{"body":"<ximage src='6c282e79-6993-4565-88d4-18b105408df6'></ximage>","is_correct":false,"id":"eed12d3b-d6be-4ed9-b3ef-0e5e93ba89f7"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"e3e5eb58-ae83-466e-bf8d-b4790454e821"},{"title":"","type":"singlechoice","body":"我们将下面这幅图称之为：<ximage src='a50d8e95-7b49-4df8-b7ba-f22a6d225a79'></ximage>","choices":[{"body":"三线八角图","is_correct":true,"id":"a722764d-b652-47be-9aed-89a27f32d341"},{"body":"三线七角图","is_correct":false,"id":"4be80c6a-09b0-4ea1-a89b-3a43a183a54f"},{"body":"三线九角图","is_correct":false,"id":"993794b2-e25d-461b-8f90-aff85392cd40"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"9c5a4b70-0a56-4f50-b96c-a8dd00c28dbf"},{"title":"","type":"singlechoice","body":"下图是由直线`a`,`b`,`l`组成的三线八角图，其中`l`属于？<ximage src='04f56a25-a1e5-4290-ac4c-8fcad31fa447'></ximage>","choices":[{"body":"被截直线","is_correct":false,"id":"2fa21567-199f-4a0f-823e-1906e20e72e2"},{"body":"截线","is_correct":true,"id":"58f16cb3-2d47-422f-a5fd-14596d9f2e52"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"d924f102-c067-46e6-9f10-44ee72d15981"},{"title":"","type":"singlechoice","body":"下图是由直线`a`,`b`,`l`组成的三线八角图，其中，被截直线指的是：<ximage src='9a59f111-f5a7-4447-9308-c668bf8b5d8c'></ximage>","choices":[{"body":"直线`a`和直线`b`","is_correct":true,"id":"f19c51b6-0e04-4815-8dff-213c211c57ca"},{"body":"直线`l`","is_correct":false,"id":"626471c3-61e5-48e5-a027-bf480a3fbaa8"},{"body":"直线`a`","is_correct":false,"id":"0a1f365b-29be-458e-832f-17335317cfad"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"301a0efd-ec18-450f-bddd-b4dcda7e816c"},{"title":"","type":"singlechoice","body":"三线八角图中的角编号如图所示，下列选项中的角都在截线同侧的是：<ximage src='963b8643-d3e8-4b7f-8149-9ea202326fde'></ximage>","choices":[{"body":"`/_1`,`/_2`,`/_3`,`/_4`","is_correct":true,"id":"92b181ce-1448-4f1e-948b-e6b44d208cc9"},{"body":"`/_1`,`/_2`,`/_7`,`/_8`","is_correct":false,"id":"9a45292e-3d0e-47fd-a737-0e4aa0268af8"},{"body":"`/_1`,`/_6`,`/_3`,`/_8`","is_correct":false,"id":"88b6580c-917d-4c53-9b77-b5ca698eaf09"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"12efb0c1-c03c-405e-be25-224578b8054c"},{"title":"","type":"singlechoice","body":"三线八角图中的角编号如图所示，下列选项中的角都在截线异侧的是：<ximage src='d189460c-95ea-4e43-aed3-1fd25c451728'></ximage>","choices":[{"body":"`/_2` 和 `/_7`","is_correct":true,"id":"11a28013-1058-4389-8768-70817368f875"},{"body":"`/_1` 和 `/_2`","is_correct":false,"id":"2235eb47-706d-409b-b437-119c665886c1"},{"body":"`/_2` 和 `/_3`","is_correct":false,"id":"abce1cc5-c2d4-4b63-8046-82817e80c351"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"866a27d1-7047-4f4a-b023-ccf6fe3f8190"},{"title":"","type":"singlechoice","body":"三线八角图中的角编号如图所示，下列选项中的角都在两条被截直线内侧的是：<ximage src='dcf00684-fe6e-4a41-ae1e-f02687272cac'></ximage>","choices":[{"body":"`/_2`,`/_3`,`/_6`,`/_7`","is_correct":true,"id":"e0965060-05e7-45aa-a15d-3496110bd563"},{"body":"`/_1`,`/_5`,`/_4`,`/_8`","is_correct":false,"id":"4503f883-9907-48eb-8316-0ec07a6c60a9"},{"body":"`/_5`,`/_6`,`/_7`,`/_8`","is_correct":false,"id":"ff5de621-2b74-4788-8eaf-c8424ff5fa33"}],"parent_id":"8eb24161-de14-43cc-bfc1-a41040dadab2","id":"13596028-b012-43ef-a507-15e4635d6596"}]}],"folder_name":"1 章节预习","materials":{"章节介绍1.1.png":{"id":"612ce004-f4a3-4401-b00c-799bbf9c2356","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍1.1.png"},"章节介绍1.2.png":{"id":"6c282e79-6993-4565-88d4-18b105408df6","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍1.2.png"},"章节介绍2.png":{"id":"a50d8e95-7b49-4df8-b7ba-f22a6d225a79","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍2.png"},"章节介绍3.png":{"id":"04f56a25-a1e5-4290-ac4c-8fcad31fa447","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍3.png"},"章节介绍4.png":{"id":"9a59f111-f5a7-4447-9308-c668bf8b5d8c","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍4.png"},"章节介绍5.png":{"id":"963b8643-d3e8-4b7f-8149-9ea202326fde","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍5.png"},"章节介绍6.png":{"id":"d189460c-95ea-4e43-aed3-1fd25c451728","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍6.png"},"章节介绍7.png":{"id":"dcf00684-fe6e-4a41-ae1e-f02687272cac","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍7.png"},"角章节介绍.mp4":{"id":"7aa2095c-d483-4f05-a8de-d38e28fc05f8","local_path":"/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/角章节介绍.mp4"}}}
+{"title": "章节预习", "summary": "超级五角组合闪亮登场，五大主角将依次亮相，等着看他们各（暴）显（露）神（本）通（性）吧", "mainline": true, "pass_score": "6", "id": "b9b6ade6-0b62-40c6-b13d-8a151014a951", "activities": [
+    {
+        "id": "399a5dca-e471-49e4-94bb-e659bba111dc",
+        "parent_id": "b9b6ade6-0b62-40c6-b13d-8a151014a951",
+        "title":"example_video",
+        "type":"hypervideo",
+        "body":"<hypervideo></hypervideo>",
+        "video":{
+            "url":"7aa2095c-d483-4f05-a8de-d38e28fc05f8"
+        },
+        "problems":[
+            {
+                "id":"cc15da3b-6b56-46fb-90ca-8b61feb4402b",
+                "title":"vocab test no.1",
+                "type":"singlechoice",
+                "body":"",
+                "show_time":4,
+                "correct_video":{
+                    "url":""
+                },
+                "choices":[
+                    {
+                        "id":"67b1d98a-79ef-4072-85f2-3b2a80f29eae",
+                        "body":"A",
+                        "is_correct":false
+                    },
+                    {
+                        "id":"60d78b13-4447-4983-8d51-631f00260e98",
+                        "body":"B",
+                        "is_correct":false
+                    }
+                ]
+            },
+            {
+                "id":"c803dc98-205c-43cd-85ea-4120172104df",
+                "title":"vocab test no.2",
+                "type":"singlechoice",
+                "body":"",
+                "show_time":10,
+                "wrong_video":{
+                    "url":""
+                },
+                "choices":[
+                    {
+                        "id":"2da62526-a3be-4d4f-9b37-da9006548d3a",
+                        "body":"我想好了！",
+                        "is_correct":false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "角章节介绍",
+        "type": "lecture",
+        "redoable": true,
+        "body": "<xvideo src='7aa2095c-d483-4f05-a8de-d38e28fc05f8'></xvideo>",
+        "id": "f88d72ae-ebab-4f52-98b8-8512c7c6fa15",
+        "parent_id": "b9b6ade6-0b62-40c6-b13d-8a151014a951",
+        "problems": []
+    },
+    {
+        "title": "课后练习来啦~",
+        "type": "quiz",
+        "randomize_questions": false,
+        "randomize_choices": true,
+        "show_answer": true,
+        "show_summary": true,
+        "is_final": true,
+        "redoable": true,
+        "jump": ["end_of_lesson_if_correctness:>=6", "to_activity_if_correctness:f88d72ae-ebab-4f52-98b8-8512c7c6fa15:<6"],
+        "id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+        "parent_id": "b9b6ade6-0b62-40c6-b13d-8a151014a951",
+        "problems": [
+            {
+                "title": "",
+                "type": "singlefilling",
+                "body": "下面两幅图中，两条相交线组成的是：",
+                "layout": "card",
+                "correct_answer": "cao",
+                "choices": [
+                    {
+                        "body": "<ximage src='612ce004-f4a3-4401-b00c-799bbf9c2356'></ximage>",
+                        "is_correct": true,
+                        "id": "8d4ff05e-d426-49f7-b6b3-2552c2898e76"
+                    },
+                    {
+                        "body": "<ximage src='6c282e79-6993-4565-88d4-18b105408df6'></ximage>",
+                        "is_correct": false,
+                        "id": "eed12d3b-d6be-4ed9-b3ef-0e5e93ba89f7"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "e3e5eb58-ae83-466e-bf8d-b4790454e821"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "我们将下面这幅图称之为：<ximage src='a50d8e95-7b49-4df8-b7ba-f22a6d225a79'></ximage>",
+                "choices": [
+                    {
+                        "body": "三线八角图",
+                        "is_correct": true,
+                        "id": "a722764d-b652-47be-9aed-89a27f32d341"
+                    },
+                    {
+                        "body": "三线七角图",
+                        "is_correct": false,
+                        "id": "4be80c6a-09b0-4ea1-a89b-3a43a183a54f"
+                    },
+                    {
+                        "body": "三线九角图",
+                        "is_correct": false,
+                        "id": "993794b2-e25d-461b-8f90-aff85392cd40"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "9c5a4b70-0a56-4f50-b96c-a8dd00c28dbf"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "下图是由直线`a`,`b`,`l`组成的三线八角图，其中`l`属于？<ximage src='04f56a25-a1e5-4290-ac4c-8fcad31fa447'></ximage>",
+                "choices": [
+                    {
+                        "body": "被截直线",
+                        "is_correct": false,
+                        "id": "2fa21567-199f-4a0f-823e-1906e20e72e2"
+                    },
+                    {
+                        "body": "截线",
+                        "is_correct": true,
+                        "id": "58f16cb3-2d47-422f-a5fd-14596d9f2e52"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "d924f102-c067-46e6-9f10-44ee72d15981"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "下图是由直线`a`,`b`,`l`组成的三线八角图，其中，被截直线指的是：<ximage src='9a59f111-f5a7-4447-9308-c668bf8b5d8c'></ximage>",
+                "choices": [
+                    {
+                        "body": "直线`a`和直线`b`",
+                        "is_correct": true,
+                        "id": "f19c51b6-0e04-4815-8dff-213c211c57ca"
+                    },
+                    {
+                        "body": "直线`l`",
+                        "is_correct": false,
+                        "id": "626471c3-61e5-48e5-a027-bf480a3fbaa8"
+                    },
+                    {
+                        "body": "直线`a`",
+                        "is_correct": false,
+                        "id": "0a1f365b-29be-458e-832f-17335317cfad"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "301a0efd-ec18-450f-bddd-b4dcda7e816c"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "三线八角图中的角编号如图所示，下列选项中的角都在截线同侧的是：<ximage src='963b8643-d3e8-4b7f-8149-9ea202326fde'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_1`,`/_2`,`/_3`,`/_4`",
+                        "is_correct": true,
+                        "id": "92b181ce-1448-4f1e-948b-e6b44d208cc9"
+                    },
+                    {
+                        "body": "`/_1`,`/_2`,`/_7`,`/_8`",
+                        "is_correct": false,
+                        "id": "9a45292e-3d0e-47fd-a737-0e4aa0268af8"
+                    },
+                    {
+                        "body": "`/_1`,`/_6`,`/_3`,`/_8`",
+                        "is_correct": false,
+                        "id": "88b6580c-917d-4c53-9b77-b5ca698eaf09"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "12efb0c1-c03c-405e-be25-224578b8054c"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "三线八角图中的角编号如图所示，下列选项中的角都在截线异侧的是：<ximage src='d189460c-95ea-4e43-aed3-1fd25c451728'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_2` 和 `/_7`",
+                        "is_correct": true,
+                        "id": "11a28013-1058-4389-8768-70817368f875"
+                    },
+                    {
+                        "body": "`/_1` 和 `/_2`",
+                        "is_correct": false,
+                        "id": "2235eb47-706d-409b-b437-119c665886c1"
+                    },
+                    {
+                        "body": "`/_2` 和 `/_3`",
+                        "is_correct": false,
+                        "id": "abce1cc5-c2d4-4b63-8046-82817e80c351"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "866a27d1-7047-4f4a-b023-ccf6fe3f8190"
+            },
+            {
+                "title": "",
+                "type": "singlechoice",
+                "body": "三线八角图中的角编号如图所示，下列选项中的角都在两条被截直线内侧的是：<ximage src='dcf00684-fe6e-4a41-ae1e-f02687272cac'></ximage>",
+                "choices": [
+                    {
+                        "body": "`/_2`,`/_3`,`/_6`,`/_7`",
+                        "is_correct": true,
+                        "id": "e0965060-05e7-45aa-a15d-3496110bd563"
+                    },
+                    {
+                        "body": "`/_1`,`/_5`,`/_4`,`/_8`",
+                        "is_correct": false,
+                        "id": "4503f883-9907-48eb-8316-0ec07a6c60a9"
+                    },
+                    {
+                        "body": "`/_5`,`/_6`,`/_7`,`/_8`",
+                        "is_correct": false,
+                        "id": "ff5de621-2b74-4788-8eaf-c8424ff5fa33"
+                    }
+                ],
+                "parent_id": "8eb24161-de14-43cc-bfc1-a41040dadab2",
+                "id": "13596028-b012-43ef-a507-15e4635d6596"
+            }
+        ]
+    }
+], "folder_name": "1 章节预习", "materials": {
+    "章节介绍1.1.png": {
+        "id": "612ce004-f4a3-4401-b00c-799bbf9c2356",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍1.1.png"
+    },
+    "章节介绍1.2.png": {
+        "id": "6c282e79-6993-4565-88d4-18b105408df6",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍1.2.png"
+    },
+    "章节介绍2.png": {
+        "id": "a50d8e95-7b49-4df8-b7ba-f22a6d225a79",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍2.png"
+    },
+    "章节介绍3.png": {
+        "id": "04f56a25-a1e5-4290-ac4c-8fcad31fa447",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍3.png"
+    },
+    "章节介绍4.png": {
+        "id": "9a59f111-f5a7-4447-9308-c668bf8b5d8c",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍4.png"
+    },
+    "章节介绍5.png": {
+        "id": "963b8643-d3e8-4b7f-8149-9ea202326fde",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍5.png"
+    },
+    "章节介绍6.png": {
+        "id": "d189460c-95ea-4e43-aed3-1fd25c451728",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍6.png"
+    },
+    "章节介绍7.png": {
+        "id": "dcf00684-fe6e-4a41-ae1e-f02687272cac",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/章节介绍7.png"
+    },
+    "角章节介绍.mp4": {
+        "id": "7aa2095c-d483-4f05-a8de-d38e28fc05f8",
+        "local_path": "/Users/fxp/快盘/提高班数据/待测试数据/相交线和平行线/1 章节预习/materials/角章节介绍.mp4"
+    }
+}}
