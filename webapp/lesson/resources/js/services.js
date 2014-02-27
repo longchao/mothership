@@ -155,7 +155,7 @@ angular.module('SunLesson.services', [])
 
             var ids = {};
             var params = $route.current.params;
-            ids.sid = params.sid;
+           //ids.sid = params.sid;
             ids.cid = params.cid;
             ids.lid = params.lid;
             ids.aid = params.aid;
@@ -201,6 +201,7 @@ angular.module('SunLesson.services', [])
                         }
                     })
 
+console.log('开始获取lesson json');
                     var url = APIProvider.getAPI('getLessonJson', {chapter: DataProvider.chapterData, lessonId: $rootScope.ids.lid}, ts);
                     getResourceFromServer(url, deferred);
                 }).error(function(err) {
@@ -296,9 +297,74 @@ angular.module('SunLesson.services', [])
         }
     })
 
+    .factory('InitResourceProvider', function(DataProvider) {
+         var initResource = function(ids, lessonData, lessonUserdata, userInfo) {
+           // console.log('initResource.lessonData: '+angular.toJson(lessonData));
+             (function initLessonData() {
+                DataProvider.lessonData = lessonData;
+                console.log('init LessonData');
+             })();
+
+            (function initLessonUserdata() {
+                 if(!lessonUserdata || !lessonUserdata.summary) {
+                     lessonUserdata = {
+                         is_complete : false,
+                         activities: {},
+                         summary: {badges:[]}
+                     };
+
+                     for(var i=0;i<lessonData.activities.length;i++) {   
+                         var activityItem = lessonData.activities[i];            
+                         if(activityItem.type == 'quiz') { 
+                            lessonUserdata.activities[activityItem.id]= {
+                                is_complete: false,
+                                problems: {},
+                                summary: {}
+                            };
+
+                            if(activityItem.pool_count) {    
+                                lessonUserdata.activities[activityItem.id].seed = [];
+                            }
+                        } else {
+                            lessonUserdata.activities[activityItem.id] = {
+                                is_complete: false,   
+                                summary: {}
+                            };
+                        }
+                    }
+                }
+                DataProvider.lessonUserdata = lessonUserdata;
+            })();
+
+            (function initUserInfo() {
+                if(!userInfo.achievements) {
+                    userInfo = {
+                        achievements: {
+                            badges: {},
+                            awards: {}
+                        }
+                    }
+                } else if(!userInfo.achievements.badges) {
+                    userInfoData.achievements = {
+                        badges: {},
+                        awards: {}
+                    }
+                }
+                DataProvider.userInfo = userInfo;
+            })();            
+         }   
+
+         return {
+            initResource: initResource
+         }     
+    })
+
     .factory('UserdataProvider', function($q, $http, $rootScope, APIProvider, DataProvider, ResourceProvider, MaterialProvider) {
         var getActivityUserdata = function (activityId) { 
            var activityData = {};
+
+           var lessonDataPromise = ResourceProvider.getLessonData();
+           //alert('getActivityUserdata...');
 
            DataProvider.lessonData.activities.some(function(activity, index) {
                 if(activity.id == activityId) {
@@ -620,8 +686,12 @@ angular.module('SunLesson.services', [])
         }
     })
 
-    .factory('SandboxProvider', function($rootScope, $location, DataProvider, APIProvider, ResourceProvider, UserdataProvider, MaterialProvider, GraderProvider) {
+    .factory('SandboxProvider', function($rootScope, $location, DataProvider, APIProvider, ResourceProvider, UserdataProvider, MaterialProvider, GraderProvider, InitResourceProvider) {
         function Sandbox() {
+            Sandbox.prototype.initResource = function(ids, lessonData, lessonUserdata, userInfo) {
+                return InitResourceProvider.initResource(ids, lessonData, lessonUserdata, userInfo);
+            }
+
             Sandbox.prototype.getIds = function() {
                 return ResourceProvider.getIds();
             }
