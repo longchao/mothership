@@ -69,13 +69,13 @@ function generateMixpanelJson(eventName, properties){
 	}
 
 	var map_data = {
-		"event":eventName,
-		"properties":map_all_properties == undefined ? {} : map_all_properties 
+		"event": eventName,
+		"properties": map_all_properties 
 	};
 
 	var mixpanelJson = {"header": map_header, "data": map_data};
 
-	console.log(JSON.stringify(mixpanelJson));
+	console.log(eventName+"-=-=-=-=-=-=> "+JSON.stringify(mixpanelJson));
 
 	return mixpanelJson;
 }

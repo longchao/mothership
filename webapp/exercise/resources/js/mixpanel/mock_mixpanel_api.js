@@ -25,9 +25,9 @@ function getSP(){
             sp[propertyName] = propertyValue;
     		previousIndex = cusorIndex+1; 
     	}while(cookie.indexOf("|",previousIndex)>-1)
-    	console.log("currentSP ==> " + JSON.stringify(sp))
+    	//console.log("currentSP ==> " + JSON.stringify(sp))
     }else{
-    	console.log("there's no sp");
+    	//console.log("there's no sp");
     }
     return sp;
 }
@@ -40,7 +40,7 @@ function saveCookie(){
 		}
 		document.cookie = cookieSchema + spStrings;
 	}else{
-		console.log("sp is empty");
+		//console.log("sp is empty");
 		document.cookie = cookieSchema + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'; // clear sp immediately
 	}
 }
@@ -69,13 +69,13 @@ function generateMixpanelJson(eventName, properties){
 	}
 
 	var map_data = {
-		"event":eventName,
-		"properties":map_all_properties == undefined ? {} : map_all_properties 
+		"event": eventName,
+		"properties": map_all_properties 
 	};
 
 	var mixpanelJson = {"header": map_header, "data": map_data};
 
-	console.log(JSON.stringify(mixpanelJson));
+	console.log(eventName+"-=-=-=-=-=-=> "+JSON.stringify(mixpanelJson));
 
 	return mixpanelJson;
 }
@@ -100,7 +100,7 @@ var offline_mixpanel = {
 		for (var key in properties){
             superProperties[key] = properties[key];
 		}
-		console.log("after registerSP ==>" + JSON.stringify(superProperties));
+		//console.log("after registerSP ==>" + JSON.stringify(superProperties));
         saveCookie();
 	},
 
