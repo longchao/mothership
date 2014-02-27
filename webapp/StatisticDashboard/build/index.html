@@ -75,6 +75,7 @@
             <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
                 <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)">{{event.info['result'].length}}</a>
                 
+                
             </span>
             人从未登录
 

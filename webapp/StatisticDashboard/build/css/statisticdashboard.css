@@ -13,7 +13,7 @@ body {
     position: fixed;
     border: 1px solid #ccc;
     background-color: #ffffff;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: inline-block;
     top: 184px;
     right: 30px;

@@ -666,7 +666,7 @@
 // -------------------------
 // Easily pump out default styles, as well as :hover, :focus, :active,
 // and disabled options for all buttons
-.button-outline-variant(@color; @border; @active-background; @disabled-background: @gray-light) {
+.button-outline-variant(@color; @border; @border-hover; @active-background; @disabled-background: @gray-light) {
   color: @color;
   background-color: none;
   border-color: @border;
@@ -678,11 +678,12 @@
   .open .dropdown-toggle& {
     color: @color;
     background-color: none;
-    border-color: @color;
+    border-color: @border-hover;
   }
   &:active,
   &.active,
   .open .dropdown-toggle& {
+    color: @inverse;
     background: @active-background;
     border-color: @active-background;
   }
