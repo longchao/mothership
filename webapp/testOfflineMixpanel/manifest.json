@@ -1,0 +1,12 @@
+{
+    "id": "testOfflineMixpanel",
+    "version_code": 1,
+    "name": "测试离线版 Mixpanel",
+    "type": "web_app",
+    "launchable": 1,
+    "package_name": "org.sunlib.exercise",
+    "url": "/app/102",
+    "home": "index.html",
+    "description": "该应用可以用来测试 Mixpanel离线版的功能，包括'在线初始化 Mixpanel distinct_id, 在线设置用户 profile，离线记录用户各种 action。'",
+    "local_folder": "/app/web"
+}
