@@ -73,7 +73,7 @@ function generateMixpanelJson(eventName, properties){
 		"properties": map_all_properties 
 	};
 
-	var mixpanelJson = {"header": map_header, "data": map_data};
+	var mixpanelJson = {"headers": map_header, "data": map_data};
 
 	console.log(eventName+"-=-=-=-=-=-=> "+JSON.stringify(mixpanelJson));
 

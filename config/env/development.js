@@ -1,13 +1,17 @@
 'use strict';
 
+var host = 'localhost',
+    database = 'exercise-dev';
+
 module.exports = {
-    db: "mongodb://localhost/exercise-dev",
+    host: host,
+    database: database,
+    db: "mongodb://" + host + "/" + database,
     app: {
         name: "MEAN - A Modern Stack - Development"
     },
-    mixpanel: {
-        api_key: "339c926e7e417f3bc6f2c986d9ac163a"
-    },
+    api_key: "339c926e7e417f3bc6f2c986d9ac163a",
+    token: "30c340455d48ef0a86f0de60dd01a4bb",
     facebook: {
         clientID: "APP_ID",
         clientSecret: "APP_SECRET",
