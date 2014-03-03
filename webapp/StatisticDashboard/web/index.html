@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="files/lib/bootstrap-3.1.1/css/bootstrap.min.css"/>
     <link href="css/c-flat-ui.less" rel="stylesheet/less"> 
     <link rel="stylesheet" href="css/statisticdashboard.css"/>
+    <link rel="stylesheet" href="css/loader.css"/>
     <script src="files/js/selector.js"></script>
     <script src="files/js/less-1.5.0.min.js"></script>
 </head>
@@ -26,7 +27,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ctrl.user['name']}} 老师<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>{{ctrl.user['name']}} 老师<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">帐号管理</a></li>
                         <li class="divider"></li>
@@ -56,24 +57,25 @@
         <form class="col-lg-3 col-md-3">
             <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                     onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+                <option ng-repeat="chapter in ctrl.chapters" value="章节名称" ng-cloak>{{chapter.name}}</option>
             </select>
         </form>
         <form class="col-lg-2 col-md-2">
             <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                     onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                <optgroup label="西外">
+                <option ng-repeat="room in ctrl.rooms" value="班级号" ng-cloak>{{room}}</option>
+                <!--<optgroup label="西外">
                     <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
                 </optgroup>
                 <optgroup label="八中">
                     <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                </optgroup>
+                </optgroup>-->
             </select>
         </form>
         <p class="pull-right">
             全班学生中，
             <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
-                <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)">{{event.info['result'].length}}</a>
+                <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)" ng-cloak>{{event.info['result'].length}}</a>
                 
             </span>
             人从未登录
@@ -86,7 +88,6 @@
                 </div>
                 <p>{{event.info['event_name']}}</p>
             </div> -->
-
         </p>
     </div>
 
@@ -102,16 +103,16 @@
                 <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="ctrl.onLessonClick(lesson)">
                     <button class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top"
                             title="Tooltip on top"><span class="glyphicon glyphicon-eye-open"> </span></button>
-                    <h4 class="lesson_title" title="{{lesson['title']}}">{{lesson['title']}}</h4>
+                    <h4 class="lesson_title" title="{{lesson['title']}}" ng-cloak>{{lesson['title']}}</h4>
 
                     <div class="event_container">
                         <div class="event"
                              ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
                             <div class="event-label">
-                                <small>{{event.info['event_name']}}</small>
+                                <small ng-cloak>{{event.info['event_name']}}</small>
                             </div>
-                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</span>
-                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</span>
+                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')" ng-cloak>{{event.info['result'].legend_size}}</span>
+                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')" ng-cloak>{{event.info['result'].length}}</span>
                             <span ng-if="lesson['status']=='closed'">- -</span>
                         </div>
                     </div>
@@ -119,12 +120,24 @@
             </tr>
             </tbody>
         </table>
+        
+        <div id="lessonLoaderModal" class="modal fade" role="dialog" aria-labelledby="lessonsLoaderLabel"
+           data-backdrop="static">
+          <div class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+              <p style="width:200%;margin-left:-50%;color:#b4b4b4">正在分析数据</p>
+          </div>
+       </div>
 
     </div>
 
     <div class="panel slide-in" id="right-panel">
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
-            <h4>{{ctrl.detailstitle}}</h4>
+            <h4 ng-cloak>{{ctrl.detailstitle}}</h4>
         </div>
         <div class="container" id="details-body"></div>
     </div>
