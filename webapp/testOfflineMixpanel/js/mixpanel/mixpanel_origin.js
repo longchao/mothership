@@ -99,11 +99,11 @@ var LearningRelated = {
 
     quitChapter: function(){
         Utils.unregisterChapter();
-    }
+    },
 
     quitLesson: function(){
         Utils.unregisterLesson();
-    },
+    }
 }
 
 var Utils = {
@@ -123,7 +123,7 @@ var Utils = {
         this.unregisterLesson();
         mixpanel.unregister("ChapterId");
         mixpanel.unregister("ChapterTitle");
-    }
+    },
 
     unregisterUserInfo: function(){
         mixpanel.unregister("UserName");
