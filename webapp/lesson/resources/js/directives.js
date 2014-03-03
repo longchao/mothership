@@ -6,8 +6,10 @@ angular.module('SunLesson.directives', [])
                 var activitySandbox = SandboxProvider.getSandbox();
 
                 var activityUserdata = activitySandbox.getActivityUserdata($routeParams.aid);
+                console.log('activity.aid='+$routeParams.aid);
                 DataProvider.lessonUserdata.activities[$routeParams.aid] = activityUserdata;
                 var activityData = activitySandbox.getActivityMaterial($routeParams.aid, activityUserdata.seed);
+                $scope.activityData = activityData;
                 $scope.current_activity = activityData.id;
                 var userInfo = activitySandbox.loadUserInfo();
                 DataProvider.userInfo = userInfo;
@@ -31,6 +33,7 @@ angular.module('SunLesson.directives', [])
                             break;
                         }
                     }
+                    
                     $scope.problems = activityData.problems.slice(currProblem);
                     $scope.problemIndex = currProblem;
                     for (var i = 0; i < $scope.problems.length; i++) {
@@ -51,6 +54,7 @@ angular.module('SunLesson.directives', [])
                         $scope.$on("problemComplete_" + problem.id, function (event, args) {
                             if (index != activityData.problems.length - 1) {
                                 $scope.problemIndex = $scope.problemIndex + 1;
+                                console.log('problemIndex + 1 =' + $scope.problemIndex);
                                 PageTransitions.nextPage(1, $("#buttonContainer"));
                                 activityUserdata.problems[activityData.problems[index + 1].id].enter_time = Date.now();
                                 $scope.progressWidth = (index + 2) * 100 / activityData.problems.length;
@@ -184,22 +188,21 @@ angular.module('SunLesson.directives', [])
                     Utils.unregisterLesson();
 
                     var ids = $rootScope.ids;
-                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function (msg) {
-                        console.log('write the lessonUserdata current_activity: ' + DataProvider.lessonUserdata.current_activity + 'current_problem=' + DataProvider.lessonUserdata.activities[$routeParams.aid].current_problem);
-                        // alert('msg='+msg);
-                        window.location = '/webapp/navigator/#/subject/' + ids.sid + '/chapter/' + ids.cid;
-                    }, function (err) {
-                        alert("pauseLearn write userdata Error!");
+                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function(msg) {
+                        console.log('write the lessonUserdata current_activity: '+DataProvider.lessonUserdata.current_activity+'current_problem='+DataProvider.lessonUserdata.activities[$routeParams.aid].current_problem);
+                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' +ids.cid;
+                    }, function(err) {
+                        console.log("pauseLearn write userdata Error!");
                     })
                 }
 
-                $scope.backToChapter = function () {
+                $scope.backToChapter = function() {
+                    console.log('结束学习，回到chapter');
                     var ids = $rootScope.ids;
-                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function () {
-                        console.log('backToChapter 写入userdata。。。等待跳转');
-                        window.location = '/webapp/navigator/#/subject/' + ids.sid + '/chapter/' + ids.cid;
-                    }, function (err) {
-                        alert('backToChapter write userdata Error');
+                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function() {
+                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' +ids.cid;
+                    }, function(err) {
+                        console.log('backToChapter write userdata Error');
                     })
                 }
             }   //end of link
@@ -517,9 +520,9 @@ angular.module('SunLesson.directives', [])
                         };
 
                         //add listener for resume mainstream video
-                        videoDOM.addEventListener('canplay', function () {
-                            videoDOM.currentTime = pausedTime;
-                        });
+                        //videoDOM.addEventListener('canplay', function () {
+                        //    videoDOM.currentTime = pausedTime;
+                        //});
                     })
                 })  // end of videoDOMMapPromise
             }
@@ -595,8 +598,7 @@ angular.module('SunLesson.directives', [])
     })
 
     //the outsider of problem directive used for getting the problem DOM collection
-    .
-    directive("switch", function ($timeout) {
+    .directive("switch", function ($timeout) {
         return {
             link: function ($scope, $element) {
                 $timeout(function () {
@@ -614,7 +616,8 @@ angular.module('SunLesson.directives', [])
             restrict: "E",
             link: function ($scope, $element) {
                 var currProblem = $scope.problem;
-                var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);
+                //var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);
+                console.log('parentActivityData.id='+currProblem.parent_id);
                 var activityUserdata = problemSandbox.getActivityUserdata($routeParams.aid);
 
                 var current_activity = $scope.current_activity;
@@ -639,7 +642,7 @@ angular.module('SunLesson.directives', [])
                     return String.fromCharCode(65 + index) + ".";
                 };
 
-                if ((typeof parentActivityData.show_answer !== "undefined") && (parentActivityData.show_answer)) {
+                if ((typeof $scope.activityData.show_answer !== "undefined") && ($scope.activityData.show_answer)) {
                     if (currProblem.type != "singlefilling") {
                         $scope.correct_answers = [];
                         for (var i = 0; i < currProblem.choices.length; i++) {
@@ -774,7 +777,10 @@ angular.module('SunLesson.directives', [])
                     }
 
                     //TODO:
-                    activityUserdata.current_problem = $scope.problems[$scope.problemIndex + 1].id;
+                    if(!($scope.problemIndex == $scope.activityData.problems.length-1)) {
+                        console.log('总的length='+$scope.activityData.problems.length + '     index='+$scope.problemIndex+"      $scope.length="+$scope.problems.length);
+                        activityUserdata.current_problem = $scope.problems[$scope.problemIndex + 1].id;
+                    }
 
                     var ids = [];
                     if (currProblem.type == 'singlechoice') {
@@ -825,7 +831,7 @@ angular.module('SunLesson.directives', [])
                         }
                     }
 
-                    if ((typeof parentActivityData.show_answer !== "undefined") && (parentActivityData.show_answer)) {
+                    if ((typeof $scope.activityData.show_answer !== "undefined") && ($scope.activityData.show_answer)) {
                         $scope.showExplanation = true;
                         $scope.hideSubmitButton = true;
                         $scope.showContinueButton = true;
