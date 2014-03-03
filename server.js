@@ -6,7 +6,9 @@
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
+    // logger http api
     logger = require('mean-logger');
+
 
 /**
  * Main application entry file.

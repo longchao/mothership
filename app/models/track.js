@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var config = require('../../config/config');
 
 var TrackSchema = new Schema({
     sync: {
         type: Boolean,
         default: false
     },
-    header: {
+    headers: {
         distinct_id: {
             type: String,
             required: true
@@ -17,9 +18,12 @@ var TrackSchema = new Schema({
         },
         token: {
             type: String,
-            required: true
+            default: config.token
         },
-        time: Date
+        time: {
+            type: Date,
+            required: true
+        }
     },
     data: {
         event: {
@@ -31,7 +35,7 @@ var TrackSchema = new Schema({
 });
 
 
-TrackSchema.path('header.time').validate(function (time) {
+TrackSchema.path('headers.time').validate(function (time) {
     return ( typeof time != 'undefined' && time < Date.now());
 }, 'time should cannot be future.');
 
