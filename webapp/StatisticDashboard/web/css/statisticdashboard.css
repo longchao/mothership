@@ -10,22 +10,23 @@ body {
 .slide-in {
     width: 300px;
     height: 500px;
-    position: absolute;
+    position: fixed;
     border: 1px solid #ccc;
     background-color: #ffffff;
-    overflow: scroll;
+    overflow-y: scroll;
     display: inline-block;
-    margin: 20px;
-    right: 0;
+    top: 184px;
+    right: 30px;
 }
-
+#search_panel{
+    margin-bottom: 15px;
+}
 #search_panel p {
     margin-top: 9px;
 }
 
 #chapter-panel {
     border-top: 1px solid #ddd;
-    margin-left: 80px;
 }
 
 .event_container {
@@ -34,7 +35,7 @@ body {
 
 #chapter-panel td {
     width: 307px;
-    height: 127px;
+/*    height: 127px;*/
     display: inline-block;
     margin: 15px 20px 15px 0;
     padding: 8px 15px;
@@ -75,7 +76,7 @@ body {
 }
 
 #chapter-panel td:hover .lesson_title {
-    color: #FF9449;
+    color: #1abc9c;
 }
 
 .event {
