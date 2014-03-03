@@ -27,6 +27,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ctrl.user['name']}} 老师<b class="caret"></b></a>
+                    <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu">
                         <li><a href="#">帐号管理</a></li>
                         <li class="divider"></li>
@@ -38,10 +39,24 @@
     </div>
 </nav>
 <div class="container">
-    <div id="search_panel" class="col-lg-12 col-md-12">
-        <!--<div class="btn-group">
+    <div id="search_panel">
+<!--         <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Action <span class="caret"></span>
+                相交线和平行线 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header"></li>
+                <li><a href="#">xw1231231</a></li>
+                <li><a href="#">xw2353234</a></li>
+                <li><a href="#">xw4423452</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">八中</li>
+                <li><a href="#">8z234131</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                xw1301 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">西外</li>
@@ -52,28 +67,33 @@
                 <li class="dropdown-header">八中</li>
                 <li><a href="#">8z234131</a></li>
             </ul>
-        </div>-->
-        <form class="col-lg-3 col-md-3">
-            <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
-            </select>
-        </form>
-        <form class="col-lg-2 col-md-2">
-            <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                <optgroup label="西外">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
-                </optgroup>
-                <optgroup label="八中">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                </optgroup>
-            </select>
+        </div> -->
+        <form class="form">
+            <div class="form-group col-lg-3 col-md-3">
+                <label>章节</label>
+                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+                        onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                    <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-2">
+                <label>班级</label>
+                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                    <optgroup label="西外">
+                     <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                    <optgroup label="八中">
+                     <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                </select>
+            </div>
         </form>
         <p class="pull-right">
             全班学生中，
             <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
                 <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)">{{event.info['result'].length}}</a>
+                
                 
             </span>
             人从未登录
@@ -126,7 +146,7 @@
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
             <h4>{{ctrl.detailstitle}}</h4>
         </div>
-        <div class="container" id="details-body"></div>
+        <div class="col-lg-12 col-md-12" id="details-body"></div>
     </div>
 </div>
 
