@@ -547,16 +547,6 @@
 // COMPONENT MIXINS
 // --------------------------------------------------
 
-// Color swatches grid
-.calc-color(@first-color, @second-color) {
-  .palette-@{first-color} {
-    background-color: ~"@{@{first-color}}";
-  }
-  .palette-@{second-color} {
-    background-color: ~"@{@{second-color}}";
-  }  
-}
-
 // Dropdown arrow
 // -------------------------
 .dropdown-arrow(@color: @brand-primary; @top: 5px; @left: 15px; @size: 9px) {
@@ -575,55 +565,34 @@
   }
 }
 
-// Panels
+
+// Tables
 // -------------------------
-.panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
-  border-color: @border;
-
-  & > .panel-heading {
-    color: @heading-text-color;
-    background-color: @heading-bg-color;
-    border-color: @heading-border;
-
-    + .panel-collapse .panel-body {
-      border-top-color: @border;
+.table-row-variant(@state; @background) {
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  .table > thead > tr,
+  .table > tbody > tr,
+  .table > tfoot > tr {
+    > td.@{state},
+    > th.@{state},
+    &.@{state} > td,
+    &.@{state} > th {
+      background-color: @background;
     }
   }
-  & > .panel-footer {
-    + .panel-collapse .panel-body {
-      border-bottom-color: @border;
+
+  // Hover states for `.table-hover`
+  // Note: this is not available for cells or rows within `thead` or `tfoot`.
+  .table-hover > tbody > tr {
+    > td.@{state}:hover,
+    > th.@{state}:hover,
+    &.@{state}:hover > td,
+    &.@{state}:hover > th {
+      background-color: darken(@background, 2%);
     }
   }
 }
-
-// List Groups
-// -------------------------
-.list-group-item-variant(@state; @background; @color) {
-  .list-group-item-@{state} {
-    color: @color;
-    background-color: @background;
-
-    a& {
-      color: @color;
-
-      .list-group-item-heading { color: inherit; }
-
-      &:hover,
-      &:focus {
-        color: @color;
-        background-color: darken(@background, 5%);
-      }
-      &.active,
-      &.active:hover,
-      &.active:focus {
-        color: #fff;
-        background-color: @color;
-        border-color: @color;
-      }
-    }
-  }
-}
-
 
 // Button variants
 // -------------------------
@@ -634,6 +603,7 @@
   background-color: @background;
 
   &:hover,
+  &.hover,
   &:focus,
   &:active,
   &.active,
@@ -653,12 +623,18 @@
   fieldset[disabled] & {
     &,
     &:hover,
+    &.hover,
     &:focus,
     &:active,
     &.active {
       background-color: @background;
       border-color: @background;
     }
+  }
+
+  .badge {
+    color: @background;
+    background-color: @inverse;
   }
 }
 
@@ -875,7 +851,6 @@
     height: auto;
   }
 }
-
 
 // Reset rounded corners for form controls
 //
