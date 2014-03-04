@@ -65,8 +65,8 @@ module.exports = function (app, passport, db, auth) {
         app.use(app.router);
 
         //Wpk
-        app.use('/wpk', auth.requiresLogin);
-        app.use('/wpk', express.static(config.root + '/wpk'));
+        app.use('/dl', auth.requiresLogin);
+        app.use('/dl', express.static(config.root + '/dl'));
 
         //Setting the fav icon and static folder
         app.use(express.favicon());
