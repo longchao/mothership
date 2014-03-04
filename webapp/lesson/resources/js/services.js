@@ -103,14 +103,12 @@ angular.module('SunLesson.services', [])
 
                 case "getLessonJson" :
                     if (typeof id.chapter === "undefined") {
-                        console.log("chapter is null");
                     }
                     return HOST + id.chapter.url + "/" + id.lessonId + "/lesson.json";
                     
                 case "getFileResources" :
                     var chapter = DataProvider.chapterData;
-                    if (typeof id.chapter === "undefined") {
-                        console.log("chapter is null");
+                    if (typeof chapter === "undefined") {
                     }                    
                     return HOST + chapter.url + "/" + id.lessonId;
 
@@ -148,14 +146,16 @@ angular.module('SunLesson.services', [])
             var deferred = $q.defer();
             var idsPromise = deferred.promise;
 
-            if($rootScope.ids) {
+/*            if($rootScope.ids) {
                 deferred.resolve($rootScope.ids);
                 return idsPromise;
-            }
+            }*/
 
             var ids = {};
             var params = $route.current.params;
-           //ids.sid = params.sid;
+            if(params.sid) {
+                $rootScope.sid = params.sid;
+            }
             ids.cid = params.cid;
             ids.lid = params.lid;
             ids.aid = params.aid;
@@ -169,7 +169,8 @@ angular.module('SunLesson.services', [])
             var deferred = $q.defer();
             var lessonDataPromise = deferred.promise;
 
-            if(DataProvider.lessonData && DataProvider.lessonData.id && DataProvider.lessonData.activities) {
+            console.log('DataProvider.lessonData.id='+DataProvider.lessonData.id+'   ids.lid='+$rootScope.ids.lid);
+            if(DataProvider.lessonData && DataProvider.lessonData.id && DataProvider.lessonData.activities && (DataProvider.lessonData.id == $rootScope.ids.lid)) {
                 deferred.resolve(DataProvider.lessonData);
                 return lessonDataPromise;
             }
@@ -192,7 +193,7 @@ angular.module('SunLesson.services', [])
             if(!(DataProvider.chapterData && DataProvider.chapterData.url)) {
                 $http.get(rootUrl).success(function(chapters) {
                     chapters.some(function(chapter, index) {
-                        if(chapter.id = $rootScope.ids.cid) {
+                        if(chapter.id === $rootScope.ids.cid) {
                             DataProvider.chapterData = chapter;
                             console.log('找到，赋值');
                             return true;
@@ -364,8 +365,6 @@ console.log('开始获取lesson json');
            var activityData = {};
 
            var lessonDataPromise = ResourceProvider.getLessonData();
-           //alert('getActivityUserdata...');
-
            DataProvider.lessonData.activities.some(function(activity, index) {
                 if(activity.id == activityId) {
                     activityData = activity;
@@ -420,7 +419,6 @@ console.log('开始获取lesson json');
                     }
                 } 
             }else if ((activityData.type == "quiz") && ((!activityUserdata.problems) || (Object.keys(activityUserdata.problems).length <= 0))) {
-                //alert('init the problems-==-');
                 if(!activityUserdata.problems) {
                     activityUserdata.problems = {};
                 }
@@ -766,7 +764,7 @@ console.log('开始获取lesson json');
             }      
 
             Sandbox.prototype.continueLesson = function(lid, aid) {
-                $location.path('/lesson/' + lid + '/activity/' + aid);
+                $location.path('/chapter/'+$rootScope.ids.cid+'/lesson/' + lid + '/activity/' + aid);
             }   
 
             Sandbox.prototype.createGrader = function (graderFunc, userData) {

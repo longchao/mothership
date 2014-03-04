@@ -2,7 +2,7 @@
     <div class="col-sm-10 col-md-10 question-container">
         <div class="question-content">
             <!--<span>第&nbsp;{{ $index+1 }}&nbsp;题&nbsp;/&nbsp;共&nbsp;{{ total }}&nbsp;题&nbsp;{{ problem.parent_id }}</span><br> -->
-            <span>{{ problemIndex+$index+1 }}.&nbsp;<span class="question-type">({{ type }})</span></span>
+            <!--<span>{{ problemIndex+$index+1 }}.&nbsp;<span class="question-type">({{ type }})</span></span> -->
             <span>{{ problem.title }}</span><br>
             <span mathjax-bind="body"></span><br>
         </div>
@@ -14,7 +14,9 @@
                    placeholder="填写答案"
                    ng-model='answer[problem.id]'
                    ng-change="writeAnswer(answer[problem.id])"
-                   ng-disabled="submitted"/>
+                   ng-disabled="submitted"
+                   ng-keypress="submitSingleFillingAnswer($event, answer[problem.id])"
+                   focus-me="true"/>
         </div>
 
         <div class="col-md-12 explanation-container pull-left font-size-small">

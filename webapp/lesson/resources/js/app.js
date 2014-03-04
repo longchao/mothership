@@ -46,8 +46,8 @@ angular.module('SunLesson', ['SunLesson.services', 'SunLesson.controllers', 'Sun
         var temp = '';
         $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
             if(previous) {
-                console.log('pAid = '+previous.params.aid + 'cAid='+ current.params.aid);
-                if($rootScope.isBack && (temp == current.params.aid)) {
+                //console.log('pAid = '+previous.params.aid + 'cAid='+ current.params.aid);
+                if($rootScope.isBack && current.params && (temp == current.params.aid)) {
                     window.location = '/webapp/navigator';
                     return;
                 }
