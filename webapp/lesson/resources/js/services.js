@@ -419,7 +419,6 @@ console.log('开始获取lesson json');
                     }
                 } 
             }else if ((activityData.type == "quiz") && ((!activityUserdata.problems) || (Object.keys(activityUserdata.problems).length <= 0))) {
-                //alert('init the problems-==-');
                 if(!activityUserdata.problems) {
                     activityUserdata.problems = {};
                 }

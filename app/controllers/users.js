@@ -147,7 +147,7 @@ exports.dispatch = function (req, res) {
     if (req.user) {
         if (req.user.usergroup != "teacher") {
             if (req.user.isProfileFullfill()) {
-                res.redirect("/webapp/exercise/");
+                res.redirect("/webapp/navigator/");
             } else {
                 res.redirect("/webapp/me/bootstrap.html")
             }
