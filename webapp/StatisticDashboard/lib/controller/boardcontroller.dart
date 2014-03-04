@@ -23,7 +23,7 @@ var allUsersUrl = "/users";
 
 String _allUsersUrl = "files/all_user.json";
 
-String exerciseSchema = "/webapp/exercise/#/subject/";
+String exerciseSchema = "/webapp/navigator/#/subject/";
 
 var currentRoomIndex = 0;
 var currentChapterIndex = 0;
@@ -150,7 +150,7 @@ class BoardController {
   void openLesson(MouseEvent evt, Map lesson){
     evt.preventDefault();
     String url = exerciseSchema + currentChapter['subject'] +"/chapter/"+
-        currentChapter['id'] +"/lesson/" + lesson['id'];
+        currentChapter['id'];
     window.open(url,"提高班");
   }
   // Give requirements and load all the data.

@@ -40633,7 +40633,7 @@ init.mangledGlobalNames = {AbstractNgRepeatDirective__LHS_SYNTAX: "_LHS_SYNTAX",
     openLesson$2: [function(evt, lesson) {
       var url;
       J.preventDefault$0$x(evt);
-      url = C.JSString_methods.$add(C.JSString_methods.$add(C.JSString_methods.$add($.exerciseSchema, J.$index$asx(this.currentChapter, "subject")) + "/chapter/", J.$index$asx(this.currentChapter, "id")) + "/lesson/", J.$index$asx(lesson, "id"));
+      url = C.JSString_methods.$add(C.JSString_methods.$add($.exerciseSchema, J.$index$asx(this.currentChapter, "subject")) + "/chapter/", J.$index$asx(this.currentChapter, "id"));
       C.Window_methods.open$2(window, url, "\u63d0\u9ad8\u73ed");
     }, "call$2", "get$openLesson", 4, 0, 1307, 1308, 1094, "openLesson"],
     _loadEvents$2: [function(roomIndex, chapterIndex) {
@@ -43187,7 +43187,7 @@ $._roomName = null;
 $.userInfoUrl = "/me";
 $.chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
 $._allUsersUrl = "files/all_user.json";
-$.exerciseSchema = "/webapp/exercise/#/subject/";
+$.exerciseSchema = "/webapp/navigator/#/subject/";
 $.currentRoomIndex = 0;
 $.currentChapterIndex = 0;
 $.apiKey = "1291ff9d8ceb337db6a0069d88079474";
