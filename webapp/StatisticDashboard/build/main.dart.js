@@ -40581,7 +40581,7 @@ init.mangledGlobalNames = {AbstractNgRepeatDirective__LHS_SYNTAX: "_LHS_SYNTAX",
       this._loadAllUsersAndFindUsers$1(this.rooms).then$1(new N.BoardController_onFirstLoaded_closure(this));
     }, "call$1", "get$onFirstLoaded", 2, 0, 503, 270, "onFirstLoaded"],
     _loadAllUsersAndFindUsers$1: [function(rooms) {
-      return W.HttpRequest_getString($._allUsersUrl, null, null).then$1(new N.BoardController__loadAllUsersAndFindUsers_closure(this, rooms));
+      return W.HttpRequest_getString($.allUsersUrl, null, null).then$1(new N.BoardController__loadAllUsersAndFindUsers_closure(this, rooms));
     }, "call$1", "get$_loadAllUsersAndFindUsers", 2, 0, 1306, 1242, "_loadAllUsersAndFindUsers"],
     findUsers$1: [function(rooms) {
       var users = P.LinkedHashMap_LinkedHashMap(null, null, null, null, null);
@@ -40707,7 +40707,7 @@ init.mangledGlobalNames = {AbstractNgRepeatDirective__LHS_SYNTAX: "_LHS_SYNTAX",
         userCount = null;
       new P.StringBuffer("")._contents = "";
       heading = "<div class='panel-heading'><h5><strong>" + H.S(title) + "(" + H.S(userCount) + ")</strong></h5></div>";
-      $content = "<div class='event-users-container'>" + H.S(strUserHtml) + "</div>";
+      $content = "<div class='event-users-container clearfix'>" + H.S(strUserHtml) + "</div>";
       t1 = H.interceptedTypeCast(document.querySelector("#details-body"), "$isDivElement");
       t2 = heading + $content;
       t1.toString;
@@ -40744,7 +40744,7 @@ init.mangledGlobalNames = {AbstractNgRepeatDirective__LHS_SYNTAX: "_LHS_SYNTAX",
       var heading, $content, t1, t2, t3, first;
       P.StringBuffer$("");
       heading = "<div class='panel-heading'><h5><strong>" + H.S(title) + "(" + H.S(userCount) + ")</strong></h5></div>";
-      $content = "<div class='event-users-container'>" + H.S(strUserHtml) + "</div>";
+      $content = "<div class='event-users-container clearfix'>" + H.S(strUserHtml) + "</div>";
       t1 = H.interceptedTypeCast(document.querySelector("#details-body"), "$isDivElement");
       t2 = heading + $content;
       t1.toString;
@@ -43186,7 +43186,7 @@ $.chapterInfo = null;
 $._roomName = null;
 $.userInfoUrl = "/me";
 $.chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
-$._allUsersUrl = "files/all_user.json";
+$.allUsersUrl = "/users";
 $.exerciseSchema = "/webapp/navigator/#/subject/";
 $.currentRoomIndex = 0;
 $.currentChapterIndex = 0;

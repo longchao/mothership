@@ -75,7 +75,7 @@ class BoardController {
   }
 
   Future _loadAllUsersAndFindUsers(var rooms) {
-    return HttpRequest.getString(_allUsersUrl)
+    return HttpRequest.getString(allUsersUrl)
     .then((value){
       allUser = new JsonObject.fromJsonString(value).toList();
       findUsers(rooms);
