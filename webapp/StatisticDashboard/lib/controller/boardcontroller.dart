@@ -23,6 +23,8 @@ var allUsersUrl = "/users";
 
 String _allUsersUrl = "files/all_user.json";
 
+String exerciseSchema = "/webapp/exercise/#/subject/";
+
 var currentRoomIndex = 0;
 var currentChapterIndex = 0;
 Map usersMap = new Map();
@@ -42,7 +44,7 @@ class BoardController {
   List<Map> allUser;
   List<String> user_notLogin;
   Map user = new Map();
-
+  Map currentChapter = new Map();
   Map userClickedLesson;
   String detailstitle;
   num eventNumber;
@@ -65,7 +67,6 @@ class BoardController {
     //fakeUserInfo.roomNames = list_schools(); //psudo
     //rooms = list_schools();
     rooms = user['rooms'];
-    print(rooms);
     chapterInfo = new JsonObject.fromJsonString(responseText);
     chapters = chapterInfo.toList();
     _loadAllUsersAndFindUsers(rooms).then((_){
@@ -112,7 +113,6 @@ class BoardController {
       rowLessons = [];
       currentChapterIndex = chapterIndex;
     }
-    print("room"+currentRoomIndex.toString()+"chapter"+currentChapterIndex.toString());
     _loadEvents(currentRoomIndex,currentChapterIndex).then((_){
       js.context.jQuery('#lessonLoaderModal').modal('hide');
     });
@@ -146,13 +146,20 @@ class BoardController {
     userClickedLesson = lesson;
     showUsers(false);
   }
+  
+  void openLesson(MouseEvent evt, Map lesson){
+    evt.preventDefault();
+    String url = exerciseSchema + currentChapter['subject'] +"/chapter/"+
+        currentChapter['id'] +"/lesson/" + lesson['id'];
+    window.open(url,"提高班");
+  }
   // Give requirements and load all the data.
   Future<List<sta.Event>> _loadEvents(int roomIndex, int chapterIndex) {
     List loadingLessonCards = new List();
     //_roomName = fakeUserInfo.roomNames[roomIndex];
     _roomName = rooms[roomIndex];
-    Map chapter = chapterInfo[chapterIndex];
-    List<Map> lessonsMap = chapter['lessons'];
+    currentChapter = chapterInfo[chapterIndex];
+    List<Map> lessonsMap = currentChapter['lessons'];
     lessons = lessonsMap;
     rowLessons = makeCombLesson(lessons);// for fast show CombLesson.
 
@@ -219,7 +226,6 @@ class BoardController {
 
   void showUsersByLesson(){
     detailstitle = userClickedLesson['title'];
-    print("-=-=-=-=-=-=-=-=-=> "+detailstitle);
     if(userClickedLesson['status']!='closed'){
       for(sta.Event event in userClickedLesson['events']){
         List eventType = event.info['type'];

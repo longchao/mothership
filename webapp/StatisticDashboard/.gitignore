@@ -4,6 +4,8 @@
 # Dart Library files
 .settings
 web/*.dart.*
+packages
+!build/packages
 
 # WebStorm Setting files
 .idea
