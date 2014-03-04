@@ -1,5 +1,35 @@
-.page-main{
+.page-box{
 	background:@inverse;
 	border-radius: @border-radius-large;
+	.box-shadow(0 1px 1px rgba(0,0,0,.05));
 	padding:@padding-large-vertical @padding-large-horizontal;
+	margin-bottom: 30px;
+
+	&.page-box-secondary{
+		background: mix(@clouds, white, 30%);
+
+		.bubble{
+			border-color: transparent mix(@clouds, white, 30%) transparent mix(@clouds, white, 30%);
+		}
+	}
+
+	.bubble{
+		display: block;
+		float: left;
+		width: 20px;
+		/*height:	10px;*/
+		border-width: 9px 12px 9px 0;
+		border-style: solid;
+		border-color: transparent white transparent white;
+		margin-left: -45px;
+	}
+
+	&.wrong{
+		background: mix(@alizarin, white, 25%);
+	}
+
+	&.correct{
+		background: mix(@emerald, white, 30%);
+	}
 }
+

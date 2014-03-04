@@ -74,7 +74,7 @@ class BoardController {
   }
 
   Future _loadAllUsersAndFindUsers(var rooms) {
-    return HttpRequest.getString(allUsersUrl)
+    return HttpRequest.getString(_allUsersUrl)
     .then((value){
       allUser = new JsonObject.fromJsonString(value).toList();
       findUsers(rooms);
@@ -254,7 +254,7 @@ class BoardController {
   generateEventBlock(String title, num userCount, StringBuffer strUserHtml) {
     StringBuffer blockHtml = new StringBuffer();
     String heading = "<div class='panel-heading'><h5><strong>$title($userCount)</strong></h5></div>";
-    String content = "<div class='container event-users-container'>$strUserHtml</div>";
+    String content = "<div class='event-users-container'>$strUserHtml</div>";
     (querySelector('#details-body') as DivElement).insertAdjacentHtml('beforeEnd',heading + content);
   }
 

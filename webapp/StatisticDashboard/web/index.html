@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>StatisticDashboard</title>
     <link rel="stylesheet" href="files/lib/bootstrap-3.1.1/css/bootstrap.min.css"/>
-    <link href="css/c-flat-ui.less" rel="stylesheet/less"> 
+    <link rel="stylesheet/less" href="css/c-flat-ui.less"> 
     <link rel="stylesheet" href="css/statisticdashboard.css"/>
     <link rel="stylesheet" href="css/loader.css"/>
     <script src="files/js/selector.js"></script>
-    <script src="files/js/less-1.5.0.min.js"></script>
+    <script src="files/lib/less-1.5.0.min.js"></script>
 </head>
 <body board>
 <nav class="navbar navbar-inverse navbar-static-top">
@@ -39,39 +39,31 @@
     </div>
 </nav>
 <div class="container">
-    <div id="search_panel" class="col-lg-12 col-md-12">
-        <!--<div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Action <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">西外</li>
-                <li><a href="#">xw1231231</a></li>
-                <li><a href="#">xw2353234</a></li>
-                <li><a href="#">xw4423452</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">八中</li>
-                <li><a href="#">8z234131</a></li>
-            </ul>
-        </div>-->
-        <form class="col-lg-3 col-md-3">
-            <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                <option ng-repeat="chapter in ctrl.chapters" value="章节名称" ng-cloak>{{chapter.name}}</option>
-            </select>
+    <div id="search_panel">
+        <form class="form">
+            <div class="col-lg-3 col-md-3 form-group">
+                <label>章节</label>
+                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+                        onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                    <option ng-repeat="chapter in ctrl.chapters" value={{chapter.name}} ng-cloak>{{chapter.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-md-2 form-group">
+                <label>班级</label>
+                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+                        onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                    <option ng-repeat="room in ctrl.rooms" value={{room}} ng-cloak>{{room}}</option>
+                    <!--<optgroup label="西外">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                    <optgroup label="八中">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                    </optgroup>-->
+                </select>
+            </div>
+            
         </form>
-        <form class="col-lg-2 col-md-2">
-            <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                <option ng-repeat="room in ctrl.rooms" value="班级号" ng-cloak>{{room}}</option>
-                <!--<optgroup label="西外">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
-                </optgroup>
-                <optgroup label="八中">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                </optgroup>-->
-            </select>
-        </form>
+    
         <p class="pull-right">
             全班学生中，
             <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
@@ -79,15 +71,14 @@
                 
             </span>
             人从未登录
-
-<!--             <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+            <!--<div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
                 <div class="circle" ng-click="ctrl.showUsers(true,event)">
                     <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
 
                     <p ng-if="event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
                 </div>
                 <p>{{event.info['event_name']}}</p>
-            </div> -->
+            </div>-->
         </p>
     </div>
 
@@ -132,14 +123,13 @@
               <p style="width:200%;margin-left:-50%;color:#b4b4b4">正在分析数据</p>
           </div>
        </div>
-
     </div>
 
     <div class="panel slide-in" id="right-panel">
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
             <h4 ng-cloak>{{ctrl.detailstitle}}</h4>
         </div>
-        <div class="container" id="details-body"></div>
+        <div class="col-lg-12 col-md-12" id="details-body"></div>
     </div>
 </div>
 
