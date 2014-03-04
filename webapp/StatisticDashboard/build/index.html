@@ -8,7 +8,6 @@
     <link rel="stylesheet/less" href="css/c-flat-ui.less"> 
     <link rel="stylesheet" href="css/statisticdashboard.css"/>
     <link rel="stylesheet" href="css/loader.css"/>
-    <script src="files/js/selector.js"></script>
     <script src="files/lib/less-1.5.0.min.js"></script>
 </head>
 <body board>
@@ -127,6 +126,7 @@
     </div>
 
     <div class="panel slide-in" id="right-panel">
+        <button class="close pull-right">&times;</button>
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
             <h4 ng-cloak>{{ctrl.detailstitle}}</h4>
         </div>
@@ -162,6 +162,7 @@
 <script type="application/dart" src="main.dart"></script>
 <script src="files/lib/jquery-1.10.2.min.js"></script>
 <script src="files/lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+<script src="files/js/utils.js"></script>
 <script src="packages/browser/dart.js"></script>
 <script src="packages/browser/interop.js"></script>
 </body>
