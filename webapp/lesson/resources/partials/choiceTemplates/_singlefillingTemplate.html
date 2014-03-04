@@ -14,7 +14,9 @@
                    placeholder="填写答案"
                    ng-model='answer[problem.id]'
                    ng-change="writeAnswer(answer[problem.id])"
-                   ng-disabled="submitted"/>
+                   ng-disabled="submitted"
+                   ng-keypress="submitSingleFillingAnswer($event, answer[problem.id])"
+                   focus-me="true"/>
         </div>
 
         <div class="col-md-12 explanation-container pull-left font-size-small">

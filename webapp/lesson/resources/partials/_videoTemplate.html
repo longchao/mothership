@@ -3,11 +3,10 @@
            ng-show="showVideo[video]" controls></video>
 
     <div class='problemContainer' ng-show='showProblem'>
-        <div ng-repeat='choice in choices'>
-            <button id='choiceContainer_{{ $index }}' class='choiceContainer' ng-class='isSelected[$index]'
-                    ng-click='chooseOption($index)' ng-disabled="hasSelected">
-                {{ choiceMsg[$index] }}
-            </button>
-        </div>
+        <button ng-repeat='choice in choices'
+                id='choiceContainer_{{ $index }}' class='choiceContainer' ng-class='isSelected[$index]'
+                ng-click='chooseOption($index)' ng-disabled="hasSelected">
+            <div mathjax-bind="choiceMsg[$index]"></div>
+        </button>
     </div>
 </div>

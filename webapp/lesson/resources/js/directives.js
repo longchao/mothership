@@ -6,7 +6,7 @@ angular.module('SunLesson.directives', [])
                 var activitySandbox = SandboxProvider.getSandbox();
 
                 var activityUserdata = activitySandbox.getActivityUserdata($routeParams.aid);
-                console.log('activity.aid='+$routeParams.aid);
+                console.log('activity.aid=' + $routeParams.aid);
                 DataProvider.lessonUserdata.activities[$routeParams.aid] = activityUserdata;
                 var activityData = activitySandbox.getActivityMaterial($routeParams.aid, activityUserdata.seed);
                 $scope.activityData = activityData;
@@ -33,7 +33,7 @@ angular.module('SunLesson.directives', [])
                             break;
                         }
                     }
-                    
+
                     $scope.problems = activityData.problems.slice(currProblem);
                     $scope.problemIndex = currProblem;
                     for (var i = 0; i < $scope.problems.length; i++) {
@@ -188,20 +188,20 @@ angular.module('SunLesson.directives', [])
                     Utils.unregisterLesson();
 
                     var ids = $rootScope.ids;
-                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function(msg) {
-                        console.log('write the lessonUserdata current_activity: '+DataProvider.lessonUserdata.current_activity+'current_problem='+DataProvider.lessonUserdata.activities[$routeParams.aid].current_problem);
-                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' +ids.cid;
-                    }, function(err) {
+                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function (msg) {
+                       // console.log('write the lessonUserdata current_activity: ' + DataProvider.lessonUserdata.current_activity + 'current_problem=' + DataProvider.lessonUserdata.activities[$routeParams.aid].current_problem);
+                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' + ids.cid;
+                    }, function (err) {
                         console.log("pauseLearn write userdata Error!");
                     })
                 }
 
-                $scope.backToChapter = function() {
+                $scope.backToChapter = function () {
                     console.log('结束学习，回到chapter');
                     var ids = $rootScope.ids;
-                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function() {
-                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' +ids.cid;
-                    }, function(err) {
+                    activitySandbox.flushUserdata(ids.lid, ids.cid).then(function () {
+                        window.location = '/webapp/navigator/#/subject/' + $rootScope.sid + '/chapter/' + ids.cid;
+                    }, function (err) {
                         console.log('backToChapter write userdata Error');
                     })
                 }
@@ -360,27 +360,26 @@ angular.module('SunLesson.directives', [])
     })
 
     .directive("hypervideo", function (APIProvider, DataProvider, $compile, $timeout, $templateCache, $http, $rootScope, $routeParams, SandboxProvider) {
-//TODO:userdata的填充，MixPanel的填充
-        var hvideoSandbox = SandboxProvider.getSandbox();
-        var activityData = hvideoSandbox.getActivityMaterial($routeParams.aid);
-        var video = activityData.video;
-        var problemMaterial = activityData.problems;
-
-        var videoArray = [];
-        var baseUrl = APIProvider.getAPI("getFileResources", {chapterId: $rootScope.ids.cid, lessonId: $routeParams.lid}, "") + "/";
-
-        videoArray.push(baseUrl + video.url);
-        for (var i = 0; i < problemMaterial.length; i++) {
-            if (problemMaterial[i].correct_video && problemMaterial[i].correct_video.url)
-                videoArray.push(baseUrl + problemMaterial[i].correct_video.url);
-            if (problemMaterial[i].wrong_video && problemMaterial[i].wrong_video.url)
-                videoArray.push(baseUrl + problemMaterial[i].wrong_video.url);
-        }
-
-
         return {
             restrict: "E",
             link: function ($scope, $element) {
+                //TODO:userdata的填充，MixPanel的填充
+                var hvideoSandbox = SandboxProvider.getSandbox();
+                var activityData = hvideoSandbox.getActivityMaterial($routeParams.aid);
+                var video = activityData.video;
+                var problemMaterial = activityData.problems;
+
+                var videoArray = [];
+                var baseUrl = APIProvider.getAPI("getFileResources", {chapterId: $rootScope.ids.cid, lessonId: $routeParams.lid}, "") + "/";
+
+                videoArray.push(baseUrl + video.url);
+                for (var i = 0; i < problemMaterial.length; i++) {
+                    if (problemMaterial[i].correct_video && problemMaterial[i].correct_video.url)
+                        videoArray.push(baseUrl + problemMaterial[i].correct_video.url);
+                    if (problemMaterial[i].wrong_video && problemMaterial[i].wrong_video.url)
+                        videoArray.push(baseUrl + problemMaterial[i].wrong_video.url);
+                }
+
                 var templateUrl = 'resources/partials/_videoTemplate.html';
                 var loadVideoPromise = $http.get(templateUrl, {cache: $templateCache}).success(function (contents) {
                     $element.html(contents);
@@ -389,7 +388,7 @@ angular.module('SunLesson.directives', [])
                 loadVideoPromise.then(function () {
                     $scope.videos = videoArray;
                     $scope.showVideo = {};
-                    //get all the video DOM elements and stor them into an array
+                    //get all the video DOM elements and store them into an array
                     var videoDOMMap = {};
                     var videoDOMMapPromise = $timeout(function () {
                         videoDOMMap[baseUrl + video.url] = $element.contents()[0].children[0];
@@ -418,7 +417,7 @@ angular.module('SunLesson.directives', [])
                                 return videoWidth;
                             });
                             $(".problemContainer").css("width", function () {
-                                return videoWidth - 40;
+                                return videoWidth;
                             });
                         });
                         var currentProblem;
@@ -438,12 +437,16 @@ angular.module('SunLesson.directives', [])
                                     enterTime = Date.now();
                                     // dynamically set the "left" css attribute
                                     $timeout(function () {
-                                        for (var i = 0; i < problem.choices.length; i++)
-                                            $("#choiceContainer_" + i).css("left", function () {
-                                                var marginLeft = ($(".videoContainer").width() -
-                                                    problem.choices.length * 160) / 2;
-                                                return marginLeft + 160 * i;
-                                            });
+                                        var choiceCount = problem.choices.length;
+                                        var widthEachChoice = 200;
+                                        for (var i = 0; i < problem.choices.length; i++) {
+//                                            $("#choiceContainer_" + i).css("width", widthEachChoice-20);
+//                                            $("#choiceContainer_" + i).css("left", function () {
+//                                                var marginLeft = ($(".videoContainer").width() -
+//                                                    problem.choices.length * 160) / 2;
+//                                                return marginLeft + 160 * i;
+//                                            });
+                                        }
                                     }, 0);
                                     if (problem.type == "singlechoice") {
                                         for (var i = 0; i < problem.choices.length; i++) {
@@ -518,11 +521,6 @@ angular.module('SunLesson.directives', [])
                                 }
                             }
                         };
-
-                        //add listener for resume mainstream video
-                        //videoDOM.addEventListener('canplay', function () {
-                        //    videoDOM.currentTime = pausedTime;
-                        //});
                     })
                 })  // end of videoDOMMapPromise
             }
@@ -608,6 +606,21 @@ angular.module('SunLesson.directives', [])
         }
     })
 
+    .directive('focusMe', function($timeout) {
+        return {
+            link: function(scope, element, attrs) {
+                scope.$watch(attrs.focusMe, function(value) {
+                    if(value === true) { 
+                        console.log('value=',value);
+                        //$timeout(function() {
+                        element[0].focus();
+                        scope[attrs.focusMe] = false;
+                    }
+                });
+            }
+        };
+    })
+
     //problem module
     .directive("problem", function (SandboxProvider, $compile, $http, $templateCache, DataProvider, $routeParams) {
         var problemSandbox = SandboxProvider.getSandbox();
@@ -616,9 +629,11 @@ angular.module('SunLesson.directives', [])
             restrict: "E",
             link: function ($scope, $element) {
                 var currProblem = $scope.problem;
+                var current_activity = $scope.current_activity;
                 //var parentActivityData = problemSandbox.getParentActivityData(currProblem.parent_id);
-                console.log('parentActivityData.id='+currProblem.parent_id);
+                console.log('parentActivityData.id=' + currProblem.parent_id);
                 var activityUserdata = problemSandbox.getActivityUserdata($routeParams.aid);
+                //DataProvider.lessonUserdata.activities[current_activity] = activityUserdata;
 
                 var current_activity = $scope.current_activity;
                 var problemUserdata = DataProvider.lessonUserdata.activities[current_activity].problems[currProblem.id];
@@ -767,6 +782,12 @@ angular.module('SunLesson.directives', [])
                     }
                 }
 
+                $scope.submitSingleFillingAnswer = function(event, answer) {
+                    if(event.which==13) {  //press the enter
+                        $scope.submitAnswer();
+                    }
+                }
+
                 $scope.submitAnswer = function () {
                     console.log('answer=' + $scope.answer[currProblem.id]);
                     if ((currProblem.type != 'singlefilling' && !$scope.madeChoice) || (currProblem.type == 'singlefilling' && (!$scope.answer[currProblem.id] || ($scope.answer[currProblem.id].length == 0)))) {
@@ -777,9 +798,10 @@ angular.module('SunLesson.directives', [])
                     }
 
                     //TODO:
-                    if(!($scope.problemIndex == $scope.activityData.problems.length-1)) {
-                        console.log('总的length='+$scope.activityData.problems.length + '     index='+$scope.problemIndex+"      $scope.length="+$scope.problems.length);
-                        activityUserdata.current_problem = $scope.problems[$scope.problemIndex + 1].id;
+                    if (!($scope.problemIndex == $scope.activityData.problems.length - 1)) {
+                        console.log('总的length=' + $scope.activityData.problems.length + '     index=' + $scope.problemIndex + "      $scope.length=" + $scope.problems.length);
+                        activityUserdata.current_problem = $scope.activityData.problems[$scope.problemIndex + 1].id;
+                        console.log('write in current_problem='+DataProvider.lessonUserdata.activities[current_activity].current_problem);
                     }
 
                     var ids = [];
