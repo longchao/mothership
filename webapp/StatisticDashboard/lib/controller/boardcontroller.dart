@@ -260,7 +260,7 @@ class BoardController {
   generateEventBlock(String title, num userCount, StringBuffer strUserHtml) {
     StringBuffer blockHtml = new StringBuffer();
     String heading = "<div class='panel-heading'><h5><strong>$title($userCount)</strong></h5></div>";
-    String content = "<div class='event-users-container'>$strUserHtml</div>";
+    String content = "<div class='event-users-container clearfix'>$strUserHtml</div>";
     (querySelector('#details-body') as DivElement).insertAdjacentHtml('beforeEnd',heading + content);
   }
 

@@ -142,8 +142,36 @@ angular.module('SunLesson.directives', [])
                 } else {   //activityData.type is lecture
                     $scope.lecture = true;
                     activityUserdata.start_time = Date.now();
+
+                    if(activityData.type == 'hypervideo'){
+                        $scope.hypervideo = {};
+                    }
+
                     //continue
                     $scope.continueActivity = function () {
+
+                        if(activityData.type == 'hypervideo'){
+                            var video = $scope.hypervideo;
+
+                            //Mixpanel
+                            var computeRatio = function (ratio) {
+                                if (ratio >= 0 && ratio <= 0.2) {
+                                    ratio = "0% ~ 20%";
+                                } else if (ratio > 0.2 && ratio <= 0.4) {
+                                    ratio = "20% ~ 40%";
+                                } else if (ratio > 0.4 && ratio <= 0.6) {
+                                    ratio = "40% ~ 60%";
+                                } else if (ratio > 0.6 && ratio <= 0.8) {
+                                    ratio = "60% ~ 80%";
+                                } else if (ratio > 0.8 && ratio <= 1) {
+                                    ratio = "80% ~ 100%";
+                                } else {
+                                    ratio = "Error";
+                                }
+                                return ratio;
+                            }
+                            LearningRelated.finishVideo(activityData.video.url, activityData.title, video.duration, video.currentTime, computeRatio(video.currentTime / video.duration));
+                        }
                         $rootScope.isBack = false;
                         $rootScope.insideBack = false;
                         activityUserdata.is_complete = true;
@@ -318,7 +346,7 @@ angular.module('SunLesson.directives', [])
                 $scope.playButtonMsg = "播放视频";
                 $scope.playVideo = function () {
                     //Mixpanel
-                    // LearningRelated.enterVideo($attrs.src,activityData.title,video.duration);
+                    LearningRelated.enterVideo($attrs.src,activityData.title);
                     if (video.paused == true) {
                         $scope.playButtonMsg = "暂停播放";
                         //send the activityStart event to activity to record the start_time
@@ -368,7 +396,6 @@ angular.module('SunLesson.directives', [])
                 var activityData = hvideoSandbox.getActivityMaterial($routeParams.aid);
                 var video = activityData.video;
                 var problemMaterial = activityData.problems;
-
                 var videoArray = [];
                 var baseUrl = APIProvider.getAPI("getFileResources", {chapterId: $rootScope.ids.cid, lessonId: $routeParams.lid}, "") + "/";
 
@@ -381,6 +408,7 @@ angular.module('SunLesson.directives', [])
                 }
 
                 var templateUrl = 'resources/partials/_videoTemplate.html';
+
                 var loadVideoPromise = $http.get(templateUrl, {cache: $templateCache}).success(function (contents) {
                     $element.html(contents);
                     $compile($element.contents())($scope);
@@ -406,6 +434,9 @@ angular.module('SunLesson.directives', [])
                         var popcorn = Popcorn('#video_0');
                         $scope.showVideo[baseUrl + video.url] = true;
                         videoDOM.play();
+                        $scope.hypervideo = videoDOM;
+                         //Mixpanel
+                        LearningRelated.enterVideo(video.url,activityData.title);
                         //add listener for dynamically setting up the width and height of the containers
                         videoDOM.addEventListener('loadedmetadata', function () {
                             var videoWidth = this.videoWidth;
