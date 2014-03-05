@@ -40838,11 +40838,12 @@ init.mangledGlobalNames = {AbstractNgRepeatDirective__LHS_SYNTAX: "_LHS_SYNTAX",
   BoardController_findUsers_closure: {
     "": "Closure:147;this_0-90,users_1-740",
     call$1: [function(room) {
-      var userList, t1, user;
+      var userList, t1, user, userName;
       userList = H.setRuntimeTypeInfo([], [P.Map]);
       for (t1 = J.get$iterator$ax(this.this_0.get$allUser()); t1.moveNext$0() === true;) {
         user = t1.get$current();
-        if (J.contains$1$asx(J.$index$asx(user, "username"), room) === true)
+        userName = J.$index$asx(user, "username");
+        if (userName != null && J.contains$1$asx(userName, room) === true)
           userList.push(user);
       }
       J.$indexSet$ax(this.users_1, H.S(room), userList);
