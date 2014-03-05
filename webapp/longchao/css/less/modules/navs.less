@@ -49,7 +49,7 @@
       border-left: 2px solid @btn-primary-active-bg;
       color: @inverse;
       font-size: floor(@component-font-size-base * 1.067); // ~16px
-      // font-weight: 700;
+      font-weight: 700;
       line-height: 1;
       margin: 0;
       outline: none;
@@ -78,7 +78,7 @@
 // NAV TABS
 // -----------
 .nav-tabs {
-  margin-bottom: 2em;
+  margin-bottom: 20px;
   border-bottom-width: @nav-tabs-border-width;
   border-bottom-color: @nav-tabs-border-color;
 
@@ -89,7 +89,7 @@
     
     > li {
       &.active {
-/*        &:first-child {
+        &:first-child {
           &:before {
             background-color: @inverse;
             border-left: @nav-tabs-border-width solid @nav-tabs-border-color;
@@ -101,7 +101,7 @@
             width: @nav-border-radius;
             z-index: 2;
           }
-        }*/
+        }
       }
     }
   }
@@ -118,9 +118,9 @@
       > a,
       > a:hover,
       > a:focus {
-        // border-color: @nav-tabs-border-color;
-        border-bottom-color: @nav-tabs-active-color;
-        border-width:0 0 @nav-tabs-border-width;
+        border-color: @nav-tabs-border-color;
+        border-bottom-color: @inverse;
+        border-width: @nav-tabs-border-width;
         color: @nav-tabs-active-color;
       }
       .dropdown-toggle,
@@ -161,19 +161,19 @@
 
     // General link styling
     > a {
-      border-width: 0 0 @nav-tabs-border-width;
-      // font-size: ceil(@component-font-size-base * 0.933); // ~14px
-      font-weight: normal;
-      padding: 10px 15px;      
+      border-width: @nav-tabs-border-width;
+      font-size: ceil(@component-font-size-base * 0.933); // ~14px
+      font-weight: 700;
+      padding: 7px 21px 8px;      
       color: @nav-tabs-color;      
       border-radius: @nav-border-radius @nav-border-radius 0 0;
-      .transition(0.25s);
+      .transition(none);
 
       &:hover,
       &:focus {
         background-color: transparent;
         border-color: transparent;
-        border-bottom-color: @nav-tabs-hover-color;
+        border-bottom-color: transparent;
         outline: none;
         color: @nav-tabs-hover-color;
       }

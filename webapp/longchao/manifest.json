@@ -1,0 +1,12 @@
+{
+    "id": "longchao",
+    "version_code": 1,
+    "name": "教师后台（统计）",
+    "type": "web_app",
+    "launchable": 1,
+    "package_name": "org.sunlib.exercise",
+    "url": "/app/StatisticDashboard",
+    "home": "/build/index.html",
+    "description": "统计面板,用来提供Mixpanel存取的数学提高班用户数据，并按照一定逻辑和规则展现。",
+    "local_folder": "/app/web"
+}
