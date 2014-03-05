@@ -88,10 +88,14 @@ var offline_mixpanel = {
     },
 
     track: function(eventName, properties){
-    	$.post( "/tracks", generateMixpanelJson(eventName,properties), function(data, textStatus, jqXHR) {
-    		console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));
-		}).fail(function() {
-		    console.log( "post failed" );
+		$.ajax({
+		  type: "POST",
+		  contentType: "application/json; charset=UTF-8",
+		  url: "/tracks",
+		  data: JSON.stringify(generateMixpanelJson(eventName,properties)),
+		  success: function(data, textStatus, jqXHR) {console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));},
+		  dataType: "json",
+		  complete: function(jqXHR,textStatus){console.log("post result ==> " + textStatus);}
 		}); 
 	},
 
