@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <title>StatisticDashboard</title>
     <link rel="stylesheet" href="files/lib/bootstrap-3.1.1/css/bootstrap.min.css"/>
-    <link href="css/c-flat-ui.less" rel="stylesheet/less"> 
+    <link rel="stylesheet/less" href="css/c-flat-ui.less"> 
     <link rel="stylesheet" href="css/statisticdashboard.css"/>
-    <script src="files/js/selector.js"></script>
-    <script src="files/js/less-1.5.0.min.js"></script>
+    <link rel="stylesheet" href="css/loader.css"/>
+    <script src="files/lib/less-1.5.0.min.js"></script>
 </head>
 <body board>
 <nav class="navbar navbar-inverse navbar-static-top">
@@ -26,7 +26,8 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ctrl.user['name']}} 老师<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>{{ctrl.user['name']}} 老师<b class="caret"></b></a>
+                    <span class="dropdown-arrow dropdown-arrow-inverse"></span>
                     <ul class="dropdown-menu">
                         <li><a href="#">帐号管理</a></li>
                         <li class="divider"></li>
@@ -38,55 +39,46 @@
     </div>
 </nav>
 <div class="container">
-    <div id="search_panel" class="col-lg-12 col-md-12">
-        <!--<div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                Action <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">西外</li>
-                <li><a href="#">xw1231231</a></li>
-                <li><a href="#">xw2353234</a></li>
-                <li><a href="#">xw4423452</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">八中</li>
-                <li><a href="#">8z234131</a></li>
-            </ul>
-        </div>-->
-        <form class="col-lg-3 col-md-3">
-            <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(null,this.options[this.selectedIndex].index)">
-                <option ng-repeat="chapter in ctrl.chapters" value="{{chapter.id}}">{{chapter.name}}</option>
-            </select>
+    <div id="search_panel">
+        <form class="form">
+            <div class="col-lg-3 col-md-3 form-group">
+                <label>章节</label>
+                <select class="form-control" id="chapterSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+                        onchange="giveParams(null,this.options[this.selectedIndex].index)">
+                    <option ng-repeat="chapter in ctrl.chapters" value={{chapter.name}} ng-cloak>{{chapter.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-md-2 form-group">
+                <label>班级</label>
+                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+                        onchange="giveParams(this.options[this.selectedIndex].index,null)">
+                    <option ng-repeat="room in ctrl.rooms" value={{room}} ng-cloak>{{room}}</option>
+                    <!--<optgroup label="西外">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
+                    </optgroup>
+                    <optgroup label="八中">
+                        <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
+                    </optgroup>-->
+                </select>
+            </div>
+            
         </form>
-        <form class="col-lg-2 col-md-2">
-            <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
-                    onchange="giveParams(this.options[this.selectedIndex].index,null)">
-                <optgroup label="西外">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
-                </optgroup>
-                <optgroup label="八中">
-                    <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                </optgroup>
-            </select>
-        </form>
+    
         <p class="pull-right">
             全班学生中，
             <span ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
-                <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)">{{event.info['result'].length}}</a>
+                <a href="#" ng-if="event.info['type'].contains('SelfMade')" ng-click="ctrl.showUsers(true,event)" ng-cloak>{{event.info['result'].length}}</a>
                 
             </span>
             人从未登录
-
-<!--             <div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
+            <!--<div class="event" ng-repeat="event in ctrl.events | eventfilter: 'LoginRelated':''">
                 <div class="circle" ng-click="ctrl.showUsers(true,event)">
                     <p ng-if="event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</p>
 
                     <p ng-if="event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</p>
                 </div>
                 <p>{{event.info['event_name']}}</p>
-            </div> -->
-
+            </div>-->
         </p>
     </div>
 
@@ -101,17 +93,17 @@
             <tr class="row_lesson_cards" ng-repeat="rowLesson in ctrl.rowLessons">
                 <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="ctrl.onLessonClick(lesson)">
                     <button class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top"
-                            title="Tooltip on top"><span class="glyphicon glyphicon-eye-open"> </span></button>
-                    <h4 class="lesson_title" title="{{lesson['title']}}">{{lesson['title']}}</h4>
+                            title="打开提高班" ng-click="ctrl.openLesson($event,lesson)" ng-cloak><span class="glyphicon glyphicon-eye-open"> </span></button>
+                    <h4 class="lesson_title" title="{{lesson['title']}}" ng-cloak>{{lesson['title']}}</h4>
 
                     <div class="event_container">
                         <div class="event"
                              ng-repeat="event in ctrl.events | eventfilter:'LearningRelated':lesson['id']">
                             <div class="event-label">
-                                <small>{{event.info['event_name']}}</small>
+                                <small ng-cloak>{{event.info['event_name']}}</small>
                             </div>
-                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')">{{event.info['result'].legend_size}}</span>
-                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')">{{event.info['result'].length}}</span>
+                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('Mixpanel')" ng-cloak>{{event.info['result'].legend_size}}</span>
+                            <span ng-if="lesson['status']!='closed' && event.info['type'].contains('SelfMade')" ng-cloak>{{event.info['result'].length}}</span>
                             <span ng-if="lesson['status']=='closed'">- -</span>
                         </div>
                     </div>
@@ -119,20 +111,58 @@
             </tr>
             </tbody>
         </table>
-
+        
+        <div id="lessonLoaderModal" class="modal fade" role="dialog" aria-labelledby="lessonsLoaderLabel"
+           data-backdrop="static">
+          <div class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+              <p style="width:200%;margin-left:-50%;color:#b4b4b4">正在分析数据</p>
+          </div>
+       </div>
     </div>
 
     <div class="panel slide-in" id="right-panel">
+        <button class="close pull-right">&times;</button>
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
-            <h4>{{ctrl.detailstitle}}</h4>
+            <h4 ng-cloak>{{ctrl.detailstitle}}</h4>
         </div>
-        <div class="container" id="details-body"></div>
+        <div class="col-lg-12 col-md-12" id="details-body"></div>
     </div>
 </div>
+
+<!-- UserVoice JavaScript SDK (only needed once on a page) -->
+<script>(function () {
+    var uv = document.createElement('script');
+    uv.type = 'text/javascript';
+    uv.async = true;
+    uv.src = '//widget.uservoice.com/Jm4hT0XRbjXkakWS0jZlA.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(uv, s)
+})()</script>
+
+<!-- A tab to launch the Classic Widget -->
+<script>
+    UserVoice = window.UserVoice || [];
+    UserVoice.push(['showTab', 'classic_widget', {
+        mode: 'feedback',
+        primary_color: '#cc6d00',
+        link_color: '#007dbf',
+        forum_id: 234454,
+        tab_label: '您的想法？',
+        tab_color: '#cc6d00',
+        tab_position: 'bottom-right',
+        tab_inverted: false
+    }]);
+</script>
 
 <script type="application/dart" src="main.dart"></script>
 <script src="files/lib/jquery-1.10.2.min.js"></script>
 <script src="files/lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+<script src="files/js/utils.js"></script>
 <script src="packages/browser/dart.js"></script>
 <script src="packages/browser/interop.js"></script>
 </body>

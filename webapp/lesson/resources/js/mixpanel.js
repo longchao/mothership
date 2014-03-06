@@ -54,11 +54,11 @@
             mixpanel.register({LessonId:lesson_id,LessonTitle:lesson_title});
         },
 
-/*
-        enterVideo: function(id,title,length,parent_lesson_id,parent_lesson_title,parent_chapter_id,parent_chapter_title){
-            mixpanel.track("EnterVideo",{VideoId:id, VideoTitle:title,VideoLength:length});
+
+        enterVideo: function(id,title){
+            mixpanel.track("EnterVideo",{VideoId:id, VideoTitle:title});
         },
-*/
+
 
         finishVideo: function(id,title,length,played_length,played_ratio){
             mixpanel.track("FinishVideo",{VideoId:id, VideoTitle:title, VideoLength:Math.floor(length), VideoPlayedLength:Math.floor(played_length), VideoPlayedRatio:played_ratio});

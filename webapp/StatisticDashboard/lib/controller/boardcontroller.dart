@@ -6,6 +6,7 @@ import "dart:async";
 import 'package:angular/angular.dart';
 import 'package:intl/intl.dart';
 import 'package:json_object/json_object.dart';
+import 'package:js/js.dart' as js;
 import '../model/Mixpanel.dart';
 import '../model/event.dart' as sta;
 part '../requirements/data_requirement.dart';
@@ -20,7 +21,9 @@ var userInfoUrl = "/me";
 var chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
 var allUsersUrl = "/users";
 
-String _allUsersUrl = "files/all_user.json";
+//String chapterInfoUrl = "files/all_chapter.json";
+//String allUsersUrl = "files/all_user.json";
+String exerciseSchema = "/webapp/navigator/#/subject/";
 
 var currentRoomIndex = 0;
 var currentChapterIndex = 0;
@@ -41,7 +44,7 @@ class BoardController {
   List<Map> allUser;
   List<String> user_notLogin;
   Map user = new Map();
-
+  Map currentChapter = new Map();
   Map userClickedLesson;
   String detailstitle;
   num eventNumber;
@@ -59,10 +62,12 @@ class BoardController {
   }
 
   void onFirstLoaded(String responseText){
+    js.context.jQuery("#right-panel").fadeOut();
     user = userInfo;
     //fakeUserInfo = new JsonObject(); // psudo
     //fakeUserInfo.roomNames = list_schools(); //psudo
-    rooms = list_schools();
+    //rooms = list_schools();
+    rooms = user['rooms'];
     chapterInfo = new JsonObject.fromJsonString(responseText);
     chapters = chapterInfo.toList();
     _loadAllUsersAndFindUsers(rooms).then((_){
@@ -84,7 +89,7 @@ class BoardController {
       List<Map> userList = new List<Map>();
       for (var user in allUser){
         String userName = user['username'];
-        if(userName.contains(room)){
+        if(userName != null && userName.contains(room)){
           userList.add(user);
         }
       }
@@ -93,7 +98,10 @@ class BoardController {
     usersMap = users;
   }
 
-  void giveParamAndLoadEvents(){
+  void giveParamAndLoadEvents(){  
+    js.context.jQuery("#right-panel").fadeOut();
+    js.context.jQuery('#lessonLoaderModal').modal('show');
+    events.clear();
     detailstitle = "";
     (querySelector("#details-body") as DivElement).innerHtml = "";
     // get Index from seletor.js
@@ -107,14 +115,17 @@ class BoardController {
       rowLessons = [];
       currentChapterIndex = chapterIndex;
     }
-    print("room"+currentRoomIndex.toString()+"chapter"+currentChapterIndex.toString());
-    _loadEvents(currentRoomIndex,currentChapterIndex);
+    _loadEvents(currentRoomIndex,currentChapterIndex).then((_){
+      js.context.jQuery('#lessonLoaderModal').modal('hide');
+    });
   }
 
   List<List<Map>> makeCombLesson(List<Map> lessons) {
     Map allLessons = new Map();
     for(var lesson in lessons){
-      if(lesson['mainline']==true){
+      //if(lesson['mainline']==true){
+      // MainLineLesson
+      if(lesson['seq']==0){   
         List rowLesson = new List();
         rowLesson.add(lesson);
         String lessonId = lesson['id'];
@@ -139,12 +150,22 @@ class BoardController {
     userClickedLesson = lesson;
     showUsers(false);
   }
+  
+  //open the lesson within exercise
+  void openLesson(MouseEvent evt, Map lesson){
+    evt.preventDefault();
+    String url = exerciseSchema + currentChapter['subject'] +"/chapter/"+
+        currentChapter['id'];
+    window.open(url,"提高班");
+  }
+  
   // Give requirements and load all the data.
   Future<List<sta.Event>> _loadEvents(int roomIndex, int chapterIndex) {
+    List loadingLessonCards = new List();
     //_roomName = fakeUserInfo.roomNames[roomIndex];
     _roomName = rooms[roomIndex];
-    Map chapter = chapterInfo[chapterIndex];
-    List<Map> lessonsMap = chapter['lessons'];
+    currentChapter = chapterInfo[chapterIndex];
+    List<Map> lessonsMap = currentChapter['lessons'];
     lessons = lessonsMap;
     rowLessons = makeCombLesson(lessons);// for fast show CombLesson.
 
@@ -176,7 +197,7 @@ class BoardController {
       map_enterButNotFinishLesson(lessonId),map_notEnterLesson(lessonId)];
 
       List<sta.Event> learningEvents = new List<sta.Event>();
-      Future addEventToLoad = new Future((){
+      loadingLessonCards.add(new Future((){
         List loadingData = new List();
         for(Map event in statisticEvents['$lessonId']){
           if(event['type'].contains("Mixpanel")){ // Mixpanel Event
@@ -190,11 +211,13 @@ class BoardController {
       }).then((_){
         Computation computation = new Computation(learningEvents,lesson:lesson);
         events.addAll(computation.lesson['events']);
-      });
+      }));
     }
+    return Future.wait(loadingLessonCards);
   }
 
   void showUsers(bool _isEvent,[sta.Event event = null]){
+    js.context.jQuery("#right-panel").fadeIn();
     isEvent = _isEvent;
     (querySelector('#details-body') as DivElement).innerHtml = "";
     if(_isEvent && event!=null){
@@ -210,7 +233,6 @@ class BoardController {
 
   void showUsersByLesson(){
     detailstitle = userClickedLesson['title'];
-    print("-=-=-=-=-=-=-=-=-=> "+detailstitle);
     if(userClickedLesson['status']!='closed'){
       for(sta.Event event in userClickedLesson['events']){
         List eventType = event.info['type'];
@@ -245,7 +267,7 @@ class BoardController {
   generateEventBlock(String title, num userCount, StringBuffer strUserHtml) {
     StringBuffer blockHtml = new StringBuffer();
     String heading = "<div class='panel-heading'><h5><strong>$title($userCount)</strong></h5></div>";
-    String content = "<div class='container event-users-container'>$strUserHtml</div>";
+    String content = "<div class='event-users-container clearfix'>$strUserHtml</div>";
     (querySelector('#details-body') as DivElement).insertAdjacentHtml('beforeEnd',heading + content);
   }
 
