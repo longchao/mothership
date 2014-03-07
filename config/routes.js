@@ -37,7 +37,7 @@ module.exports = function (app, passport, auth) {
     app.post('/rooms/:roomId/apps', auth.requiresLogin, rooms.addApp);
     app.delete('/rooms/:roomId/apps/:appId', auth.requiresLogin, rooms.removeApp);
 
-    app.get('/apps', auth.requiresLogin, webapps.all);
+    app.get('/apps', /*auth.requiresLogin,*/ webapps.all);
     app.get('/apps/:appId', auth.requiresLogin, webapps.show);
 
     app.post('/upload', auth.requiresLogin, medias.create);

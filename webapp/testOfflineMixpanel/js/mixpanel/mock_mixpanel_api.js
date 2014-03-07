@@ -48,7 +48,7 @@ function saveCookie(){
 function generateMixpanelJson(eventName, properties){
 	var map_header = {
 		"distinct_id": userId,
-		"ip":"192.168.3.100",
+		"ip":"",
 		"token": token,
 		"time": new Date().getTime()
 	};
