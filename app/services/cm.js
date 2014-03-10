@@ -72,6 +72,7 @@ exports.start = function (apps) {
 //                        console.log(JSON.stringify(options));
                         var req = http.request(options, function (res) {
                             res.setEncoding('utf8');
+                            res.on('data', function() { /* do nothing */ });
 //                            console.log('headers: ', res.headers);
                             var mirror = res.headers;
 //                            console.log('mirror:' + JSON.stringify(mirror));
