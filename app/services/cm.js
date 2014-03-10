@@ -98,8 +98,8 @@ exports.start = function (apps) {
         });
     };
 
-    update();    
-    schedule.scheduleJob('30 * * * *');
+    update();
+    schedule.scheduleJob('30 * * * *', update);
 
     return {
         all: all,
