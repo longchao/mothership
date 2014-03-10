@@ -6,6 +6,7 @@ module.exports = function (app, passport, auth) {
     var rooms = require('../app/controllers/rooms');
     var medias = require('../app/controllers/medias');
     var tracks = require('../app/controllers/tracks');
+    var schools = require('../app/controllers/schools');
 
     app.get('/', function (req, res) {
         res.redirect('/webapp/login');
@@ -37,8 +38,12 @@ module.exports = function (app, passport, auth) {
     app.post('/rooms/:roomId/apps', auth.requiresLogin, rooms.addApp);
     app.delete('/rooms/:roomId/apps/:appId', auth.requiresLogin, rooms.removeApp);
 
-    app.get('/apps', /*auth.requiresLogin,*/ webapps.all);
+    app.get('/schools', auth.requiresLogin, schools.all);
+    app.post('/schools',schools.create);
+
+    app.get('/apps', webapps.all);
     app.get('/apps/:appId', auth.requiresLogin, webapps.show);
+    app.get('/mirrors', auth.requiresLogin, webapps.mirrors);
 
     app.post('/upload', auth.requiresLogin, medias.create);
     app.get('/upload', auth.requiresLogin, medias.list);
