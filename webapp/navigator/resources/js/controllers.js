@@ -92,11 +92,13 @@ angular.module('SunNavigator.controllers', [])
             if (!sessionStorage.getItem('resourceSession')) {
                 console.log('销毁sessionStorage！！！');
             }
+
             $http.get('/signout')
                 .success(function (data) {
                     var me = subjectSandbox.loadMe();
                     me = null;
-                    window.location = '/webapp/login';
+                    window.location = '/signout';
+                    //window.location = '/webapp/login';
                 })
                 .error(function (err) {
                     console.log('Signout Error:  ' + err);
