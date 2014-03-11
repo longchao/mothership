@@ -16,5 +16,10 @@ module.exports = {
     webapp: {
         base: "/webapp",
         folder: rootPath + '/webapp'
+    },
+    dl: {
+        host: '10.8.0.222',
+        port: 8844,
+        local: '192.168.3.100'
     }
 }

@@ -24,8 +24,10 @@ exports.all = function (req, res) {
     var filters = req.query
         , fields = (filters.fields) ? _.words(filters.fields, ",") : undefined
         , result;
+    var school = (req.user) ? req.user.profile.school_name : undefined;
+    console.log('query:' + JSON.stringify(req.user));
     if (req.query) {
-        result = am.query(filters);
+        result = am.query(filters, school);
         delete filters.fields;
     } else {
         result = am.all();
@@ -41,6 +43,10 @@ exports.all = function (req, res) {
     }
     res.send(result);
 };
+
+exports.mirrors = function (req, res) {
+    res.send(am.mirrors());
+}
 
 exports.install = function (req, res) {
     var file = req.body.zip

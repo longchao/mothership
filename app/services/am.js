@@ -11,6 +11,8 @@ var _ = require("underscore")
 
     , temp = require('temp');
 
+var cm = require('./cm');
+
 _.mixin(_str.exports());
 
 var mongoose = require('mongoose');
@@ -259,9 +261,9 @@ exports.init = function (appBase, downloadBase) {
     var all = function () {
         return apps;
     };
-    var query = function (filters) {
-        console.log('query,%s', JSON.stringify(filters));
-        return _.filter(apps, function (app) {
+    var query = function (filters, school) {
+        console.log('query,%s,school,%s', JSON.stringify(filters),JSON.stringify(school));
+        var result =  _.filter(apps, function (app) {
             var pass = true;
             _.each(filters, function (value, key) {
 //				console.log('filter,%s=%s,%s(%s),%s(%s),result:%s', key, value,
@@ -272,10 +274,16 @@ exports.init = function (appBase, downloadBase) {
             });
             return pass;
         })
+        return (typeof school != 'undefined') ? mirrors.query(result, school) : result;
     };
     var getAppById = function (id) {
         return apps[id];
     }
+    var allMirrors = function (){
+        return mirrors.all();
+    }
+
+    var mirrors = cm.start(query({}));
 
     return {
         install: install,
@@ -284,6 +292,7 @@ exports.init = function (appBase, downloadBase) {
         all: all,
         getAppById: getAppById,
         query: query,
-        packApp: packApp
+        packApp: packApp,
+        mirrors: allMirrors
     }
 };
