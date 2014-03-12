@@ -6,9 +6,8 @@
     <title>StatisticDashboard</title>
     <link rel="stylesheet" href="files/lib/bootstrap-3.1.1/css/bootstrap.min.css"/>
     <link rel="stylesheet/less" href="css/c-flat-ui.less"> 
-    <link rel="stylesheet" href="css/statisticdashboard.css"/>
+<!--     <link rel="stylesheet" href="css/statisticdashboard.css"/> -->
     <link rel="stylesheet" href="css/loader.css"/>
-    <script src="files/js/selector.js"></script>
     <script src="files/lib/less-1.5.0.min.js"></script>
 </head>
 <body board>
@@ -51,18 +50,31 @@
             </div>
             <div class="col-lg-2 col-md-2 form-group">
                 <label>班级</label>
-                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
+<!--                <select class="form-control" id="roomSelector" ng-change="ctrl.giveParamAndLoadEvents()"
                         onchange="giveParams(this.options[this.selectedIndex].index,null)">
                     <option ng-repeat="room in ctrl.rooms" value={{room}} ng-cloak>{{room}}</option>
-                    <!--<optgroup label="西外">
+                    <optgroup label="西外">
                         <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.XW" value="{{room}}">{{room}}</option>
                     </optgroup>
                     <optgroup label="八中">
                         <option ng-repeat="room in ctrl.rooms | schoolfilter:ctrl.Z8" value="{{room}}">{{room}}</option>
-                    </optgroup>-->
-                </select>
+                    </optgroup>
+                </select>-->
+                <div class="btn-group select select-block">
+                  <button type="button" class="btn btn-primary dropdown-toggle form-control" data-toggle="dropdown">
+                    <span class="filter-option pull-left">xw1234</span>
+                    <span class="caret"></span>
+                  </button>
+                  <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+                  <ul class="dropdown-menu dropdown-inverse" role="menu">
+                    <li class="selected"><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
             </div>
-            
+
         </form>
     
         <p class="pull-right">
@@ -93,7 +105,7 @@
             <tbody>
             <tr class="row_lesson_cards" ng-repeat="rowLesson in ctrl.rowLessons">
                 <td class="lesson_card" ng-repeat="lesson in rowLesson" ng-click="ctrl.onLessonClick(lesson)">
-                    <button class="btn btn-default btn-sm pull-right" data-toggle="tooltip" data-placement="top"
+                    <button class="btn btn-primary btn-sm pull-right" data-toggle="tooltip" data-placement="top"
                             title="打开提高班" ng-click="ctrl.openLesson($event,lesson)" ng-cloak><span class="glyphicon glyphicon-eye-open"> </span></button>
                     <h4 class="lesson_title" title="{{lesson['title']}}" ng-cloak>{{lesson['title']}}</h4>
 
@@ -127,6 +139,7 @@
     </div>
 
     <div class="panel slide-in" id="right-panel">
+        <button class="close pull-right">&times;</button>
         <div ng-if="!ctrl.isEvent" class="panel-heading" id="details-title">
             <h4 ng-cloak>{{ctrl.detailstitle}}</h4>
         </div>
@@ -162,6 +175,7 @@
 <script type="application/dart" src="main.dart"></script>
 <script src="files/lib/jquery-1.10.2.min.js"></script>
 <script src="files/lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+<script src="files/js/utils.js"></script>
 <script src="packages/browser/dart.js"></script>
 <script src="packages/browser/interop.js"></script>
 </body>

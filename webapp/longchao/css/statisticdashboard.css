@@ -55,10 +55,6 @@ body {
     color: #1abc9c;
 }
 
-.event_container {
-    padding: 0 10px 0 10px;
-}
-
 .event {
     display: inline-block;
     text-align: center;

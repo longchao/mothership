@@ -21,8 +21,8 @@ var userInfoUrl = "/me";
 var chapterInfoUrl = "/apps?package_name=org.sunlib.exercise&type=chapter";
 var allUsersUrl = "/users";
 
-String _allUsersUrl = "files/all_user.json";
-
+//String chapterInfoUrl = "files/all_chapter.json";
+//String allUsersUrl = "files/all_user.json";
 String exerciseSchema = "/webapp/navigator/#/subject/";
 
 var currentRoomIndex = 0;
@@ -62,6 +62,7 @@ class BoardController {
   }
 
   void onFirstLoaded(String responseText){
+    js.context.jQuery("#right-panel").fadeOut();
     user = userInfo;
     //fakeUserInfo = new JsonObject(); // psudo
     //fakeUserInfo.roomNames = list_schools(); //psudo
@@ -75,7 +76,7 @@ class BoardController {
   }
 
   Future _loadAllUsersAndFindUsers(var rooms) {
-    return HttpRequest.getString(_allUsersUrl)
+    return HttpRequest.getString(allUsersUrl)
     .then((value){
       allUser = new JsonObject.fromJsonString(value).toList();
       findUsers(rooms);
@@ -98,6 +99,7 @@ class BoardController {
   }
 
   void giveParamAndLoadEvents(){  
+    js.context.jQuery("#right-panel").fadeOut();
     js.context.jQuery('#lessonLoaderModal').modal('show');
     events.clear();
     detailstitle = "";
@@ -121,7 +123,9 @@ class BoardController {
   List<List<Map>> makeCombLesson(List<Map> lessons) {
     Map allLessons = new Map();
     for(var lesson in lessons){
-      if(lesson['mainline']==true){
+      //if(lesson['mainline']==true){
+      // MainLineLesson
+      if(lesson['seq']==0){   
         List rowLesson = new List();
         rowLesson.add(lesson);
         String lessonId = lesson['id'];
@@ -147,12 +151,14 @@ class BoardController {
     showUsers(false);
   }
   
+  //open the lesson within exercise
   void openLesson(MouseEvent evt, Map lesson){
     evt.preventDefault();
     String url = exerciseSchema + currentChapter['subject'] +"/chapter/"+
         currentChapter['id'];
     window.open(url,"提高班");
   }
+  
   // Give requirements and load all the data.
   Future<List<sta.Event>> _loadEvents(int roomIndex, int chapterIndex) {
     List loadingLessonCards = new List();
@@ -211,6 +217,7 @@ class BoardController {
   }
 
   void showUsers(bool _isEvent,[sta.Event event = null]){
+    js.context.jQuery("#right-panel").fadeIn();
     isEvent = _isEvent;
     (querySelector('#details-body') as DivElement).innerHtml = "";
     if(_isEvent && event!=null){
@@ -260,7 +267,7 @@ class BoardController {
   generateEventBlock(String title, num userCount, StringBuffer strUserHtml) {
     StringBuffer blockHtml = new StringBuffer();
     String heading = "<div class='panel-heading'><h5><strong>$title($userCount)</strong></h5></div>";
-    String content = "<div class='event-users-container'>$strUserHtml</div>";
+    String content = "<div class='event-users-container clearfix'>$strUserHtml</div>";
     (querySelector('#details-body') as DivElement).insertAdjacentHtml('beforeEnd',heading + content);
   }
 

@@ -98,6 +98,10 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
+#details-body{
+  padding-bottom: 20px;
+}
+
 [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
    display: none !important;
 }
