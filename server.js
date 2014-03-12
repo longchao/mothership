@@ -63,5 +63,8 @@ console.log('Express app started on port ' + port);
 //Initializing logger
 logger.init(app, passport, mongoose);
 
+var cron = require('./app/services/import');
+cron.start();
+
 //expose app
 module.exports = app;

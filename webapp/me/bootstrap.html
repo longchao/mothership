@@ -135,11 +135,8 @@
                 return;
             }
             console.log($scope.user.profile.birthday);
-            $http.post('/users/' + $scope.user._id + '/profile', {
-                gender: $scope.user.profile.gender,
-                birthday: $scope.user.profile.birthday
-            }).
-                    success(function (data, status, headers, config) {
+            $http.post('/users/' + $scope.user._id + '/profile', $scope.user.profile
+                    ).success(function (data, status, headers, config) {
                         $scope.status = "个人资料修改成功，将进入提高班";
                         setTimeout("window.location='/dispatch'", 1000)
                     }).

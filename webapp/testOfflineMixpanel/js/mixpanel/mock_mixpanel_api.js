@@ -48,7 +48,7 @@ function saveCookie(){
 function generateMixpanelJson(eventName, properties){
 	var map_header = {
 		"distinct_id": userId,
-		"ip":"192.168.3.100",
+		"ip":"",
 		"token": token,
 		"time": new Date().getTime()
 	};
@@ -88,10 +88,14 @@ var offline_mixpanel = {
     },
 
     track: function(eventName, properties){
-    	$.post( "/tracks", generateMixpanelJson(eventName,properties), function(data, textStatus, jqXHR) {
-    		console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));
-		}).fail(function() {
-		    console.log( "post failed" );
+		$.ajax({
+		  type: "POST",
+		  contentType: "application/json; charset=UTF-8",
+		  url: "/tracks",
+		  data: JSON.stringify(generateMixpanelJson(eventName,properties)),
+		  success: function(data, textStatus, jqXHR) {console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));},
+		  dataType: "json",
+		  complete: function(jqXHR,textStatus){console.log("post result ==> " + textStatus);}
 		}); 
 	},
 

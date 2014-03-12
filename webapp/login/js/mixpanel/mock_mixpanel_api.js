@@ -25,9 +25,9 @@ function getSP(){
             sp[propertyName] = propertyValue;
     		previousIndex = cusorIndex+1; 
     	}while(cookie.indexOf("|",previousIndex)>-1)
-    	console.log("currentSP ==> " + JSON.stringify(sp))
+    	//console.log("currentSP ==> " + JSON.stringify(sp))
     }else{
-    	console.log("there's no sp");
+    	//console.log("there's no sp");
     }
     return sp;
 }
@@ -40,7 +40,7 @@ function saveCookie(){
 		}
 		document.cookie = cookieSchema + spStrings;
 	}else{
-		console.log("sp is empty");
+		//console.log("sp is empty");
 		document.cookie = cookieSchema + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'; // clear sp immediately
 	}
 }
@@ -48,7 +48,7 @@ function saveCookie(){
 function generateMixpanelJson(eventName, properties){
 	var map_header = {
 		"distinct_id": userId,
-		"ip":"192.168.3.100",
+		"ip":"",
 		"token": token,
 		"time": new Date().getTime()
 	};
@@ -75,7 +75,7 @@ function generateMixpanelJson(eventName, properties){
 
 	var mixpanelJson = {"headers": map_header, "data": map_data};
 
-	console.log(eventName+"-=-=-=-=-=-=> "+JSON.stringify(mixpanelJson));
+	//console.log(eventName+"-=-=-=-=-=-=> "+JSON.stringify(mixpanelJson));
 
 	return mixpanelJson;
 }
@@ -88,10 +88,18 @@ var offline_mixpanel = {
     },
 
     track: function(eventName, properties){
-    	$.post( "/tracks", generateMixpanelJson(eventName,properties), function(data, textStatus, jqXHR) {
-    		console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));
-		}).fail(function() {
-		    console.log( "post failed" );
+    	$.ajax({
+		  type: "POST",
+		  contentType: "application/json; charset=UTF-8",
+		  url: "/tracks",
+		  data: JSON.stringify(generateMixpanelJson(eventName,properties)),
+		  success: function(data, textStatus, jqXHR) {
+		  	//console.log("Post "+'\"'+eventName+'\"'+"==>" + JSON.stringify(data));
+		  },
+		  dataType: "json",
+		  complete: function(jqXHR,textStatus){
+		  	//console.log("post result ==> " + textStatus);
+		  }
 		}); 
 	},
 
@@ -100,7 +108,7 @@ var offline_mixpanel = {
 		for (var key in properties){
             superProperties[key] = properties[key];
 		}
-		console.log("after registerSP ==>" + JSON.stringify(superProperties));
+		//console.log("after registerSP ==>" + JSON.stringify(superProperties));
         saveCookie();
 	},
 

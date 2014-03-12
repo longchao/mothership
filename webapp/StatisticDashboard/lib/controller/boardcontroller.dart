@@ -89,7 +89,7 @@ class BoardController {
       List<Map> userList = new List<Map>();
       for (var user in allUser){
         String userName = user['username'];
-        if(userName.contains(room)){
+        if(userName != null && userName.contains(room)){
           userList.add(user);
         }
       }
