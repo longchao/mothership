@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        For demonstration purposes, the `title` is dynamically set here based on
+        your `sails.config.appName` to show that you can inject data into layouts
+        exactly the same way as with your other view templates.
+    -->
+    <title>数学提高班</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/c-flat-ui.less" rel="stylesheet/less"> 
+    <!-- <link href="css/flat-ui.css" rel="stylesheet">  -->
+    <script src="files/lib/less-1.5.0.min.js"></script>
+    <!-- <link rel="stylesheet" href="web/cuotilist.css"> -->
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+          <div class="navbar-header">
+              <a href="#" class="navbar-brand">ghxz</a>
+          </div>
+
+          <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                  <li class="active">
+                      <a href="#"><span class="glyphicon glyphicon-stats"> </span> 学生数据</a>
+                  </li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>{{ctrl.user['name']}} 老师<b class="caret"></b></a>
+                      <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">帐号管理</a></li>
+                          <li class="divider"></li>
+                          <li><a href="/signout">登出</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+   <div class="container">
+
+    <div class="side col-lg-3 col-md-3">
+      <div class="panel panel-default lesson-filter">
+        <div class="list-group">
+          <span href="#" class="list-group-item list-group-item-heading"><h4>平方根的性质</h4></span>
+        </div>
+        <div class="list-group dropdown">
+          <a href="#" class="list-group-item"><span class="badge pull-right">80%</span>课后练习来啦</a>
+          <a href="#" class="list-group-item active"><span class="badge pull-right">92%</span>对顶角基础</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 col-md-9">
+      <div class="page-box">
+<!--         <h4>错题本</h4>
+        <ul class="nav nav-tabs">
+          <li><a href="#">全部（6）</a></li>
+          <li class="active"><a href="#">我的收藏 (1)</a></li>
+        </ul> -->
+    
+        <ul class="list-group cuoti">
+          <li class="list-group-item">
+            <span class="badge">80%</span>
+            <a href="#" class="quiz-text">
+              <span>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="quiz.html" class="quiz-text">
+              <img class="pull-left" src="http://t.sunshine-library.org/webapp/7c2cfbf4-a677-4227-9167-015caf451835/4f7d2de1-642e-4809-a049-8499bb6ba2cc/5c53ef8d-e7ee-4696-a623-4560bccdf85b">
+              <span>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" class="quiz-text">
+              <span>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" class="quiz-text">
+              <span>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</span>
+            </a>
+          </li>
+        </ul> 
+<!--       <table class="table table-bordered table-hover">
+        <tbody>
+          <tr>
+            <td><img style="height:60px" src="http://t.sunshine-library.org/webapp/7c2cfbf4-a677-4227-9167-015caf451835/4f7d2de1-642e-4809-a049-8499bb6ba2cc/5c53ef8d-e7ee-4696-a623-4560bccdf85b"></td>
+            <td>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</td>
+          </tr>
+          <tr>
+            <td><img class="pull-right" style="height:60px" src="http://t.sunshine-library.org/webapp/7c2cfbf4-a677-4227-9167-015caf451835/4f7d2de1-642e-4809-a049-8499bb6ba2cc/5c53ef8d-e7ee-4696-a623-4560bccdf85b"></td>
+            <td>三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子图”。两条直线相交形成的“叉子图”。三条直线交于一点时可以把图拆分看做_____个两条直线相交形成的“叉子</td>
+          </tr>
+        </tbody>
+      </table> -->
+      <!-- <strong class="fav"><span class="glyphicon glyphicon-star"> </span></strong> -->
+
+      </div>
+    </div>
+    
+   </div> 
+
+
+
+</body>
+</html>
